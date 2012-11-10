@@ -1,0 +1,15 @@
+Interface:
+Create/join server
+Copy short link for joining specific server
+Display connected players
+Display player cursors
+Roll dice
+Move pieces
+Draw cards
+Chat
+
+Graphics:
+Dice with physics and shadows
+Cards with holographic display
+UI display (windows and borders?)
+Splash screen
