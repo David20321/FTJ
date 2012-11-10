@@ -27,7 +27,7 @@ public class NetUIScript : MonoBehaviour {
 	
 	[RPC]
 	void SetPlayerName(int id, string name){
-		player_names_.Add(id, name);
+		player_names_[id] = name;
 		ConsoleScript.Log("Player "+id+" is named: "+name);
 	}
 	
@@ -41,14 +41,18 @@ public class NetUIScript : MonoBehaviour {
 		SetPlayerName(player_id, player_name_);
 	}
 	
+	void TellServerPlayerName(string name){		
+		int player_id = int.Parse(Network.player.ToString());
+		ConsoleScript.Log("Telling server that player "+player_id+" is named: "+player_name_);
+		networkView.RPC("SetPlayerName", RPCMode.Server, player_id, name);
+	}
+	
 	void OnConnectedToServer() {
 		if(state_ == State.JOINING){
 			SetState(State.JOIN_SUCCESS);
 		}
 		ConsoleScript.Log("Connected to server with ID: "+Network.player);
-		int player_id = int.Parse(Network.player.ToString());
-		ConsoleScript.Log("Telling server that player "+player_id+" is named: "+player_name_);
-		networkView.RPC("SetPlayerName", RPCMode.Server, player_id, player_name_);
+		TellServerPlayerName(player_name_);
 	}
 	
 	void OnFailedToConnect(NetworkConnectionError err) {
@@ -67,14 +71,42 @@ public class NetUIScript : MonoBehaviour {
 		ConsoleScript.Log("Failed to connect to master server: "+err);
 	}
 	
+	void OnMasterServerEvent(MasterServerEvent the_event) {
+		switch(the_event){
+			case MasterServerEvent.HostListReceived:
+        		ConsoleScript.Log("Received a host list from the master server.");
+        		break;
+			case MasterServerEvent.RegistrationFailedGameName:
+        		ConsoleScript.Log("Registration failed because an empty game name was given.");
+        		break;
+			case MasterServerEvent.RegistrationFailedGameType:
+        		ConsoleScript.Log("Registration failed because an empty game type was given.");
+        		break;
+			case MasterServerEvent.RegistrationFailedNoServer:
+        		ConsoleScript.Log("Registration failed because no server is running.");
+        		break;
+			case MasterServerEvent.RegistrationSucceeded:
+        		ConsoleScript.Log("Registration to master server succeeded, received confirmation.");
+        		break;
+		}
+    }
+    
 	void OnPlayerConnected(NetworkPlayer player) {
 		ConsoleScript.Log("Player "+player+" connected");
 	}
 	
 	void OnPlayerDisconnected(NetworkPlayer player) {
 		ConsoleScript.Log("Player "+player+" disconnected");
+		player_names_.Remove(int.Parse(player.ToString()));
 		Network.RemoveRPCs(player);
     	Network.DestroyPlayerObjects(player);
+	}
+	
+	void OnDisconnectedFromServer() {
+		ConsoleScript.Log("Disconnected from server");
+		if(state_ == State.NONE || state_ == State.JOIN_SUCCESS || state_ == State.JOINING){
+			state_ = State.MAIN_MENU;
+		}
 	}
 	
 	void SetState(State state) {
@@ -96,6 +128,9 @@ public class NetUIScript : MonoBehaviour {
 	
 	void OnGUI() {
 		switch(state_){
+			case State.NONE:
+				DrawGameGUI();
+				break;
 			case State.MAIN_MENU:
 				DrawMainMenuGUI();
 				break;
@@ -123,6 +158,17 @@ public class NetUIScript : MonoBehaviour {
 			case State.MASTER_SERVER_FAIL:
 				DrawMasterServerFailGUI();
 				break;
+		}
+	}
+	
+	void DrawGameGUI() {
+		GUILayout.BeginHorizontal();
+		GUILayout.Label(game_name_);
+		GUILayout.EndHorizontal();
+		foreach (var pair in player_names_){
+			GUILayout.BeginHorizontal();
+			GUILayout.Label(pair.Key + ": " + pair.Value);
+			GUILayout.EndHorizontal();
 		}
 	}
 	
@@ -271,6 +317,7 @@ public class NetUIScript : MonoBehaviour {
 		GUILayout.EndHorizontal();
 		GUILayout.BeginHorizontal();
 		if(GUILayout.Button("Continue")){
+			TellServerPlayerName(player_name_);
 			SetState(State.NONE);
 		}
 		GUILayout.EndHorizontal();
