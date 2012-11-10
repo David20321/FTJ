@@ -25,10 +25,19 @@ public class NetUIScript : MonoBehaviour {
 	void Update() {
 	}
 	
+	void UpdatePlayerList() {
+		List<string> player_names = new List<string>();		
+		foreach (var pair in player_names_){
+			player_names.Add(pair.Key+": "+pair.Value);
+		}
+		PlayerListScript.SetPlayerNames(player_names);
+	}
+	
 	[RPC]
 	void SetPlayerName(int id, string name){
 		player_names_[id] = name;
 		ConsoleScript.Log("Player "+id+" is named: "+name);
+		UpdatePlayerList();
 	}
 	
 	void OnServerInitialized() {
@@ -102,6 +111,7 @@ public class NetUIScript : MonoBehaviour {
 	void OnPlayerDisconnected(NetworkPlayer player) {
 		ConsoleScript.Log("Player "+player+" disconnected");
 		player_names_.Remove(int.Parse(player.ToString()));
+		UpdatePlayerList();
 		Network.RemoveRPCs(player);
     	Network.DestroyPlayerObjects(player);
 	}
@@ -176,9 +186,10 @@ public class NetUIScript : MonoBehaviour {
 		GUILayout.BeginHorizontal();
 		GUILayout.Label(game_name_);
 		GUILayout.EndHorizontal();
-		foreach (var pair in player_names_){
+		List<string> player_names = PlayerListScript.GetPlayerNames();
+		foreach (string name in player_names){
 			GUILayout.BeginHorizontal();
-			GUILayout.Label(pair.Key + ": " + pair.Value);
+			GUILayout.Label(name);
 			GUILayout.EndHorizontal();
 		}
 	}
