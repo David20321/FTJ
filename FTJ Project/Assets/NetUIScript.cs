@@ -3,20 +3,48 @@ using System.Collections;
 
 public class NetUIScript : MonoBehaviour {
 	// What screen is the player looking at
-	enum State {MAIN_MENU, CREATE, CREATE_FAIL, JOIN, NONE, JOINING, JOIN_FAIL, JOIN_SUCCESS}
+	enum State {NONE, MAIN_MENU, CREATE, CREATING, CREATE_FAIL, JOIN, MASTER_SERVER_FAIL, JOINING, JOIN_FAIL, JOIN_SUCCESS}
 	State state_ = State.MAIN_MENU;
 	const string DEFAULT_GAME_NAME = "Unnamed Game";
 	const string DEFAULT_PLAYER_NAME = "Unknown Player";
 	const string GAME_IDENTIFIER = "WolfireFTJGame";
+	const int DEFAULT_PORT = 25000;
+	const int MAX_PLAYERS = 4;
 	
 	string game_name_ = "???";
 	string player_name_ = "???";
-	string display_err_; 
+	string display_err_ = "???"; 
 	
 	void Start() {
 	}
 	
 	void Update() {
+	}
+	
+	void OnServerInitialized() {
+		if(state_ == State.CREATING){
+			SetState(State.NONE);
+		}
+	}
+	
+	void OnConnectedToServer() {
+		if(state_ == State.JOINING){
+			SetState(State.JOIN_SUCCESS);
+		}
+	}
+	
+	void OnFailedToConnect(NetworkConnectionError err) {
+		if(state_ == State.JOINING){
+			display_err_ = ""+err;
+			SetState(State.JOIN_FAIL);
+		}
+	}
+	
+	void OnFailedToConnectToMasterServer(NetworkConnectionError err) {
+		if(state_ == State.JOIN){
+			display_err_ = ""+err;
+			SetState(State.MASTER_SERVER_FAIL);
+		}
 	}
 	
 	void SetState(State state) {
@@ -43,6 +71,9 @@ public class NetUIScript : MonoBehaviour {
 			case State.CREATE:
 				DrawCreateGUI();
 				break;
+			case State.CREATING:
+				DrawCreatingGUI();
+				break;
 			case State.CREATE_FAIL:
 				DrawCreateFailGUI();
 				break;
@@ -57,6 +88,9 @@ public class NetUIScript : MonoBehaviour {
 				break;
 			case State.JOIN_SUCCESS:
 				DrawJoinSuccessGUI();
+				break;
+			case State.MASTER_SERVER_FAIL:
+				DrawMasterServerFailGUI();
 				break;
 		}
 	}
@@ -85,16 +119,27 @@ public class NetUIScript : MonoBehaviour {
 		GUILayout.EndHorizontal();
 		GUILayout.BeginHorizontal();
 		if(GUILayout.Button("Create")){
+			SetState(State.CREATING);
 			NetworkConnectionError err = CreateGame();
-			if(err == NetworkConnectionError.NoError){
-				SetState(State.NONE);
-			} else {
+			if(err != NetworkConnectionError.NoError){
 				display_err_ = ""+err;
 				SetState(State.CREATE_FAIL);
 			}
 		}
 		if(GUILayout.Button("Back")){
 			SetState(State.MAIN_MENU);
+		}
+		GUILayout.EndHorizontal();
+	}
+	
+	void DrawCreatingGUI() {
+		GUILayout.BeginHorizontal();
+		GUILayout.Label("Attempting to create game: "+game_name_);
+		GUILayout.EndHorizontal();
+		GUILayout.BeginHorizontal();
+		if(GUILayout.Button("Cancel")){
+			Network.Disconnect();
+			SetState(State.CREATE);
 		}
 		GUILayout.EndHorizontal();
 	}
@@ -164,6 +209,26 @@ public class NetUIScript : MonoBehaviour {
 		}
 		GUILayout.EndHorizontal();
 	}
+
+	
+	void DrawMasterServerFailGUI() {
+		GUILayout.BeginHorizontal();
+		GUILayout.Label("Failed to connect to master server.");
+		GUILayout.EndHorizontal();
+		GUILayout.BeginHorizontal();
+		GUILayout.Label("Error: "+display_err_);
+		GUILayout.EndHorizontal();
+		GUILayout.BeginHorizontal();
+		if(GUILayout.Button("Retry")){
+			SetState(State.JOIN);
+		}
+		GUILayout.EndHorizontal();
+		GUILayout.BeginHorizontal();
+		if(GUILayout.Button("Back")){
+			SetState(State.MAIN_MENU);
+		}
+		GUILayout.EndHorizontal();
+	}
 	
 	void DrawJoinSuccessGUI() {
 		GUILayout.BeginHorizontal();
@@ -182,7 +247,7 @@ public class NetUIScript : MonoBehaviour {
 	
 	NetworkConnectionError CreateGame() {
 		Network.InitializeSecurity();
-		NetworkConnectionError err = Network.InitializeServer(4,25000,true);
+		NetworkConnectionError err = Network.InitializeServer(MAX_PLAYERS,DEFAULT_PORT,true);
 		if(err == NetworkConnectionError.NoError){
 			MasterServer.RegisterHost(GAME_IDENTIFIER, game_name_, "Comments could go here");
 		}
