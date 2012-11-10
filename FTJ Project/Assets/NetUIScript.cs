@@ -44,7 +44,11 @@ public class NetUIScript : MonoBehaviour {
 	void TellServerPlayerName(string name){		
 		int player_id = int.Parse(Network.player.ToString());
 		ConsoleScript.Log("Telling server that player "+player_id+" is named: "+player_name_);
-		networkView.RPC("SetPlayerName", RPCMode.Server, player_id, name);
+		if(Network.isClient){
+			networkView.RPC("SetPlayerName", RPCMode.Server, player_id, name);
+		} else {
+			SetPlayerName(player_id, name);	
+		}
 	}
 	
 	void OnConnectedToServer() {
@@ -102,8 +106,15 @@ public class NetUIScript : MonoBehaviour {
     	Network.DestroyPlayerObjects(player);
 	}
 	
-	void OnDisconnectedFromServer() {
-		ConsoleScript.Log("Disconnected from server");
+	void OnDisconnectedFromServer(NetworkDisconnection info) {
+		switch(info){
+			case NetworkDisconnection.Disconnected:
+				ConsoleScript.Log("Cleanly disconnected from server");
+				break;
+			case NetworkDisconnection.LostConnection:
+				ConsoleScript.Log("Connection to server was lost unexpectedly");
+				break;
+		}
 		if(state_ == State.NONE || state_ == State.JOIN_SUCCESS || state_ == State.JOINING){
 			state_ = State.MAIN_MENU;
 		}
