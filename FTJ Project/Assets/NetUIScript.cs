@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class NetUIScript : MonoBehaviour {
 	// What screen is the player looking at
@@ -10,6 +11,9 @@ public class NetUIScript : MonoBehaviour {
 	const string GAME_IDENTIFIER = "WolfireFTJGame";
 	const int DEFAULT_PORT = 25000;
 	const int MAX_PLAYERS = 4;
+	const int MAX_CONNECTIONS = MAX_PLAYERS-1;
+	
+	Dictionary<int, string> player_names_ = new Dictionary<int,string>();
 	
 	string game_name_ = "???";
 	string player_name_ = "???";
@@ -21,24 +25,30 @@ public class NetUIScript : MonoBehaviour {
 	void Update() {
 	}
 	
-	void ConsoleDisplay(string msg) {
-		GameObject go = GameObject.Find("ConsoleObject");
-		Component component = go.GetComponent(typeof(ConsoleScript));
-		((ConsoleScript)component).AddMessage(msg);
+	[RPC]
+	void SetPlayerName(int id, string name){
+		player_names_.Add(id, name);
+		ConsoleScript.Log("Player "+id+" is named: "+name);
 	}
 	
 	void OnServerInitialized() {
 		if(state_ == State.CREATING){
 			SetState(State.NONE);
 		}
-		ConsoleDisplay("Server initialized");
+		ConsoleScript.Log("Server initialized");
+		int player_id = int.Parse(Network.player.ToString());
+		ConsoleScript.Log("Telling server that player "+player_id+" is named: "+player_name_);
+		SetPlayerName(player_id, player_name_);
 	}
 	
 	void OnConnectedToServer() {
 		if(state_ == State.JOINING){
 			SetState(State.JOIN_SUCCESS);
 		}
-		ConsoleDisplay("Connected to server");
+		ConsoleScript.Log("Connected to server with ID: "+Network.player);
+		int player_id = int.Parse(Network.player.ToString());
+		ConsoleScript.Log("Telling server that player "+player_id+" is named: "+player_name_);
+		networkView.RPC("SetPlayerName", RPCMode.Server, player_id, player_name_);
 	}
 	
 	void OnFailedToConnect(NetworkConnectionError err) {
@@ -46,7 +56,7 @@ public class NetUIScript : MonoBehaviour {
 			display_err_ = ""+err;
 			SetState(State.JOIN_FAIL);
 		}
-		ConsoleDisplay("Failed to connect: "+err);
+		ConsoleScript.Log("Failed to connect: "+err);
 	}
 	
 	void OnFailedToConnectToMasterServer(NetworkConnectionError err) {
@@ -54,7 +64,17 @@ public class NetUIScript : MonoBehaviour {
 			display_err_ = ""+err;
 			SetState(State.MASTER_SERVER_FAIL);
 		}
-		ConsoleDisplay("Failed to connect to master server: "+err);
+		ConsoleScript.Log("Failed to connect to master server: "+err);
+	}
+	
+	void OnPlayerConnected(NetworkPlayer player) {
+		ConsoleScript.Log("Player "+player+" connected");
+	}
+	
+	void OnPlayerDisconnected(NetworkPlayer player) {
+		ConsoleScript.Log("Player "+player+" disconnected");
+		Network.RemoveRPCs(player);
+    	Network.DestroyPlayerObjects(player);
 	}
 	
 	void SetState(State state) {
@@ -71,7 +91,7 @@ public class NetUIScript : MonoBehaviour {
 				break;
 		}
 		state_ = state;
-		ConsoleDisplay("Set state: "+state);
+		ConsoleScript.Log("Set state: "+state);
 	}
 	
 	void OnGUI() {
@@ -176,7 +196,8 @@ public class NetUIScript : MonoBehaviour {
 		HostData[] servers = MasterServer.PollHostList();
 		foreach(HostData server in servers){
 			GUILayout.BeginHorizontal();
-			if(GUILayout.Button(server.gameName)){
+			string display_name = server.gameName + " " + server.connectedPlayers + "/" + server.playerLimit;
+			if(GUILayout.Button(display_name)){
 				game_name_ = server.gameName;
 				SetState(State.JOINING);
 				NetworkConnectionError err = Network.Connect(server);
@@ -257,7 +278,7 @@ public class NetUIScript : MonoBehaviour {
 	
 	NetworkConnectionError CreateGame() {
 		Network.InitializeSecurity();
-		NetworkConnectionError err = Network.InitializeServer(MAX_PLAYERS,DEFAULT_PORT,true);
+		NetworkConnectionError err = Network.InitializeServer(MAX_CONNECTIONS,DEFAULT_PORT,true);
 		if(err == NetworkConnectionError.NoError){
 			MasterServer.RegisterHost(GAME_IDENTIFIER, game_name_, "Comments could go here");
 		}

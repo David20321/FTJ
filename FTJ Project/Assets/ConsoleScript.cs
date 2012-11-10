@@ -7,7 +7,7 @@ public class ConsoleScript : MonoBehaviour {
 	List<string> messages = new List<string>();
 	
 	void OnGUI() {
-		GUILayout.BeginArea(new Rect(0,Screen.height-200,300,200));
+		GUILayout.BeginArea(new Rect(0,Screen.height-200,500,200));
 		for(int i=0; i<messages.Count; ++i){
 			GUILayout.BeginHorizontal();
 			GUILayout.Label(messages[i]);
@@ -16,10 +16,16 @@ public class ConsoleScript : MonoBehaviour {
 		GUILayout.EndArea();
 	}
 	
-	public void AddMessage(string msg){
+	void AddMessage(string msg){
 		messages.Add(msg);
 		if(messages.Count>MAX_MESSAGES){
 			messages.RemoveAt(0);
 		}
+	}
+	
+	public static void Log(string msg) {
+		GameObject go = GameObject.Find("ConsoleObject");
+		Component component = go.GetComponent(typeof(ConsoleScript));
+		((ConsoleScript)component).AddMessage(msg);
 	}
 }
