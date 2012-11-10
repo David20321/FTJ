@@ -166,11 +166,10 @@ public class NetUIScript : MonoBehaviour {
 		foreach(HostData server in servers){
 			GUILayout.BeginHorizontal();
 			if(GUILayout.Button(server.gameName)){
+				game_name_ = server.gameName;
+				SetState(State.JOINING);
 				NetworkConnectionError err = Network.Connect(server);
-				if(err == NetworkConnectionError.NoError){
-					game_name_ = server.gameName;
-					SetState(State.JOINING);
-				} else {
+				if(err != NetworkConnectionError.NoError){
 					display_err_ = ""+err;
 					SetState(State.JOIN_FAIL);
 				}
@@ -239,8 +238,8 @@ public class NetUIScript : MonoBehaviour {
 		player_name_ = GUILayout.TextField(player_name_);
 		GUILayout.EndHorizontal();
 		GUILayout.BeginHorizontal();
-		if(GUILayout.Button("Back")){
-			SetState(State.JOIN);
+		if(GUILayout.Button("Continue")){
+			SetState(State.NONE);
 		}
 		GUILayout.EndHorizontal();
 	}
