@@ -21,16 +21,24 @@ public class NetUIScript : MonoBehaviour {
 	void Update() {
 	}
 	
+	void ConsoleDisplay(string msg) {
+		GameObject go = GameObject.Find("ConsoleObject");
+		Component component = go.GetComponent(typeof(ConsoleScript));
+		((ConsoleScript)component).AddMessage(msg);
+	}
+	
 	void OnServerInitialized() {
 		if(state_ == State.CREATING){
 			SetState(State.NONE);
 		}
+		ConsoleDisplay("Server initialized");
 	}
 	
 	void OnConnectedToServer() {
 		if(state_ == State.JOINING){
 			SetState(State.JOIN_SUCCESS);
 		}
+		ConsoleDisplay("Connected to server");
 	}
 	
 	void OnFailedToConnect(NetworkConnectionError err) {
@@ -38,6 +46,7 @@ public class NetUIScript : MonoBehaviour {
 			display_err_ = ""+err;
 			SetState(State.JOIN_FAIL);
 		}
+		ConsoleDisplay("Failed to connect: "+err);
 	}
 	
 	void OnFailedToConnectToMasterServer(NetworkConnectionError err) {
@@ -45,6 +54,7 @@ public class NetUIScript : MonoBehaviour {
 			display_err_ = ""+err;
 			SetState(State.MASTER_SERVER_FAIL);
 		}
+		ConsoleDisplay("Failed to connect to master server: "+err);
 	}
 	
 	void SetState(State state) {
@@ -61,6 +71,7 @@ public class NetUIScript : MonoBehaviour {
 				break;
 		}
 		state_ = state;
+		ConsoleDisplay("Set state: "+state);
 	}
 	
 	void OnGUI() {
