@@ -18,7 +18,7 @@ public class CursorScript : MonoBehaviour {
 			Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 			RaycastHit raycast_hit = new RaycastHit();
 			if(Physics.Raycast(ray, out raycast_hit, 100.0f, 1 << 8)){
-				target_pos = raycast_hit.point + new Vector3(0,1,0);
+				target_pos = raycast_hit.point - ray.direction;
 			}
 			pos = target_pos;
 		} else {
@@ -30,7 +30,7 @@ public class CursorScript : MonoBehaviour {
 			Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 			RaycastHit raycast_hit = new RaycastHit();
 			if(Physics.Raycast(ray, out raycast_hit)){
-				if(raycast_hit.collider.gameObject.name == "Die"){
+				if(raycast_hit.collider.gameObject.layer == 10){
 					//ConsoleScript.Log ("Clicked on die");
 					held = raycast_hit.collider.gameObject;
 				}

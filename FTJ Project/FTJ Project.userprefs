@@ -1,8 +1,8 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\BoardScript.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\CursorScript.cs">
     <Files>
-      <File FileName="Assets\Scripts\CursorScript.cs" Line="43" Column="67" />
+      <File FileName="Assets\Scripts\CursorScript.cs" Line="21" Column="51" />
       <File FileName="Assets\Scripts\BoardScript.cs" Line="10" Column="48" />
     </Files>
   </MonoDevelop.Ide.Workbench>
