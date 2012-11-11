@@ -36,6 +36,70 @@ public class NetUIScript : MonoBehaviour {
 					ConsoleScript.Log("Telling server that player "+player_id+" is named: "+player_name_);
 					SetPlayerName(player_id, player_name_);
 					break;
+				case NetEvent.Type.CONNECTED_TO_SERVER:
+					if(state_ == State.JOINING){
+						SetState(State.JOIN_SUCCESS);
+					}
+					ConsoleScript.Log("Connected to server with ID: "+Network.player);
+					TellServerPlayerName(player_name_);
+					break;
+				case NetEvent.Type.FAILED_TO_CONNECT:
+					if(state_ == State.JOINING){
+						display_err_ = ""+net_event.error();
+						SetState(State.JOIN_FAIL);
+					}
+					ConsoleScript.Log("Failed to connect: "+net_event.error());
+					break;
+				case NetEvent.Type.FAILED_TO_CONNECT_TO_MASTER_SERVER:
+					if(state_ == State.JOIN){
+						display_err_ = ""+net_event.error();
+						SetState(State.MASTER_SERVER_FAIL);
+					}
+					ConsoleScript.Log("Failed to connect to master server: "+net_event.error());
+					break;
+				case NetEvent.Type.MASTER_SERVER_EVENT:
+					switch(net_event.master_server_event()){
+						case MasterServerEvent.HostListReceived:
+			        		ConsoleScript.Log("Received a host list from the master server.");
+			        		break;
+						case MasterServerEvent.RegistrationFailedGameName:
+			        		ConsoleScript.Log("Registration failed because an empty game name was given.");
+			        		break;
+						case MasterServerEvent.RegistrationFailedGameType:
+			        		ConsoleScript.Log("Registration failed because an empty game type was given.");
+			        		break;
+						case MasterServerEvent.RegistrationFailedNoServer:
+			        		ConsoleScript.Log("Registration failed because no server is running.");
+			        		break;
+						case MasterServerEvent.RegistrationSucceeded:
+			        		ConsoleScript.Log("Registration to master server succeeded, received confirmation.");
+			        		break;
+					}
+					break;
+				case NetEvent.Type.PLAYER_CONNECTED:
+					ConsoleScript.Log("Player "+net_event.network_player()+" connected");
+					break;
+				case NetEvent.Type.PLAYER_DISCONNECTED:
+					NetworkPlayer player = net_event.network_player();
+					ConsoleScript.Log("Player "+player+" disconnected");
+					player_names_.Remove(int.Parse(player.ToString()));
+					UpdatePlayerList();
+					Network.RemoveRPCs(player);
+			    	Network.DestroyPlayerObjects(player);
+					break;
+				case NetEvent.Type.DISCONNECTED_FROM_SERVER:
+					switch(net_event.network_disconnection()){
+						case NetworkDisconnection.Disconnected:
+							ConsoleScript.Log("Cleanly disconnected from server");
+							break;
+						case NetworkDisconnection.LostConnection:
+							ConsoleScript.Log("Connection to server was lost unexpectedly");
+							break;
+					}
+					if(state_ == State.NONE || state_ == State.JOIN_SUCCESS || state_ == State.JOINING){
+						state_ = State.MAIN_MENU;
+					}
+					break;
 			}
 			net_event = NetEventScript.Instance().GetEvent();
 		}
@@ -117,76 +181,7 @@ public class NetUIScript : MonoBehaviour {
 			SetPlayerName(player_id, name);	
 		}
 	}
-	
-	void OnConnectedToServer() {
-		if(state_ == State.JOINING){
-			SetState(State.JOIN_SUCCESS);
-		}
-		ConsoleScript.Log("Connected to server with ID: "+Network.player);
-		TellServerPlayerName(player_name_);
-	}
-	
-	void OnFailedToConnect(NetworkConnectionError err) {
-		if(state_ == State.JOINING){
-			display_err_ = ""+err;
-			SetState(State.JOIN_FAIL);
-		}
-		ConsoleScript.Log("Failed to connect: "+err);
-	}
-	
-	void OnFailedToConnectToMasterServer(NetworkConnectionError err) {
-		if(state_ == State.JOIN){
-			display_err_ = ""+err;
-			SetState(State.MASTER_SERVER_FAIL);
-		}
-		ConsoleScript.Log("Failed to connect to master server: "+err);
-	}
-	
-	void OnMasterServerEvent(MasterServerEvent the_event) {
-		switch(the_event){
-			case MasterServerEvent.HostListReceived:
-        		ConsoleScript.Log("Received a host list from the master server.");
-        		break;
-			case MasterServerEvent.RegistrationFailedGameName:
-        		ConsoleScript.Log("Registration failed because an empty game name was given.");
-        		break;
-			case MasterServerEvent.RegistrationFailedGameType:
-        		ConsoleScript.Log("Registration failed because an empty game type was given.");
-        		break;
-			case MasterServerEvent.RegistrationFailedNoServer:
-        		ConsoleScript.Log("Registration failed because no server is running.");
-        		break;
-			case MasterServerEvent.RegistrationSucceeded:
-        		ConsoleScript.Log("Registration to master server succeeded, received confirmation.");
-        		break;
-		}
-    }
     
-	void OnPlayerConnected(NetworkPlayer player) {
-		ConsoleScript.Log("Player "+player+" connected");
-	}
-	
-	void OnPlayerDisconnected(NetworkPlayer player) {
-		ConsoleScript.Log("Player "+player+" disconnected");
-		player_names_.Remove(int.Parse(player.ToString()));
-		UpdatePlayerList();
-		Network.RemoveRPCs(player);
-    	Network.DestroyPlayerObjects(player);
-	}
-	
-	void OnDisconnectedFromServer(NetworkDisconnection info) {
-		switch(info){
-			case NetworkDisconnection.Disconnected:
-				ConsoleScript.Log("Cleanly disconnected from server");
-				break;
-			case NetworkDisconnection.LostConnection:
-				ConsoleScript.Log("Connection to server was lost unexpectedly");
-				break;
-		}
-		if(state_ == State.NONE || state_ == State.JOIN_SUCCESS || state_ == State.JOINING){
-			state_ = State.MAIN_MENU;
-		}
-	}
 	
 	void SetState(State state) {
 		switch(state){
