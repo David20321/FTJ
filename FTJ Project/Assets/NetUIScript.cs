@@ -20,6 +20,7 @@ public class NetUIScript : MonoBehaviour {
 	string display_err_ = "???"; 
 	
 	void Start() {
+		RequestPageURLForAutoJoin();
 	}
 	
 	void Update() {
@@ -39,6 +40,60 @@ public class NetUIScript : MonoBehaviour {
 		ConsoleScript.Log("Player "+id+" is named: "+name);
 		UpdatePlayerList();
 	}
+	
+	Dictionary<string,string> ParseURLQuery(string val){
+		Dictionary<string,string> element_dictionary = new Dictionary<string, string>();
+		string[] question_mark = val.Split('?');
+		if(question_mark.Length > 1){
+			string query = question_mark[1];
+			string[] elements = query.Split('&');
+			ConsoleScript.Log("Query parts:");
+			foreach(string element in elements){
+				string[] parts = element.Split('=');
+				if(parts.Length > 1){
+					ConsoleScript.Log(parts[0] + ": " + parts[1]);
+					element_dictionary[parts[0]] = parts[1];
+				}
+			}
+		}
+		return element_dictionary;
+	}
+	
+	// Chain of parallel functions for CopyGameJoin
+	void RequestPageURLForCopyGameJoin(){
+		ConsoleScript.Log("Requesting page url");
+		Application.ExternalEval("GetUnity().SendMessage(\"NetUIObject\", \"ReceivePageURLForCopyGameJoin\", decodeURIComponent(document.location.href));");
+	}
+	void ReceivePageURLForCopyGameJoin(string val){
+		ConsoleScript.Log("Received page url");
+		string join_url = val.Split('?')[0] + "?join="+game_name_;
+		CopyTextToClipboard(join_url);
+	}
+	void CopyTextToClipboard(string str){	
+		TextEditor te = new TextEditor();
+		te.content = new GUIContent(str);
+		te.SelectAll();
+		te.Copy();
+	}
+	
+	// Chain of parallel functions for AutoJoin
+	void RequestPageURLForAutoJoin(){
+		ConsoleScript.Log("Requesting page url");
+		Application.ExternalEval("GetUnity().SendMessage(\"NetUIObject\", \"ReceivePageURLForAutoJoin\", decodeURIComponent(document.location.href));");
+	}
+	void ReceivePageURLForAutoJoin(string val){
+		ConsoleScript.Log("Received page url");
+		Dictionary<string,string> elements = ParseURLQuery(val);
+		if(elements.ContainsKey("join")){
+			JoinGameByName(elements["join"]);
+		}
+	}
+	void JoinGameByName(string val){
+		ConsoleScript.Log("Attempting to join game: "+val);
+		MasterServer.RequestHostList(GAME_IDENTIFIER);
+	}
+	
+	
 	
 	void OnServerInitialized() {
 		if(state_ == State.CREATING){
@@ -183,6 +238,11 @@ public class NetUIScript : MonoBehaviour {
 	}
 	
 	void DrawGameGUI() {
+		GUILayout.BeginHorizontal();
+		if(GUILayout.Button("Copy Join URL To Clipboard")){
+			RequestPageURLForCopyGameJoin();
+		}
+		GUILayout.EndHorizontal();
 		GUILayout.BeginHorizontal();
 		GUILayout.Label(game_name_);
 		GUILayout.EndHorizontal();
