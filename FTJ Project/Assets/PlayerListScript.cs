@@ -7,7 +7,7 @@ public class PlayerListScript : MonoBehaviour {
 
 	void OnSerializeNetworkView(BitStream stream, NetworkMessageInfo info) {
         if (stream.isWriting) {
-        	ConsoleScript.Log("Writing player list");
+        	//ConsoleScript.Log("Writing player list");
             int num_players = names_.Count;
             List<string> names = names_;
             stream.Serialize(ref num_players);
@@ -20,7 +20,7 @@ public class PlayerListScript : MonoBehaviour {
             	}
         	}
         } else {
-        	ConsoleScript.Log("Reading player list");
+        	//ConsoleScript.Log("Reading player list");
             int num_players = -1;
             stream.Serialize(ref num_players);
             List<string> names = new List<string>();
@@ -48,7 +48,7 @@ public class PlayerListScript : MonoBehaviour {
     }
     
     public static PlayerListScript Instance() {
-		GameObject go = GameObject.Find("PlayerListObject");
+		GameObject go = GameObject.Find("GlobalScriptObject");
 		Component component = go.GetComponent(typeof(PlayerListScript));
 		return ((PlayerListScript)component);
     }

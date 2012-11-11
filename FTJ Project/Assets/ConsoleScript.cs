@@ -24,7 +24,7 @@ public class ConsoleScript : MonoBehaviour {
 	}
 	
 	public static void Log(string msg) {
-		GameObject go = GameObject.Find("ConsoleObject");
+		GameObject go = GameObject.Find("GlobalScriptObject");
 		Component component = go.GetComponent(typeof(ConsoleScript));
 		((ConsoleScript)component).AddMessage(msg);
 	}
