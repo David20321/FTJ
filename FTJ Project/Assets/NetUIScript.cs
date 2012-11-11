@@ -24,6 +24,21 @@ public class NetUIScript : MonoBehaviour {
 	}
 	
 	void Update() {
+		NetEvent net_event = NetEventScript.Instance().GetEvent();
+		while(net_event != null){
+			switch(net_event.type()){
+				case NetEvent.Type.SERVER_INITIALIZED:
+					if(state_ == State.CREATING){
+						SetState(State.NONE);
+					}
+					ConsoleScript.Log("Server initialized");
+					int player_id = int.Parse(Network.player.ToString());
+					ConsoleScript.Log("Telling server that player "+player_id+" is named: "+player_name_);
+					SetPlayerName(player_id, player_name_);
+					break;
+			}
+			net_event = NetEventScript.Instance().GetEvent();
+		}
 	}
 	
 	void UpdatePlayerList() {
@@ -91,18 +106,6 @@ public class NetUIScript : MonoBehaviour {
 	void JoinGameByName(string val){
 		ConsoleScript.Log("Attempting to join game: "+val);
 		MasterServer.RequestHostList(GAME_IDENTIFIER);
-	}
-	
-	
-	
-	void OnServerInitialized() {
-		if(state_ == State.CREATING){
-			SetState(State.NONE);
-		}
-		ConsoleScript.Log("Server initialized");
-		int player_id = int.Parse(Network.player.ToString());
-		ConsoleScript.Log("Telling server that player "+player_id+" is named: "+player_name_);
-		SetPlayerName(player_id, player_name_);
 	}
 	
 	void TellServerPlayerName(string name){		

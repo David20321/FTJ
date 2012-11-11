@@ -45,6 +45,7 @@
   </ItemGroup>
   <ItemGroup>
      <Compile Include="Assets\ConsoleScript.cs" />
+     <Compile Include="Assets\NetEventScript.cs" />
      <Compile Include="Assets\NetUIScript.cs" />
      <Compile Include="Assets\PlayerListScript.cs" />
   </ItemGroup>
