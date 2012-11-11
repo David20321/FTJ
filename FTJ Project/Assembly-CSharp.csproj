@@ -44,11 +44,11 @@
 	</Reference>
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="Assets\ConsoleScript.cs" />
-     <Compile Include="Assets\CursorScript.cs" />
-     <Compile Include="Assets\NetEventScript.cs" />
-     <Compile Include="Assets\NetUIScript.cs" />
-     <Compile Include="Assets\PlayerListScript.cs" />
+     <Compile Include="Assets\Scripts\ConsoleScript.cs" />
+     <Compile Include="Assets\Scripts\CursorScript.cs" />
+     <Compile Include="Assets\Scripts\NetEventScript.cs" />
+     <Compile Include="Assets\Scripts\NetUIScript.cs" />
+     <Compile Include="Assets\Scripts\PlayerListScript.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
