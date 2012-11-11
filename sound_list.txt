@@ -1,0 +1,14 @@
+Sounds:
+pick up card
+put down card
+draw card from deck
+shuffle deck
+
+roll die
+pick up die
+put down die
+shake dice
+
+pick up token
+put down token
+tap token on board
