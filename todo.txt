@@ -3,10 +3,13 @@ Interface:
 +Copy short link for joining specific server
 +Display connected players
 +Display player cursors
-Roll dice
+Roll dice (multiple at once)
+Recover dice that fall off screen
+Add colored play areas for each player at bottom of screen
 Move pieces
 Draw cards
 Chat
+Colored cursors
 
 Graphics:
 Dice with physics and shadows
