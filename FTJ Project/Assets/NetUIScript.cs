@@ -13,6 +13,7 @@ public class NetUIScript : MonoBehaviour {
 	const int DEFAULT_PORT = 25000;
 	const int MAX_PLAYERS = 4;
 	const int MAX_CONNECTIONS = MAX_PLAYERS-1;
+	public GameObject cursor_object;
 	
 	Dictionary<int, string> player_names_ = new Dictionary<int,string>();
 	
@@ -33,6 +34,7 @@ public class NetUIScript : MonoBehaviour {
 		int player_id = int.Parse(Network.player.ToString());
 		ConsoleScript.Log("Telling server that player "+player_id+" is named: "+player_name_);
 		TellServerPlayerName(player_name_);
+		Network.Instantiate(cursor_object, new Vector3(0,0,0), Quaternion.identity, 0);
 	}
 	
 	void NetEventConnectedToServer(){
@@ -41,6 +43,7 @@ public class NetUIScript : MonoBehaviour {
 		}
 		ConsoleScript.Log("Connected to server with ID: "+Network.player);
 		TellServerPlayerName(player_name_);
+		Network.Instantiate(cursor_object, new Vector3(0,0,0), Quaternion.identity, 0);
 	}
 	
 	void NetEventFailedToConnectToMasterServer(NetEvent net_event) {

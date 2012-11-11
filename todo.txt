@@ -1,6 +1,6 @@
 Interface:
 +Create/join server
-Copy short link for joining specific server
++Copy short link for joining specific server
 +Display connected players
 Display player cursors
 Roll dice
