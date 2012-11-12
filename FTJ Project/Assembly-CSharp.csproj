@@ -49,6 +49,7 @@
      <Compile Include="Assets\Scripts\CursorScript.cs" />
      <Compile Include="Assets\Scripts\NetEventScript.cs" />
      <Compile Include="Assets\Scripts\NetUIScript.cs" />
+     <Compile Include="Assets\Scripts\NetworkRigidbody.cs" />
      <Compile Include="Assets\Scripts\PlayerListScript.cs" />
      <Compile Include="Assets\Scripts\ShadowCamScript.cs" />
      <None Include="Assets\Standard Assets\Projectors\Guidelines.txt" />

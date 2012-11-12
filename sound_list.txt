@@ -5,6 +5,9 @@ draw card from deck
 shuffle deck
 
 roll die
+- die impact wood
+- die impact other die
+- die impact board (cardboard)
 pick up die
 put down die
 shake dice

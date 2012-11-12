@@ -9,11 +9,12 @@ public class NetUIScript : MonoBehaviour {
 	State state_ = State.MAIN_MENU;
 	const string DEFAULT_GAME_NAME = "Unnamed Game";
 	const string DEFAULT_PLAYER_NAME = "Unknown Player";
-	const string GAME_IDENTIFIER = "WolfireFTJGame";
+	const string GAME_IDENTIFIER = "WolfireFTJGamev10";
 	const int DEFAULT_PORT = 25000;
 	const int MAX_PLAYERS = 4;
 	const int MAX_CONNECTIONS = MAX_PLAYERS-1;
 	public GameObject cursor_object;
+	public GameObject board_object;
 	
 	Dictionary<int, string> player_names_ = new Dictionary<int,string>();
 	
@@ -35,6 +36,7 @@ public class NetUIScript : MonoBehaviour {
 		ConsoleScript.Log("Telling server that player "+player_id+" is named: "+player_name_);
 		TellServerPlayerName(player_name_);
 		Network.Instantiate(cursor_object, new Vector3(0,0,0), Quaternion.identity, 0);
+		Network.Instantiate(board_object, GameObject.Find("board_spawn").transform.position, Quaternion.identity,0);
 	}
 	
 	void NetEventConnectedToServer(){
