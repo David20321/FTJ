@@ -1,9 +1,13 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\CursorScript.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\ShadowCamScript.cs">
     <Files>
-      <File FileName="Assets\Scripts\CursorScript.cs" Line="21" Column="51" />
-      <File FileName="Assets\Scripts\BoardScript.cs" Line="10" Column="48" />
+      <File FileName="Assets\Scripts\ShadowCamScript.cs" Line="35" Column="29" />
+      <File FileName="Assets\Standard Assets\Projectors\Sources\Shaders\Projector Multiply.shader" Line="12" Column="26" />
+      <File FileName="Assets\Scripts\CursorScript.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\BoardScript.cs" Line="1" Column="1" />
+      <File FileName="Assets\Standard Assets\Image Effects (Pro Only)\_Sources\Shaders\BlurEffectConeTaps.shader" Line="1" Column="1" />
+      <File FileName="Assets\Standard Assets\Image Effects (Pro Only)\BlurEffect.cs" Line="92" Column="28" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
