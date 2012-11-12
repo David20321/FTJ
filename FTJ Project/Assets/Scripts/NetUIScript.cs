@@ -13,8 +13,8 @@ public class NetUIScript : MonoBehaviour {
 	const int DEFAULT_PORT = 25000;
 	const int MAX_PLAYERS = 4;
 	const int MAX_CONNECTIONS = MAX_PLAYERS-1;
-	public GameObject cursor_object;
-	public GameObject board_object;
+	public GameObject cursor_prefab;
+	public GameObject board_prefab;
 	
 	Dictionary<int, string> player_names_ = new Dictionary<int,string>();
 	
@@ -35,8 +35,8 @@ public class NetUIScript : MonoBehaviour {
 		int player_id = int.Parse(Network.player.ToString());
 		ConsoleScript.Log("Telling server that player "+player_id+" is named: "+player_name_);
 		TellServerPlayerName(player_name_);
-		Network.Instantiate(cursor_object, new Vector3(0,0,0), Quaternion.identity, 0);
-		Network.Instantiate(board_object, GameObject.Find("board_spawn").transform.position, Quaternion.identity,0);
+		GameObject board_object = (GameObject)Network.Instantiate(board_prefab, GameObject.Find("board_spawn").transform.position, Quaternion.identity,0);
+		GameObject cursor_object = (GameObject)Network.Instantiate(cursor_prefab, new Vector3(0,0,0), Quaternion.identity, 0);
 	}
 	
 	void NetEventConnectedToServer(){
@@ -45,7 +45,7 @@ public class NetUIScript : MonoBehaviour {
 		}
 		ConsoleScript.Log("Connected to server with ID: "+Network.player);
 		TellServerPlayerName(player_name_);
-		Network.Instantiate(cursor_object, new Vector3(0,0,0), Quaternion.identity, 0);
+		GameObject cursor_object = (GameObject)Network.Instantiate(cursor_prefab, new Vector3(0,0,0), Quaternion.identity, 0);
 	}
 	
 	void NetEventFailedToConnectToMasterServer(NetEvent net_event) {
@@ -477,5 +477,9 @@ public class NetUIScript : MonoBehaviour {
 			MasterServer.RegisterHost(GAME_IDENTIFIER, game_name_, "Comments could go here");
 		}
 		return err;
+	}
+	
+	public static NetUIScript Instance() {
+		return GameObject.Find("GlobalScriptObject").GetComponent<NetUIScript>();
 	}
 }

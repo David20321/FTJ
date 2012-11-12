@@ -130,8 +130,10 @@ public class NetworkRigidbody : MonoBehaviour {
 				
 				rigidbody.position = latest.pos + latest.velocity * extrapolationLength;
 				rigidbody.rotation = angularRotation * latest.rot;
-				rigidbody.velocity = latest.velocity;
-				rigidbody.angularVelocity = latest.angularVelocity;
+				if(!rigidbody.isKinematic){
+					rigidbody.velocity = latest.velocity;
+					rigidbody.angularVelocity = latest.angularVelocity;
+				}
 			}
 		}
 	}

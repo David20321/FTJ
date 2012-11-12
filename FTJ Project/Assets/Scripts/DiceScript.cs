@@ -3,6 +3,11 @@ using System.Collections;
 
 public class DiceScript : MonoBehaviour {
 	public int id_;
+	public int held_by_player_;
+	
+	void Start() {
+		held_by_player_ = -1;
+	}
 	
 	void OnSerializeNetworkView(BitStream stream, NetworkMessageInfo info){
 		if(stream.isWriting){

@@ -1,12 +1,20 @@
 using UnityEngine;
 using System.Collections;
 
+public class Net {
+	public static int GetMyID(){
+		return int.Parse(Network.player.ToString());
+	}
+};
+
 public class CursorScript : MonoBehaviour {
-	const float CURSOR_INERTIA = 0.001f;
-	const float HOLD_FORCE = 10000.0f;
-	const float MAX_DICE_VEL = 15.0f;
 	Color color_;
 	GameObject held_;
+	int id_;
+	
+	public int id() {
+		return id_;
+	}
 	
 	void SetColor(Vector3 color){
 		color_ = new Color(color.x, color.y, color.z);
@@ -22,6 +30,18 @@ public class CursorScript : MonoBehaviour {
 								 Random.Range(0.0f,1.0f),
 								 Random.Range(0.0f,1.0f)));
 		}
+		id_ = Net.GetMyID();
+		BoardScript.Instance().RegisterCursorObject(gameObject);
+	}
+	
+	[RPC]
+	public void TellBoardAboutDiceClick(int die_id, int player_id){
+		BoardScript.Instance().ClientClickedOnDie(die_id, player_id);
+	}
+	
+	[RPC]
+	public void TellBoardAboutMouseRelease(int player_id){
+		BoardScript.Instance().ClientReleasedMouse(player_id);
 	}
 	
 	void Update () {
@@ -35,40 +55,29 @@ public class CursorScript : MonoBehaviour {
 				}
 			}
 			
-			if(Input.GetMouseButtonDown(0) && Network.isServer){
+			if(Input.GetMouseButtonDown(0)){
 				Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 				RaycastHit raycast_hit = new RaycastHit();
 				if(Physics.Raycast(ray, out raycast_hit)){
 					if(raycast_hit.collider.gameObject.layer == 10){
 						int id = raycast_hit.collider.gameObject.GetComponent<DiceScript>().id_;
-						ConsoleScript.Log ("Clicked on die with id #: " + id);
-						//held_ = raycast_hit.collider.gameObject;
+						if(!Network.isServer){
+							networkView.RPC("TellBoardAboutDiceClick",RPCMode.Server,id,id_);
+						} else {
+							TellBoardAboutDiceClick(id, id_);
+						}
 					}
 				}
 			}
 			if(Input.GetMouseButtonUp(0)){
-				if(held_){
-					if(held_.rigidbody.velocity.magnitude > MAX_DICE_VEL){
-						held_.rigidbody.velocity = held_.rigidbody.velocity.normalized * MAX_DICE_VEL;
-					}
-					held_.rigidbody.angularVelocity = new Vector3(Random.Range(-1.0f,1.0f),Random.Range(-1.0f,1.0f),Random.Range(-1.0f,1.0f) * 100.0f);			
-				
-					held_ = null;
+				if(!Network.isServer){
+					networkView.RPC("TellBoardAboutMouseRelease",RPCMode.Server,id_);
+				} else {
+					TellBoardAboutMouseRelease(id_);
 				}
 			}		
 			rigidbody.position = pos;
 			transform.position = pos;
-		}
-	}
-	
-	void FixedUpdate() {
-		if(networkView.isMine){
-			if(held_){
-				held_.rigidbody.AddForce((transform.position - held_.rigidbody.position) * Time.deltaTime * HOLD_FORCE);
-				held_.rigidbody.velocity *= 0.8f;			
-				held_.rigidbody.angularVelocity *= 0.9f;			
-				held_.rigidbody.WakeUp();
-			}
 		}
 	}
 	
@@ -79,6 +88,8 @@ public class CursorScript : MonoBehaviour {
 		{
 			Vector3 color = new Vector3(color_.r, color_.g, color_.b);
 			stream.Serialize(ref color);
+			int id = id_;
+			stream.Serialize(ref id);
 		}
 		// Read data from remote client
 		else
@@ -86,6 +97,9 @@ public class CursorScript : MonoBehaviour {
 			Vector3 color = new Vector3();
 			stream.Serialize(ref color);
 			SetColor(color);
+			int id = id_;
+			stream.Serialize(ref id);
+			id_ = id;
 		}
 	}
 }
