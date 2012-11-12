@@ -34,6 +34,12 @@ public class CursorScript : MonoBehaviour {
 		BoardScript.Instance().RegisterCursorObject(gameObject);
 	}
 	
+	void OnDestroy() {
+		BoardScript.Instance().UnRegisterCursorObject(gameObject);
+	}
+	
+	
+	
 	[RPC]
 	public void TellBoardAboutDiceClick(int die_id, int player_id){
 		BoardScript.Instance().ClientClickedOnDie(die_id, player_id);

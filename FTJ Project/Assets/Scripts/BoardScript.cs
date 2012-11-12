@@ -39,6 +39,10 @@ public class BoardScript : MonoBehaviour {
 		cursor_objects.Add(obj);
 	}
 	
+	public void UnRegisterCursorObject(GameObject obj) {
+		cursor_objects.Remove(obj);
+	}
+	
 	// Use this for initialization
 	void Start () {
 		if(networkView.isMine){

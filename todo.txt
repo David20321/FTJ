@@ -1,18 +1,20 @@
-Interface:
 +Create/join server
 +Copy short link for joining specific server
 +Display connected players
 +Display player cursors
++Colored cursors
++Dice with physics and shadows
+
+Interface:
 Roll dice (multiple at once)
 Recover dice that fall off screen
 Add colored play areas for each player at bottom of screen
 Move pieces
 Draw cards
 Chat
-Colored cursors
+Add sounds
 
 Graphics:
-Dice with physics and shadows
 Cards with holographic display
 UI display (windows and borders?)
 Splash screen
