@@ -1,11 +1,9 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\NetworkRigidBody.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\CursorScript.cs">
     <Files>
-      <File FileName="Assets\Scripts\CursorScript.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\BoardScript.cs" Line="12" Column="30" />
-      <File FileName="Assets\Scripts\NetUIScript.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\NetworkRigidBody.cs" Line="20" Column="27" />
+      <File FileName="Assets\Scripts\NetworkRigidbody.cs" Line="134" Column="56" />
+      <File FileName="Assets\Scripts\CursorScript.cs" Line="46" Column="7" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

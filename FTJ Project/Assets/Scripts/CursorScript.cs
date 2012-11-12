@@ -44,11 +44,9 @@ public class CursorScript : MonoBehaviour {
 					held = null;
 				}
 			}		
-		} else {
-			pos = Vector3.Lerp(target_pos, pos, Mathf.Pow(CURSOR_INERTIA, Time.deltaTime));
-		}		
-		rigidbody.position = pos;
-		transform.position = pos;
+			rigidbody.position = pos;
+			transform.position = pos;
+		}
 	}
 	
 	void FixedUpdate() {
