@@ -40,8 +40,9 @@ public class CursorScript : MonoBehaviour {
 				RaycastHit raycast_hit = new RaycastHit();
 				if(Physics.Raycast(ray, out raycast_hit)){
 					if(raycast_hit.collider.gameObject.layer == 10){
-						//ConsoleScript.Log ("Clicked on die");
-						held_ = raycast_hit.collider.gameObject;
+						int id = raycast_hit.collider.gameObject.GetComponent<DiceScript>().id_;
+						ConsoleScript.Log ("Clicked on die with id #: " + id);
+						//held_ = raycast_hit.collider.gameObject;
 					}
 				}
 			}

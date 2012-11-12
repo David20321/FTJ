@@ -186,6 +186,9 @@ public class NetUIScript : MonoBehaviour {
 		string[] question_mark = val.Split('?');
 		if(question_mark.Length > 1){
 			string query = question_mark[1];
+			for(int i=2; i<question_mark.Length; ++i){
+				query += '?' + question_mark[i];
+			}
 			string[] elements = query.Split('&');
 			ConsoleScript.Log("Query parts:");
 			foreach(string element in elements){
