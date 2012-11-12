@@ -32,10 +32,12 @@ public class CursorScript : MonoBehaviour {
 		}
 		id_ = Net.GetMyID();
 		BoardScript.Instance().RegisterCursorObject(gameObject);
+		Screen.showCursor = false;
 	}
 	
 	void OnDestroy() {
 		BoardScript.Instance().UnRegisterCursorObject(gameObject);
+		Screen.showCursor = true;
 	}
 	
 	
