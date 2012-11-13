@@ -1,0 +1,16 @@
+{
+  "Dungeon Lvl 1": [
+    {
+      "Title": "Test card title",
+	  "Type": "Test card type",
+	  "Text": "Test card text",
+	  "Desc": "Test card desc"
+	}
+	{
+      "Title": "Test card title 2",
+	  "Type": "Test card type",
+	  "Text": "Test card text",
+	  "Desc": "Test card desc"
+	}
+  ]
+}
