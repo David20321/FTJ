@@ -1,11 +1,8 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Text Data\board.txt">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\MipmapRenderTextureScript.cs">
     <Files>
-      <File FileName="Assets\Text Data\cards.txt" Line="10" Column="36" />
-      <File FileName="Assets\Scripts\MiniJSON.cs" Line="67" Column="10" />
-      <File FileName="Assets\Scripts\JSONTest.cs" Line="39" Column="29" />
-      <File FileName="Assets\Text Data\board.txt" Line="55" Column="6" />
+      <File FileName="Assets\MipmapRenderTextureScript.cs" Line="8" Column="40" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
