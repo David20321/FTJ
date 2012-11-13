@@ -309,6 +309,11 @@ public class NetUIScript : MonoBehaviour {
 		}
 		GUILayout.EndHorizontal();
 		GUILayout.BeginHorizontal();
+		if(GUILayout.Button("Recover Dice")){
+			BoardScript.Instance().RecoverDice();
+		}
+		GUILayout.EndHorizontal();
+		GUILayout.BeginHorizontal();
 		GUILayout.Label(game_name_);
 		GUILayout.EndHorizontal();
 		List<string> player_names = PlayerListScript.GetPlayerNames();

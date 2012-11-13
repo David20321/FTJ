@@ -4,10 +4,10 @@
 +Display player cursors
 +Colored cursors
 +Dice with physics and shadows
++Recover dice that fall off screen
 
 Interface:
 Roll dice (multiple at once)
-Recover dice that fall off screen
 Add colored play areas for each player at bottom of screen
 Move pieces
 Draw cards

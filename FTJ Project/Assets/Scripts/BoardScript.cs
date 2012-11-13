@@ -23,15 +23,15 @@ public class BoardScript : MonoBehaviour {
 		GameObject held = null;
 		foreach(GameObject die in dice_objects){
 			if(die.GetComponent<DiceScript>().held_by_player_ == player_id){
-				held = die;
+				if(die.rigidbody.velocity.magnitude > MAX_DICE_VEL){
+					die.rigidbody.velocity = die.rigidbody.velocity.normalized * MAX_DICE_VEL;
+				}
+				die.rigidbody.angularVelocity = new Vector3(Random.Range(-1.0f,1.0f),Random.Range(-1.0f,1.0f),Random.Range(-1.0f,1.0f) * 100.0f);			
+				die.GetComponent<DiceScript>().held_by_player_ = -1;
 			}
 		}
 		if(held){
-			if(held.rigidbody.velocity.magnitude > MAX_DICE_VEL){
-				held.rigidbody.velocity = held.rigidbody.velocity.normalized * MAX_DICE_VEL;
-			}
-			held.rigidbody.angularVelocity = new Vector3(Random.Range(-1.0f,1.0f),Random.Range(-1.0f,1.0f),Random.Range(-1.0f,1.0f) * 100.0f);			
-			held.GetComponent<DiceScript>().held_by_player_ = -1;
+			
 		}
 	}
 	
@@ -43,17 +43,35 @@ public class BoardScript : MonoBehaviour {
 		cursor_objects.Remove(obj);
 	}
 	
+	[RPC]
+	public void RecoverDice() {
+		if(!Network.isServer){
+			networkView.RPC("RecoverDice", RPCMode.Server);
+			return;
+		} else {
+			foreach(GameObject die in dice_objects){
+				Network.Destroy(die);
+			}
+			dice_objects.Clear();
+			SpawnDice();
+		}
+	}
+	
+	void SpawnDice() {
+		int next_id = 0;
+		Transform dice_spawns = transform.Find("DiceSpawns");
+		foreach(Transform child in dice_spawns.transform){
+			GameObject dice_object = (GameObject)Network.Instantiate(dice_prefabs[Random.Range(0,dice_prefabs.Length)], child.position, Quaternion.identity, 0);
+			dice_object.GetComponent<DiceScript>().id_ = next_id;
+			dice_objects.Add(dice_object);
+			next_id++;
+		}
+	}
+	
 	// Use this for initialization
 	void Start () {
 		if(networkView.isMine){
-			int next_id = 0;
-			Transform dice_spawns = transform.Find("DiceSpawns");
-			foreach(Transform child in dice_spawns.transform){
-				GameObject dice_object = (GameObject)Network.Instantiate(dice_prefabs[Random.Range(0,dice_prefabs.Length)], child.position, Quaternion.identity, 0);
-				dice_object.GetComponent<DiceScript>().id_ = next_id;
-				dice_objects.Add(dice_object);
-				next_id++;
-			}
+			SpawnDice();
 		}
 	}
 	

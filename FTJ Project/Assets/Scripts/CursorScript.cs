@@ -9,8 +9,7 @@ public class Net {
 
 public class CursorScript : MonoBehaviour {
 	Color color_;
-	GameObject held_;
-	int id_;
+	int id_ = -1;
 	
 	public int id() {
 		return id_;
@@ -65,25 +64,32 @@ public class CursorScript : MonoBehaviour {
 			
 			if(Input.GetMouseButtonDown(0)){
 				Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-				RaycastHit raycast_hit = new RaycastHit();
-				if(Physics.Raycast(ray, out raycast_hit)){
-					if(raycast_hit.collider.gameObject.layer == 10){
-						int id = raycast_hit.collider.gameObject.GetComponent<DiceScript>().id_;
-						if(!Network.isServer){
-							networkView.RPC("TellBoardAboutDiceClick",RPCMode.Server,id,id_);
-						} else {
-							TellBoardAboutDiceClick(id, id_);
-						}
+				RaycastHit[] raycast_hits;
+				raycast_hits = Physics.RaycastAll(ray);
+				bool picked_something_up = false;
+				foreach(RaycastHit hit in raycast_hits){ 
+					if(hit.collider.gameObject.layer != 10){
+						continue;
+					}
+					DiceScript dice_script = hit.collider.gameObject.GetComponent<DiceScript>();
+					if(dice_script.held_by_player_ == id_){
+						continue;
+					}
+					picked_something_up = true;
+					if(!Network.isServer){
+						networkView.RPC("TellBoardAboutDiceClick",RPCMode.Server,dice_script.id_,id_);
+					} else {
+						TellBoardAboutDiceClick(dice_script.id_, id_);
+					}
+				}
+				if(!picked_something_up){
+					if(!Network.isServer){
+						networkView.RPC("TellBoardAboutMouseRelease",RPCMode.Server,id_);
+					} else {
+						TellBoardAboutMouseRelease(id_);
 					}
 				}
 			}
-			if(Input.GetMouseButtonUp(0)){
-				if(!Network.isServer){
-					networkView.RPC("TellBoardAboutMouseRelease",RPCMode.Server,id_);
-				} else {
-					TellBoardAboutMouseRelease(id_);
-				}
-			}		
 			rigidbody.position = pos;
 			transform.position = pos;
 		}
