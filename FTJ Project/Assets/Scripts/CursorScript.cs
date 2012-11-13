@@ -8,28 +8,22 @@ public class Net {
 };
 
 public class CursorScript : MonoBehaviour {
-	Color color_;
 	int id_ = -1;
 	
 	public int id() {
 		return id_;
 	}
 	
-	void SetColor(Vector3 color){
-		color_ = new Color(color.x, color.y, color.z);
+	void SetColor(Color color){
 		Transform pointer = transform.FindChild("Pointer");
 		Transform pointer_tint = pointer.FindChild("pointer_tint");
 		Transform default_obj = pointer_tint.FindChild("default");
-		default_obj.renderer.material.color = color_;	
+		default_obj.renderer.material.color = color;	
 	}
 	
 	void Start () {
-		if(networkView.isMine){
-			SetColor(new Vector3(Random.Range(0.0f,1.0f),
-								 Random.Range(0.0f,1.0f),
-								 Random.Range(0.0f,1.0f)));
-		}
 		id_ = Net.GetMyID();
+		SetColor(PlayerListScript.Instance().GetPlayerInfoList()[id_].color_);
 		BoardScript.Instance().RegisterCursorObject(gameObject);
 		Screen.showCursor = false;
 	}
@@ -100,17 +94,12 @@ public class CursorScript : MonoBehaviour {
 		// Send data to server
 		if (stream.isWriting)
 		{
-			Vector3 color = new Vector3(color_.r, color_.g, color_.b);
-			stream.Serialize(ref color);
 			int id = id_;
 			stream.Serialize(ref id);
 		}
 		// Read data from remote client
 		else
 		{
-			Vector3 color = new Vector3();
-			stream.Serialize(ref color);
-			SetColor(color);
 			int id = id_;
 			stream.Serialize(ref id);
 			id_ = id;

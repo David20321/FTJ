@@ -16,8 +16,6 @@ public class NetUIScript : MonoBehaviour {
 	public GameObject cursor_prefab;
 	public GameObject board_prefab;
 	
-	Dictionary<int, string> player_names_ = new Dictionary<int,string>();
-	
 	string queued_join_game_name_ = "";
 	string game_name_ = "???";
 	string player_name_ = "???";
@@ -113,8 +111,7 @@ public class NetUIScript : MonoBehaviour {
 	void NetEventPlayerDisconnected(NetEvent net_event) {
 		NetworkPlayer player = net_event.network_player();
 		ConsoleScript.Log("Player "+player+" disconnected");
-		player_names_.Remove(int.Parse(player.ToString()));
-		UpdatePlayerList();
+		PlayerListScript.Instance().Remove(int.Parse(player.ToString()));
 		Network.RemoveRPCs(player);
     	Network.DestroyPlayerObjects(player);
 	}
@@ -164,21 +161,6 @@ public class NetUIScript : MonoBehaviour {
 			}
 			net_event = NetEventScript.Instance().GetEvent();
 		}
-	}
-	
-	void UpdatePlayerList() {
-		List<string> player_names = new List<string>();		
-		foreach (var pair in player_names_){
-			player_names.Add(pair.Key+": "+pair.Value);
-		}
-		PlayerListScript.SetPlayerNames(player_names);
-	}
-	
-	[RPC]
-	void SetPlayerName(int id, string name){
-		player_names_[id] = name;
-		ConsoleScript.Log("Player "+id+" is named: "+name);
-		UpdatePlayerList();
 	}
 	
 	Dictionary<string,string> ParseURLQuery(string val){
@@ -245,7 +227,7 @@ public class NetUIScript : MonoBehaviour {
 		if(Network.isClient){
 			networkView.RPC("SetPlayerName", RPCMode.Server, player_id, name);
 		} else {
-			SetPlayerName(player_id, name);	
+			PlayerListScript.Instance().SetPlayerName(player_id, name);	
 		}
 	}
     
@@ -316,11 +298,13 @@ public class NetUIScript : MonoBehaviour {
 		GUILayout.BeginHorizontal();
 		GUILayout.Label(game_name_);
 		GUILayout.EndHorizontal();
-		List<string> player_names = PlayerListScript.GetPlayerNames();
-		foreach (string name in player_names){
+		Dictionary<int, PlayerInfo> player_info_list = PlayerListScript.Instance().GetPlayerInfoList();
+		foreach (var pair in player_info_list){
+			GUI.contentColor = pair.Value.color_;
 			GUILayout.BeginHorizontal();
-			GUILayout.Label(name);
+			GUILayout.Label(pair.Key + ": " + pair.Value.name_);
 			GUILayout.EndHorizontal();
+			GUI.contentColor = Color.white;
 		}
 	}
 	

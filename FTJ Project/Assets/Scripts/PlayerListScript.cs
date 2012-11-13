@@ -2,62 +2,83 @@ using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 
+public class PlayerInfo {
+	public string name_;
+	public Color color_;
+}
+
 public class PlayerListScript : MonoBehaviour {
-	List<string> names_ = new List<string>();
+	Dictionary<int, PlayerInfo> player_info_list_ = new Dictionary<int,PlayerInfo>();
+	
+	public void Remove(int which){
+		player_info_list_.Remove(which);
+	}
 
 	void OnSerializeNetworkView(BitStream stream, NetworkMessageInfo info) {
         if (stream.isWriting) {
         	//ConsoleScript.Log("Writing player list");
-            int num_players = names_.Count;
-            List<string> names = names_;
+            Dictionary<int, PlayerInfo> player_info_list = player_info_list_;
+            int num_players = player_info_list.Count;
             stream.Serialize(ref num_players);
-            foreach(string name in names){
+            foreach(var pair in player_info_list){
+            	int id = pair.Key;
+            	stream.Serialize(ref id);
+            	PlayerInfo player_info = pair.Value;
+            	string name = player_info.name_;
             	int length = name.Length;
             	stream.Serialize(ref length);
             	foreach(char character in name){
             		char ref_char = character;
             		stream.Serialize(ref ref_char);
             	}
+            	Vector3 color = new Vector3(player_info.color_.r,player_info.color_.g,player_info.color_.b);
+        		stream.Serialize(ref color);
         	}
         } else {
         	//ConsoleScript.Log("Reading player list");
             int num_players = -1;
             stream.Serialize(ref num_players);
-            List<string> names = new List<string>();
+            Dictionary<int, PlayerInfo> player_info_list = new Dictionary<int, PlayerInfo>();
             for(int j=0; j<num_players; ++j){
-            	string name = "";
+            	int id = -1;
+            	stream.Serialize(ref id);
+            	PlayerInfo player_info = new PlayerInfo();
+            	player_info.name_ = "";
             	int length = -1;
             	stream.Serialize(ref length);
             	for(int i=0; i<length; ++i){
             		char character = '\0';
             		stream.Serialize(ref character);
-            		name += character;
+            		player_info.name_ += character;
             	}
-            	names.Add(name);
+            	Vector3 color = new Vector3(0,0,0);
+        		stream.Serialize(ref color);
+        		player_info.color_ = new Color(color.x, color.y, color.z);
+            	player_info_list.Add(id, player_info);
         	}
-            names_ = names;
+            player_info_list_ = player_info_list;
         }
     }
     
-    void SetPlayersLocal(List<string> player_names) {
-    	names_ = player_names;
+    public Dictionary<int, PlayerInfo> GetPlayerInfoList() {
+    	return player_info_list_;
     }
     
-    List<string> GetPlayerNamesLocal() {
-    	return names_;
+    [RPC]
+    public void SetPlayerName(int id, string name){
+		if(!player_info_list_.ContainsKey(id)){
+			player_info_list_.Add(id, new PlayerInfo());
+			player_info_list_[id].color_ = new Color(
+				Random.Range(0.0f,1.0f),
+				Random.Range(0.0f,1.0f),
+				Random.Range(0.0f,1.0f));
+		}
+		player_info_list_[id].name_ = name;
     }
     
     public static PlayerListScript Instance() {
 		GameObject go = GameObject.Find("GlobalScriptObject");
 		Component component = go.GetComponent(typeof(PlayerListScript));
 		return ((PlayerListScript)component);
-    }
-    
-    public static void SetPlayerNames(List<string> player_names) {
-		Instance().SetPlayersLocal(player_names);
-    }
-    
-    public static List<string> GetPlayerNames() {
-		return Instance().GetPlayerNamesLocal();
     }
 }
