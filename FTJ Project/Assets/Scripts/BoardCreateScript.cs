@@ -6,8 +6,11 @@ using MiniJSON;
 public class BoardCreateScript : MonoBehaviour {
 	public TextAsset board_json;
 	public GameObject tile_prefab;
+	public GUISkin gui_skin;
 	const float TILE_SIZE = 0.7f;
-
+	const int MAX_TITLE_WIDTH = 60;
+	const int MAX_RULES_WIDTH = 115;
+	
 	// Use this for initialization
 	void Start () {
 		var dict = Json.Deserialize(board_json.text) as Dictionary<string,object>;
@@ -22,7 +25,6 @@ public class BoardCreateScript : MonoBehaviour {
 		
 		Vector3 offset = new Vector3(grid_dim[1] * -0.5f + 0.5f, 0, grid_dim[0] * -0.5f + 0.5f) * TILE_SIZE; 
 		
-		retrieve_obj = null;
 		if(!dict.TryGetValue("Tiles", out retrieve_obj)){
 			Debug.Log ("Could not find 'Tiles' in board JSON");
 		}
@@ -40,6 +42,24 @@ public class BoardCreateScript : MonoBehaviour {
 								  ((float)(long)color_list[1])/255.0f,
 								  ((float)(long)color_list[2])/255.0f);
 			tile_obj.transform.FindChild("Tile_base").renderer.material.color = color;
+			if(tile.TryGetValue("Title", out retrieve_obj)){
+				var title_string = (string)retrieve_obj;
+				var dimensions = gui_skin.GetStyle("label").CalcSize(new GUIContent(title_string));
+				var title_obj = tile_obj.transform.FindChild("Title");
+				title_obj.GetComponent<TextMesh>().text = title_string;
+				if(dimensions.x > MAX_TITLE_WIDTH){
+					title_obj.transform.localScale *= MAX_TITLE_WIDTH/dimensions.x;
+				}
+			}
+			if(tile.TryGetValue("Rules", out retrieve_obj)){
+				var rules_string = (string)retrieve_obj;
+				var dimensions = gui_skin.GetStyle("label").CalcSize(new GUIContent(rules_string));
+				var rules_obj = tile_obj.transform.FindChild("Rules");
+				rules_obj.GetComponent<TextMesh>().text = rules_string;
+				if(dimensions.x > MAX_RULES_WIDTH){
+					rules_obj.transform.localScale *= MAX_RULES_WIDTH/dimensions.x;
+				}
+			}
 		}
 	}
 	
