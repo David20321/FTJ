@@ -13,8 +13,13 @@ Move pieces
 Draw cards
 Chat
 Add sounds
+Procedurally display board and cards
+Board JSON descriptions
+Card JSON descriptions
 
 Graphics:
+Render 3D text to texture
+- create tile, set tile text, create new rendertexture, render camera to it, assign rendertexture to tile, delete camera and text
 Cards with holographic display
 UI display (windows and borders?)
 Splash screen

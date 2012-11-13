@@ -41,7 +41,7 @@ public class BoardCreateScript : MonoBehaviour {
 			var color = new Color(((float)(long)color_list[0])/255.0f,
 								  ((float)(long)color_list[1])/255.0f,
 								  ((float)(long)color_list[2])/255.0f);
-			tile_obj.transform.FindChild("Tile_base").renderer.material.color = color;
+			tile_obj.transform.FindChild("Tile_base").FindChild("default").renderer.material.color = color;
 			if(tile.TryGetValue("Title", out retrieve_obj)){
 				var title_string = (string)retrieve_obj;
 				var dimensions = gui_skin.GetStyle("label").CalcSize(new GUIContent(title_string));
@@ -60,6 +60,7 @@ public class BoardCreateScript : MonoBehaviour {
 					rules_obj.transform.localScale *= MAX_RULES_WIDTH/dimensions.x;
 				}
 			}
+			tile_obj.GetComponent<TileScript>().Bake();
 		}
 	}
 	

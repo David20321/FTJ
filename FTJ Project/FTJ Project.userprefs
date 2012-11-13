@@ -1,8 +1,8 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\MipmapRenderTextureScript.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\TileScript.cs">
     <Files>
-      <File FileName="Assets\MipmapRenderTextureScript.cs" Line="8" Column="40" />
+      <File FileName="Assets\Scripts\TileScript.cs" Line="6" Column="18" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

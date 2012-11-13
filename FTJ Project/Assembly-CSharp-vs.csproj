@@ -44,7 +44,6 @@
 	</Reference>
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="Assets\MipmapRenderTextureScript.cs" />
      <Compile Include="Assets\Scripts\BoardCreateScript.cs" />
      <Compile Include="Assets\Scripts\BoardScript.cs" />
      <Compile Include="Assets\Scripts\ConsoleScript.cs" />
@@ -58,6 +57,7 @@
      <Compile Include="Assets\Scripts\NetworkRigidbody.cs" />
      <Compile Include="Assets\Scripts\PlayerListScript.cs" />
      <Compile Include="Assets\Scripts\ShadowCamScript.cs" />
+     <Compile Include="Assets\Scripts\TileScript.cs" />
      <None Include="Assets\Standard Assets\Projectors\Guidelines.txt" />
      <None Include="Assets\Standard Assets\Image Effects (Pro Only)\_Sources\Shaders\_BloomAndFlares\BlendOneOne.shader" />
      <None Include="Assets\Standard Assets\Image Effects (Pro Only)\_Sources\Shaders\NoiseEffectShaderRGB.shader" />
