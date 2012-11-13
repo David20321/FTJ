@@ -22,8 +22,9 @@ public class CursorScript : MonoBehaviour {
 	}
 	
 	void Start () {
-		id_ = Net.GetMyID();
-		SetColor(PlayerListScript.Instance().GetPlayerInfoList()[id_].color_);
+		if(networkView.isMine){
+			id_ = Net.GetMyID();
+		}
 		BoardScript.Instance().RegisterCursorObject(gameObject);
 		Screen.showCursor = false;
 	}
@@ -46,6 +47,7 @@ public class CursorScript : MonoBehaviour {
 	}
 	
 	void Update () {
+		SetColor(PlayerListScript.Instance().GetPlayerInfoList()[id_].color_);
 		if(networkView.isMine){
 			Vector3 pos = new Vector3();
 			{
