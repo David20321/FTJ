@@ -56,7 +56,7 @@ public class CursorScript : MonoBehaviour {
 				}
 			}
 			
-			if(Input.GetMouseButtonDown(0)){
+			if(Input.GetMouseButton(0)){
 				Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 				RaycastHit[] raycast_hits;
 				raycast_hits = Physics.RaycastAll(ray);
@@ -76,12 +76,12 @@ public class CursorScript : MonoBehaviour {
 						TellBoardAboutDiceClick(dice_script.id_, id_);
 					}
 				}
-				if(!picked_something_up){
-					if(!Network.isServer){
-						networkView.RPC("TellBoardAboutMouseRelease",RPCMode.Server,id_);
-					} else {
-						TellBoardAboutMouseRelease(id_);
-					}
+			}
+			if(Input.GetMouseButtonUp(0)){
+				if(!Network.isServer){
+					networkView.RPC("TellBoardAboutMouseRelease",RPCMode.Server,id_);
+				} else {
+					TellBoardAboutMouseRelease(id_);
 				}
 			}
 			rigidbody.position = pos;
