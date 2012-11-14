@@ -91,7 +91,7 @@ public class CursorScript : MonoBehaviour {
 					TellBoardAboutMouseRelease(id_);
 				}
 			}
-			rigidbody.velocity = (pos - old_pos_)/Time.deltaTime;
+			//rigidbody.velocity = (pos - old_pos_)/Time.deltaTime;
 			old_pos_ = pos;
 			rigidbody.position = pos;
 			transform.position = pos;

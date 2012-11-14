@@ -11,10 +11,19 @@ public class BoardScript : MonoBehaviour {
 	
 	public void ClientClickedOnDie(int die_id, int player_id){
 		ConsoleScript.Log("Player "+player_id+" clicked on die "+die_id);
+		bool holding_token = false;
 		foreach(GameObject die in dice_objects){
 			DiceScript dice_script = die.GetComponent<DiceScript>();
-			if(dice_script.id_ == die_id){
-				dice_script.held_by_player_ = player_id;
+			if(dice_script.held_by_player_ == player_id && dice_script.type_ == DiceScript.Type.TOKEN){
+				holding_token = true;
+			}
+		}
+		if(!holding_token){
+			foreach(GameObject die in dice_objects){
+				DiceScript dice_script = die.GetComponent<DiceScript>();
+				if(dice_script.id_ == die_id){
+					dice_script.held_by_player_ = player_id;
+				}
 			}
 		}
 	}
