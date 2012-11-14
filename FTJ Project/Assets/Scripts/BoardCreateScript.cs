@@ -10,6 +10,7 @@ public class BoardCreateScript : MonoBehaviour {
 	const float TILE_SIZE = 0.7f;
 	const int MAX_TITLE_WIDTH = 60;
 	const int MAX_RULES_WIDTH = 115;
+	const float SCALE = 1.8f;
 	
 	// Use this for initialization
 	void Start () {
@@ -36,7 +37,7 @@ public class BoardCreateScript : MonoBehaviour {
 			var coord = new long[2];
 			coord[0] = (long)coord_list[0];
 			coord[1] = (long)coord_list[1];
-			var tile_obj = (GameObject)Instantiate(tile_prefab, transform.position + transform.rotation * (offset + new Vector3((grid_dim[1]-coord[1])*TILE_SIZE,0,(grid_dim[0]-coord[0])*TILE_SIZE)), transform.rotation);
+			var tile_obj = (GameObject)Instantiate(tile_prefab, transform.position + transform.rotation * (offset + new Vector3((grid_dim[1]-coord[1])*TILE_SIZE,0,(grid_dim[0]-coord[0])*TILE_SIZE))*SCALE, transform.rotation);
 			var color_list = (List<object>)tile["Color"];
 			var color = new Color(((float)(long)color_list[0])/255.0f,
 								  ((float)(long)color_list[1])/255.0f,
@@ -61,6 +62,7 @@ public class BoardCreateScript : MonoBehaviour {
 				}
 			}
 			tile_obj.GetComponent<TileScript>().Bake();
+			tile_obj.transform.localScale *= SCALE;
 		}
 	}
 	
