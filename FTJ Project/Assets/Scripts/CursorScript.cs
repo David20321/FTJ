@@ -9,7 +9,6 @@ public class Net {
 
 public class CursorScript : MonoBehaviour {
 	int id_ = -1;
-	Vector3 old_pos_;
 	
 	public int id() {
 		return id_;
@@ -28,7 +27,6 @@ public class CursorScript : MonoBehaviour {
 		}
 		BoardScript.Instance().RegisterCursorObject(gameObject);
 		Screen.showCursor = false;
-		old_pos_ = transform.position;
 	}
 	
 	void OnDestroy() {
@@ -49,7 +47,10 @@ public class CursorScript : MonoBehaviour {
 	}
 	
 	void Update () {
-		SetColor(PlayerListScript.Instance().GetPlayerInfoList()[id_].color_);
+		var player_list = PlayerListScript.Instance().GetPlayerInfoList();
+		if(player_list.ContainsKey(id_)){
+			SetColor(player_list[id_].color_);
+		}
 		if(networkView.isMine){
 			Vector3 pos = new Vector3();
 			{
@@ -64,7 +65,6 @@ public class CursorScript : MonoBehaviour {
 				Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 				RaycastHit[] raycast_hits;
 				raycast_hits = Physics.RaycastAll(ray);
-				bool picked_something_up = false;
 				foreach(RaycastHit hit in raycast_hits){ 
 					if(hit.collider.gameObject.layer != 10){
 						continue;
@@ -76,7 +76,6 @@ public class CursorScript : MonoBehaviour {
 					if(dice_script.type_ == DiceScript.Type.TOKEN && !Input.GetMouseButtonDown(0)){
 						continue;
 					}
-					picked_something_up = true;
 					if(!Network.isServer){
 						networkView.RPC("TellBoardAboutDiceClick",RPCMode.Server,dice_script.id_,id_);
 					} else {
@@ -91,8 +90,6 @@ public class CursorScript : MonoBehaviour {
 					TellBoardAboutMouseRelease(id_);
 				}
 			}
-			//rigidbody.velocity = (pos - old_pos_)/Time.deltaTime;
-			old_pos_ = pos;
 			rigidbody.position = pos;
 			transform.position = pos;
 		}

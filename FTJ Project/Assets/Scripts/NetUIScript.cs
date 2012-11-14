@@ -33,8 +33,8 @@ public class NetUIScript : MonoBehaviour {
 		int player_id = int.Parse(Network.player.ToString());
 		ConsoleScript.Log("Telling server that player "+player_id+" is named: "+player_name_);
 		TellServerPlayerName(player_name_);
-		GameObject board_object = (GameObject)Network.Instantiate(board_prefab, GameObject.Find("board_spawn").transform.position, GameObject.Find("board_spawn").transform.rotation,0);
-		GameObject cursor_object = (GameObject)Network.Instantiate(cursor_prefab, new Vector3(0,0,0), Quaternion.identity, 0);
+		Network.Instantiate(board_prefab, GameObject.Find("board_spawn").transform.position, GameObject.Find("board_spawn").transform.rotation,0);
+		Network.Instantiate(cursor_prefab, new Vector3(0,0,0), Quaternion.identity, 0);
 	}
 	
 	void NetEventConnectedToServer(){

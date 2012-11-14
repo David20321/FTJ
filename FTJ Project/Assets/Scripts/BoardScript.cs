@@ -66,6 +66,18 @@ public class BoardScript : MonoBehaviour {
 		cursor_objects.Remove(obj);
 	}
 	
+	public void RegisterDiceObject(GameObject obj) {
+		dice_objects.Add(obj);
+	}
+	
+	public void UnRegisterDiceObject(GameObject obj) {
+		dice_objects.Remove(obj);
+	}
+	[RPC]
+	void DestroyObject(NetworkViewID id){
+		GameObject.Destroy(NetworkView.Find(id).gameObject);
+	}
+	
 	[RPC]
 	public void RecoverDice() {
 		if(!Network.isServer){
@@ -73,9 +85,8 @@ public class BoardScript : MonoBehaviour {
 			return;
 		} else {
 			foreach(GameObject die in dice_objects){
-				Network.Destroy(die);
+				networkView.RPC("DestroyObject",RPCMode.AllBuffered,die.networkView.viewID);
 			}
-			dice_objects.Clear();
 			SpawnDice();
 		}
 	}
@@ -86,7 +97,6 @@ public class BoardScript : MonoBehaviour {
 		foreach(Transform child in dice_spawns.transform){
 			GameObject dice_object = (GameObject)Network.Instantiate(dice_prefabs[Random.Range(0,dice_prefabs.Length)], child.position, Quaternion.identity, 0);
 			dice_object.GetComponent<DiceScript>().id_ = next_id;
-			dice_objects.Add(dice_object);
 			next_id++;
 		}
 		Transform token_spawns = transform.Find("TokenSpawns");
@@ -94,7 +104,6 @@ public class BoardScript : MonoBehaviour {
 			GameObject token_object = (GameObject)Network.Instantiate(token_prefabs[Random.Range(0,token_prefabs.Length)], child.position, Quaternion.identity, 0);
 			token_object.renderer.material.color = new Color(Random.Range(0.0f,1.0f),Random.Range(0.0f,1.0f),Random.Range(0.0f,1.0f));
 			token_object.GetComponent<DiceScript>().id_ = next_id;
-			dice_objects.Add(token_object);
 			next_id++;
 		}
 	}
