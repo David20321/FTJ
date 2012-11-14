@@ -143,51 +143,83 @@
   	  "Color":[90,143,89],
     }{
   	  "Pos":[2,2],
+  	  "Title":"Execution Chamber",
+  	  "Rules":"Draw three, opponent\n picks one",
   	  "Color":[69,60,60],
     }{
   	  "Pos":[3,2],
+  	  "Title":"Solitary",
+  	  "Rules":"Skip a turn",
   	  "Color":[69,60,60],
     }{
   	  "Pos":[4,2],
+  	  "Title":"Interrogation Room",
+  	  "Rules":"Draw one",
   	  "Color":[69,60,60],
     }{
   	  "Pos":[5,2],
+  	  "Title":"Church",
+  	  "Rules":"Draw two, pick one",
   	  "Color":[69,60,60],
     }{
   	  "Pos":[5,3],
+  	  "Title":"Cemetery",
+  	  "Rules":"Opponent picks one\n from discard",
   	  "Color":[69,60,60],
     }{
   	  "Pos":[5,4],
+  	  "Title":"Infirmary",
+  	  "Rules":"Draw one",
   	  "Color":[69,60,60],
     }{
   	  "Pos":[5,5],
+  	  "Title":"Labyrinth",
+  	  "Rules":"Draw one\nMove back D6",
   	  "Color":[69,60,60],
     }{
   	  "Pos":[4,5],
+  	  "Title":"Gauntlet",
+  	  "Rules":"Draw one\nDraw another one",
   	  "Color":[69,60,60],
     }{
   	  "Pos":[3,5],
+  	  "Title":"Puppet Strings",
+  	  "Rules":"Until your next turn\nYou make all movement\nchoices",
   	  "Color":[69,60,60],
     }{
   	  "Pos":[2,5],
+  	  "Title":"Abyss",
+  	  "Rules":"Fall down to the\nnext level",
   	  "Color":[69,60,60],
     }{
   	  "Pos":[2,4],
+  	  "Title":"Asylum",
+  	  "Rules":"Draw one\nYour movement direction\nis permanently reversed",
   	  "Color":[69,60,60],
     }{
   	  "Pos":[2,3],
+  	  "Title":"Stacks",
+  	  "Rules":"Draw three, pick one",
   	  "Color":[69,60,60],
     }{
   	  "Pos":[4,4],
+  	  "Title":"Altar",
+  	  "Rules":"Draw one",
   	  "Color":[84,0,0],
     }{
   	  "Pos":[3,4],
+  	  "Title":"Pentacle",
+  	  "Rules":"Draw three,\nopponent picks one",
   	  "Color":[84,0,0],
     }{
   	  "Pos":[3,3],
+  	  "Title":"Hellgate",
+  	  "Rules":"Draw five,\nopponent picks two",
   	  "Color":[84,0,0],
     }{
   	  "Pos":[4,3],
+  	  "Title":"Darkness",
+  	  "Rules":"Move back D6",
   	  "Color":[84,0,0],
     }
   ]
