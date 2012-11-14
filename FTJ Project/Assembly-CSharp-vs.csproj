@@ -58,6 +58,7 @@
      <Compile Include="Assets\Scripts\PlayerListScript.cs" />
      <Compile Include="Assets\Scripts\ShadowCamScript.cs" />
      <Compile Include="Assets\Scripts\TileScript.cs" />
+     <Compile Include="Assets\Scripts\ZoomCameraScript.cs" />
      <None Include="Assets\Standard Assets\Projectors\Guidelines.txt" />
      <None Include="Assets\Standard Assets\Image Effects (Pro Only)\_Sources\Shaders\_BloomAndFlares\BlendOneOne.shader" />
      <None Include="Assets\Standard Assets\Image Effects (Pro Only)\_Sources\Shaders\NoiseEffectShaderRGB.shader" />

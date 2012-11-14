@@ -69,9 +69,10 @@ public class CursorScript : MonoBehaviour {
 			SetColor(player_list[id_].color_);
 		}
 		if(networkView.isMine){
+			var main_camera = GameObject.Find("Main Camera").camera;
 			Vector3 pos = new Vector3();
 			{
-				Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+				Ray ray = main_camera.ScreenPointToRay(Input.mousePosition);
 				RaycastHit raycast_hit = new RaycastHit();
 				if(Physics.Raycast(ray, out raycast_hit, 100.0f, 1 << 8)){
 					pos = raycast_hit.point - ray.direction;
@@ -79,7 +80,7 @@ public class CursorScript : MonoBehaviour {
 			}
 			
 			if(Input.GetMouseButton(0)){
-				Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+				Ray ray = main_camera.ScreenPointToRay(Input.mousePosition);
 				RaycastHit[] raycast_hits;
 				raycast_hits = Physics.RaycastAll(ray);
 				System.Array.Sort(raycast_hits, new RaycastHitComparator());

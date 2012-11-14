@@ -39,6 +39,15 @@ public class BoardScript : MonoBehaviour {
 		}
 	}
 	
+	public GameObject GetMyCursorObject() {
+		foreach(var cursor in cursor_objects){
+			if(cursor.GetComponent<CursorScript>().id() == Net.GetMyID()){ 
+				return cursor;
+			}
+		}
+		return null;
+	}
+	
 	public void ClientReleasedMouse(int player_id){
 		GameObject held = null;
 		foreach(GameObject die in dice_objects){
@@ -177,6 +186,9 @@ public class BoardScript : MonoBehaviour {
 	}
 	
 	public static BoardScript Instance() {
+		if(!GameObject.Find("Board(Clone)")){
+			return null;
+		}
 		return GameObject.Find("Board(Clone)").GetComponent<BoardScript>();
 	}
 }
