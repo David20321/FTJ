@@ -4,6 +4,8 @@ using System.Collections;
 public class DiceScript : MonoBehaviour {
 	public int id_;
 	public int held_by_player_;
+	public enum Type {DIE, TOKEN};
+	public Type type_;
 	
 	void Start() {
 		held_by_player_ = -1;

@@ -5,21 +5,21 @@
 +Colored cursors
 +Dice with physics and shadows
 +Recover dice that fall off screen
++Render 3D text to texture
++ create tile, set tile text, create new rendertexture, render camera to it, assign rendertexture to tile, delete camera and text
++Roll dice (multiple at once)
++Board JSON descriptions
 
 Interface:
-Roll dice (multiple at once)
 Add colored play areas for each player at bottom of screen
 Move pieces
 Draw cards
 Chat
 Add sounds
 Procedurally display board and cards
-Board JSON descriptions
 Card JSON descriptions
 
 Graphics:
-Render 3D text to texture
-- create tile, set tile text, create new rendertexture, render camera to it, assign rendertexture to tile, delete camera and text
 Cards with holographic display
 UI display (windows and borders?)
 Splash screen

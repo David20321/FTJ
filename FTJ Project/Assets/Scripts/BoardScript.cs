@@ -26,8 +26,11 @@ public class BoardScript : MonoBehaviour {
 				if(die.rigidbody.velocity.magnitude > MAX_DICE_VEL){
 					die.rigidbody.velocity = die.rigidbody.velocity.normalized * MAX_DICE_VEL;
 				}
-				die.rigidbody.angularVelocity = new Vector3(Random.Range(-1.0f,1.0f),Random.Range(-1.0f,1.0f),Random.Range(-1.0f,1.0f) * 100.0f);			
-				die.GetComponent<DiceScript>().held_by_player_ = -1;
+				var dice_script = die.GetComponent<DiceScript>();
+				if(dice_script.type_ == DiceScript.Type.DIE){
+					die.rigidbody.angularVelocity = new Vector3(Random.Range(-1.0f,1.0f),Random.Range(-1.0f,1.0f),Random.Range(-1.0f,1.0f)) * 100.0f;			
+				}
+				dice_script.held_by_player_ = -1;
 			}
 		}
 		if(held){

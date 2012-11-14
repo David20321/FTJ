@@ -9,6 +9,7 @@ public class Net {
 
 public class CursorScript : MonoBehaviour {
 	int id_ = -1;
+	Vector3 old_pos_;
 	
 	public int id() {
 		return id_;
@@ -27,6 +28,7 @@ public class CursorScript : MonoBehaviour {
 		}
 		BoardScript.Instance().RegisterCursorObject(gameObject);
 		Screen.showCursor = false;
+		old_pos_ = transform.position;
 	}
 	
 	void OnDestroy() {
@@ -71,6 +73,9 @@ public class CursorScript : MonoBehaviour {
 					if(dice_script.held_by_player_ == id_){
 						continue;
 					}
+					if(dice_script.type_ == DiceScript.Type.TOKEN && !Input.GetMouseButtonDown(0)){
+						continue;
+					}
 					picked_something_up = true;
 					if(!Network.isServer){
 						networkView.RPC("TellBoardAboutDiceClick",RPCMode.Server,dice_script.id_,id_);
@@ -86,6 +91,8 @@ public class CursorScript : MonoBehaviour {
 					TellBoardAboutMouseRelease(id_);
 				}
 			}
+			rigidbody.velocity = (pos - old_pos_)/Time.deltaTime;
+			old_pos_ = pos;
 			rigidbody.position = pos;
 			transform.position = pos;
 		}
