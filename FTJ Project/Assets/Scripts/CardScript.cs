@@ -1,23 +1,27 @@
 using UnityEngine;
 using System.Collections;
 
-public class CardCreationScript : MonoBehaviour {
+public class CardScript : MonoBehaviour {
 	public Texture2D[] back_textures;
 	public Material pure_white;
 	public Material cutout;
-	enum BackID{DUNGEON_ONE = 0, DUNGEON_TWO = 1, DUNGEON_THREE = 2, HERO = 3, NATURE = 4, TOWN = 5};
+	public CardData card_data_ = new CardData();
+	
+	public void SetCardData(CardData card_data){
+		card_data_ = card_data_;
+	}
 	
 	public void Bake() {
 		var title_text = transform.FindChild("Title").GetComponent<TextMesh>();
-		title_text.text = "Chasm Guardian";
+		title_text.text = card_data_.title;
 		var type_text = transform.FindChild("Type").GetComponent<TextMesh>();
-		type_text.text = "Arachnid Monster";
+		type_text.text = card_data_.type;
 		var rules_text = transform.FindChild("Rules").GetComponent<TextMesh>();
-		rules_text.text = "On 1 or 2: skip a turn\nOn 5 or 6: draw four, pick one";
+		rules_text.text = card_data_.rules;
 		var flavour_text = transform.FindChild("Flavour").GetComponent<TextMesh>();
-		flavour_text.text = "\"I hate spiders!\" -Some dude";
+		flavour_text.text = card_data_.flavour;
 		var card_back = transform.FindChild("Back").transform.FindChild("default");
-		card_back.renderer.material.mainTexture = back_textures[(int)BackID.DUNGEON_ONE];
+		card_back.renderer.material.mainTexture = back_textures[card_data_.back];
 	
 		var camera_obj = transform.FindChild("Camera").gameObject;
 		var camera = camera_obj.GetComponent<Camera>();
@@ -50,7 +54,6 @@ public class CardCreationScript : MonoBehaviour {
 	
 	// Use this for initialization
 	void Start () {
-		Bake();
 	}
 	
 	// Update is called once per frame

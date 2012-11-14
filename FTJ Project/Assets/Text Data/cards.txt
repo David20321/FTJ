@@ -5,12 +5,9 @@
 	  "Type": "Arachnid Monster",
 	  "Rules": "On 1 or 2: skip a turn\nOn 5 or 6: draw four, pick one",
 	  "Flavour": "\"I hate spiders!\" -Some dude"
-	}
-	{
-      "Title": "Test card title 2",
-	  "Type": "Test card type",
-	  "Text": "Test card text",
-	  "Desc": "Test card desc"
+	  "Duplicates": 10
+	  "Image" : 0
+	  "Back" : 0
 	}
   ]
 }

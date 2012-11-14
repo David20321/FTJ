@@ -46,9 +46,10 @@
   <ItemGroup>
      <Compile Include="Assets\Scripts\BoardCreateScript.cs" />
      <Compile Include="Assets\Scripts\BoardScript.cs" />
-     <Compile Include="Assets\Scripts\CardCreationScript.cs" />
+     <Compile Include="Assets\Scripts\CardScript.cs" />
      <Compile Include="Assets\Scripts\ConsoleScript.cs" />
      <Compile Include="Assets\Scripts\CursorScript.cs" />
+     <Compile Include="Assets\Scripts\DeckScript.cs" />
      <Compile Include="Assets\Scripts\DiceScript.cs" />
      <Compile Include="Assets\Scripts\DrawEmptyScript.cs" />
      <Compile Include="Assets\Scripts\JSONTest.cs" />

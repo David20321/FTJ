@@ -5,7 +5,6 @@ using System.Collections.Generic;
 public class BoardScript : MonoBehaviour {
 	public GameObject[] dice_prefabs;	
 	public GameObject[] token_prefabs;	
-	public GameObject[] card_prefabs;	
 	List<GameObject> dice_objects = new List<GameObject>();	
 	List<GameObject> cursor_objects = new List<GameObject>();
 	const float HOLD_FORCE = 10000.0f;
