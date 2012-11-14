@@ -7,6 +7,23 @@ public class Net {
 	}
 };
 
+
+public class RaycastHitComparator : IComparer
+{
+    public int Compare(object x, object y)
+    {
+    	RaycastHit a = (RaycastHit)x;
+    	RaycastHit b = (RaycastHit)y;
+    	if(a.distance < b.distance){
+    		return -1;
+    	} else if(b.distance < a.distance){
+    		return 1;
+    	} else {
+    		return 0;
+    	}
+    }
+}
+
 public class CursorScript : MonoBehaviour {
 	int id_ = -1;
 	
@@ -65,6 +82,7 @@ public class CursorScript : MonoBehaviour {
 				Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 				RaycastHit[] raycast_hits;
 				raycast_hits = Physics.RaycastAll(ray);
+				System.Array.Sort(raycast_hits, new RaycastHitComparator());
 				foreach(RaycastHit hit in raycast_hits){ 
 					if(hit.collider.gameObject.layer != 10){
 						continue;
