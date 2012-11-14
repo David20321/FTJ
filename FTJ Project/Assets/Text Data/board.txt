@@ -19,83 +19,127 @@
     }{
   	  "Pos":[6,7],
   	  "Title":"Undergrowth",
+  	  "Rules":"Draw one",
   	  "Color":[90,143,89],
     }{
   	  "Pos":[5,7],
   	  "Title":"Tall Trees",
+  	  "Rules":"Draw two, choose one",
   	  "Color":[90,143,89],
     }{
   	  "Pos":[4,7],
   	  "Title":"Meadow",
+  	  "Rules":"Draw one, skip a turn",
   	  "Color":[90,143,89],
     }{
   	  "Pos":[3,7],
   	  "Title":"Swamp",
+  	  "Rules":"Draw one, skip a turn",
   	  "Color":[90,143,89]
     }{
   	  "Pos":[2,7],
   	  "Title":"Wasteland",
+  	  "Rules":"Draw two, opponent picks\none for you",
   	  "Color":[90,143,89]
     }{
   	  "Pos":[1,7],
   	  "Title":"Dungeon Entrance",
+  	  "Rules":"",
   	  "Color":[101,101,101]
     }{
   	  "Pos":[1,6],
+  	  "Title":"Dark Stairway",
+  	  "Rules":"50% chance of skip turn",
   	  "Color":[101,101,101]
     }{
   	  "Pos":[1,5],
+  	  "Title":"Cells",
+  	  "Rules":"Draw one",
   	  "Color":[101,101,101]
     }{
   	  "Pos":[1,4],
+  	  "Title":"Library",
+  	  "Rules":"Draw three, pick one",
   	  "Color":[101,101,101]
     }{
   	  "Pos":[1,3],
+  	  "Title":"Trap door",
+  	  "Rules":"Fall down to the\nnext level",
   	  "Color":[101,101,101]
     }{
   	  "Pos":[1,2],
+  	  "Title":"Laboratory",
+  	  "Rules":"Draw two, pick one",
   	  "Color":[101,101,101]
     }{
   	  "Pos":[1,1],
+  	  "Title":"Kennel",
+  	  "Rules":"Draw three, opponent\n picks one",
   	  "Color":[101,101,101]
     }{
   	  "Pos":[2,1],
+  	  "Title":"Town Portal",
+  	  "Rules":"Go back to town",
   	  "Color":[101,101,101]
     }{
   	  "Pos":[3,1],
+  	  "Title":"Barracks",
+  	  "Rules":"Draw two, pick one",
   	  "Color":[101,101,101]
     }{
   	  "Pos":[4,1],
+  	  "Title":"Wrong Turn",
+  	  "Rules":"Move backwards D6",
   	  "Color":[101,101,101]
     }{
   	  "Pos":[5,1],
+  	  "Title":"Cells",
+  	  "Rules":"Draw one",
   	  "Color":[101,101,101]
     }{
   	  "Pos":[6,1],
+  	  "Title":"Secret Passage",
+  	  "Rules":"Take another turn",
   	  "Color":[101,101,101]
     }{
   	  "Pos":[7,1],
+  	  "Title":"Guard Tower",
+  	  "Rules":"Draw three, pick one",
   	  "Color":[101,101,101]
     }{
   	  "Pos":[8,1],
+  	  "Title":"Bright Stairway",
+  	  "Rules":"50% chance of extra turn",
   	  "Color":[101,101,101]
     }{
   	  "Pos":[9,1],
+  	  "Title":"Dungeon Exit",
+  	  "Rules":"",
   	  "Color":[101,101,101]
     }{
   	  "Pos":[9,2],
+  	  "Title":"Hedge Maze",
+  	  "Rules":"Draw one, skip a turn",
   	  "Color":[90,143,89],
     }{
   	  "Pos":[9,3],
+  	  "Title":"Desert",
+  	  "Rules":"Draw one",
   	  "Color":[90,143,89],
     }{
   	  "Pos":[9,4],
+  	  "Title":"Mirage",
+  	  "Rules":"Go back to desert",
   	  "Color":[90,143,89],
     }{
   	  "Pos":[9,5],
+  	  "Title":"Oasis",
+  	  "Rules":"Draw three, pick one",
   	  "Color":[90,143,89],
     }{
   	  "Pos":[9,6],
+  	  "Title":"Outskirts",
+  	  "Rules":"",
   	  "Color":[90,143,89],
     }{
   	  "Pos":[2,2],
