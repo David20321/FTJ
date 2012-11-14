@@ -4,6 +4,7 @@ using System.Collections.Generic;
 
 public class BoardScript : MonoBehaviour {
 	public GameObject[] dice_prefabs;	
+	public GameObject[] token_prefabs;	
 	List<GameObject> dice_objects = new List<GameObject>();	
 	List<GameObject> cursor_objects = new List<GameObject>();
 	const float HOLD_FORCE = 10000.0f;
@@ -30,7 +31,7 @@ public class BoardScript : MonoBehaviour {
 			DiceScript dice_script = die.GetComponent<DiceScript>();
 			if(dice_script.id_ == die_id){
 				if((dice_script.type_ == DiceScript.Type.DIE && !holding_token) ||
-				   (dice_script.type_ == DiceScript.Type.TOKEN && !holding_dice))
+				   (dice_script.type_ == DiceScript.Type.TOKEN && !holding_dice && !holding_token))
 			    {
 					dice_script.held_by_player_ = player_id;
 				}
@@ -86,6 +87,14 @@ public class BoardScript : MonoBehaviour {
 			GameObject dice_object = (GameObject)Network.Instantiate(dice_prefabs[Random.Range(0,dice_prefabs.Length)], child.position, Quaternion.identity, 0);
 			dice_object.GetComponent<DiceScript>().id_ = next_id;
 			dice_objects.Add(dice_object);
+			next_id++;
+		}
+		Transform token_spawns = transform.Find("TokenSpawns");
+		foreach(Transform child in token_spawns.transform){
+			GameObject token_object = (GameObject)Network.Instantiate(token_prefabs[Random.Range(0,token_prefabs.Length)], child.position, Quaternion.identity, 0);
+			token_object.renderer.material.color = new Color(Random.Range(0.0f,1.0f),Random.Range(0.0f,1.0f),Random.Range(0.0f,1.0f));
+			token_object.GetComponent<DiceScript>().id_ = next_id;
+			dice_objects.Add(token_object);
 			next_id++;
 		}
 	}
