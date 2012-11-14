@@ -17,8 +17,10 @@ public class DeckScript : MonoBehaviour {
 	public TextAsset deck_json;
 	public string deck_name;
 	List<CardData> cards_ = new List<CardData>();
-	GameObject top_card = null;
-	GameObject bottom_card = null;
+	GameObject top_card_ = null;
+	GameObject bottom_card_ = null;
+	const float CARD_THICKNESS_MULT = 0.04f;
+	const float ORIGINAL_SCALE = 1.0f;
 	
 	// Use this for initialization
 	void Start () {
@@ -63,30 +65,31 @@ public class DeckScript : MonoBehaviour {
 			}
 		}
 		var top_transform = transform.FindChild("top_card").transform;
-		top_card = (GameObject)GameObject.Instantiate(card_prefab, top_transform.position, top_transform.rotation);
-		top_card.transform.parent = transform;
-		GameObject.Destroy(top_card.rigidbody);
-		GameObject.Destroy(top_card.collider);
+		top_card_ = (GameObject)GameObject.Instantiate(card_prefab, top_transform.position, top_transform.rotation);
+		top_card_.transform.parent = transform;
+		GameObject.Destroy(top_card_.rigidbody);
+		GameObject.Destroy(top_card_.collider);
 		{
-			var card_script = top_card.GetComponent<CardScript>();
+			var card_script = top_card_.GetComponent<CardScript>();
 			card_script.SetCardData(cards_[0]);
 			card_script.Bake();
 		}
 		
 		var bottom_transform = transform.FindChild("bottom_card").transform;
-		bottom_card = (GameObject)GameObject.Instantiate(card_prefab, bottom_transform.position, bottom_transform.rotation);
-		bottom_card.transform.parent = transform;
-		GameObject.Destroy(bottom_card.rigidbody);
-		GameObject.Destroy(bottom_card.collider);
+		bottom_card_ = (GameObject)GameObject.Instantiate(card_prefab, bottom_transform.position, bottom_transform.rotation);
+		bottom_card_.transform.parent = transform;
+		GameObject.Destroy(bottom_card_.rigidbody);
+		GameObject.Destroy(bottom_card_.collider);
 		{
-			var card_script = bottom_card.GetComponent<CardScript>();
+			var card_script = bottom_card_.GetComponent<CardScript>();
 			card_script.SetCardData(cards_[cards_.Count-1]);
 			card_script.Bake();
 		}
+		var deck_transform = transform.FindChild("default").transform;
 	}
 	
 	// Update is called once per frame
 	void Update () {
-	
+		transform.localScale = new Vector3(1,cards_.Count * CARD_THICKNESS_MULT,1);	
 	}
 }
