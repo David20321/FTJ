@@ -10,6 +10,7 @@ public class TileScript : MonoBehaviour {
 		var render_texture = new RenderTexture(256,256,24,RenderTextureFormat.Default,RenderTextureReadWrite.Default);
 		render_texture.useMipMap = true;
 		render_texture.filterMode = FilterMode.Trilinear;
+		render_texture.mipMapBias = -0.5f;
 		camera.targetTexture = render_texture; 
 		
 		var tile_mesh = transform.FindChild("Tile_base").FindChild("default");

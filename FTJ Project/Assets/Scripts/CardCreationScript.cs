@@ -24,6 +24,7 @@ public class CardCreationScript : MonoBehaviour {
 		var render_texture = new RenderTexture(512,512,24,RenderTextureFormat.Default,RenderTextureReadWrite.Default);
 		render_texture.useMipMap = true;
 		render_texture.filterMode = FilterMode.Trilinear;
+		render_texture.mipMapBias = -0.5f;
 		camera.targetTexture = render_texture; 
 		
 		transform.FindChild("Title").gameObject.layer = 14;
@@ -44,6 +45,7 @@ public class CardCreationScript : MonoBehaviour {
 		Material new_material = new Material(cutout);
 		new_material.mainTexture = render_texture;
 		transform.FindChild("FrontBorder").FindChild("default").renderer.material = new_material;
+		transform.FindChild("FrontBorder").FindChild("default").gameObject.layer = 12;
 	}
 	
 	// Use this for initialization
