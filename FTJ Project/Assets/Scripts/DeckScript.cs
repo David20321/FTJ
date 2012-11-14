@@ -67,9 +67,22 @@ public class DeckScript : MonoBehaviour {
 		top_card.transform.parent = transform;
 		GameObject.Destroy(top_card.rigidbody);
 		GameObject.Destroy(top_card.collider);
-		var card_script = top_card.GetComponent<CardScript>();
-		card_script.SetCardData(cards_[0]);
-		card_script.Bake();
+		{
+			var card_script = top_card.GetComponent<CardScript>();
+			card_script.SetCardData(cards_[0]);
+			card_script.Bake();
+		}
+		
+		var bottom_transform = transform.FindChild("bottom_card").transform;
+		bottom_card = (GameObject)GameObject.Instantiate(card_prefab, bottom_transform.position, bottom_transform.rotation);
+		bottom_card.transform.parent = transform;
+		GameObject.Destroy(bottom_card.rigidbody);
+		GameObject.Destroy(bottom_card.collider);
+		{
+			var card_script = bottom_card.GetComponent<CardScript>();
+			card_script.SetCardData(cards_[cards_.Count-1]);
+			card_script.Bake();
+		}
 	}
 	
 	// Update is called once per frame

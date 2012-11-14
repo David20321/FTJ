@@ -8,7 +8,7 @@ public class CardScript : MonoBehaviour {
 	public CardData card_data_ = new CardData();
 	
 	public void SetCardData(CardData card_data){
-		card_data_ = card_data_;
+		card_data_ = card_data;
 	}
 	
 	public void Bake() {
