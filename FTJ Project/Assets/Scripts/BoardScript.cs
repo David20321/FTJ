@@ -108,7 +108,39 @@ public class BoardScript : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-	
+		var players = PlayerListScript.Instance().GetPlayerInfoList();
+		if(Network.isServer){
+			var used_id = new HashSet<int>();
+			foreach(GameObject die in dice_objects){
+				var dice_script = die.GetComponent<DiceScript>();
+				if(dice_script.type_ == DiceScript.Type.TOKEN){
+					used_id.Add(dice_script.owner_id_);
+				}
+			}
+			foreach(GameObject die in dice_objects){
+				var dice_script = die.GetComponent<DiceScript>();
+				if(dice_script.type_ == DiceScript.Type.TOKEN &&
+				   !players.ContainsKey(dice_script.owner_id_))
+			    {
+					foreach(var pair in players){
+						if(!used_id.Contains(pair.Key)){
+							dice_script.owner_id_ = pair.Key;
+							used_id.Add(pair.Key);
+						}
+					}
+				}
+			}
+		}
+		foreach(GameObject die in dice_objects){
+			var dice_script = die.GetComponent<DiceScript>();
+			if(dice_script.type_ == DiceScript.Type.TOKEN){
+				if(players.ContainsKey(dice_script.owner_id_)){
+					dice_script.gameObject.renderer.material.color = players[dice_script.owner_id_].color_;
+				} else {
+					dice_script.gameObject.renderer.material.color = Color.white;
+				}
+			}
+		}
 	}
 	
 	void FixedUpdate() {
