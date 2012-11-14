@@ -25,7 +25,14 @@ public class CardCreationScript : MonoBehaviour {
 		render_texture.useMipMap = true;
 		render_texture.filterMode = FilterMode.Trilinear;
 		camera.targetTexture = render_texture; 
-				
+		
+		transform.FindChild("Title").gameObject.layer = 14;
+		transform.FindChild("Type").gameObject.layer = 14;
+		transform.FindChild("Rules").gameObject.layer = 14;
+		transform.FindChild("Flavour").gameObject.layer = 14;
+		transform.FindChild("Contents").FindChild("default").gameObject.layer = 14;
+		transform.FindChild("AlphaBackdrop").FindChild("default").gameObject.layer = 14;
+		transform.FindChild("FrontBorder").FindChild("default").gameObject.layer = 14;
 		camera.Render();
 		GameObject.Destroy(camera_obj);
 		GameObject.Destroy(transform.FindChild("Title").gameObject);
