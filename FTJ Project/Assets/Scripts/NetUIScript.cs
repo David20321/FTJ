@@ -9,7 +9,7 @@ public class NetUIScript : MonoBehaviour {
 	State state_ = State.MAIN_MENU;
 	const string DEFAULT_GAME_NAME = "Unnamed Game";
 	const string DEFAULT_PLAYER_NAME = "Unknown Player";
-	const string GAME_IDENTIFIER = "WolfireFTJGamev17";
+	const string GAME_IDENTIFIER = "WolfireFTJGamev18";
 	const int DEFAULT_PORT = 25000;
 	const int MAX_PLAYERS = 4;
 	const int MAX_CONNECTIONS = MAX_PLAYERS-1;
@@ -33,7 +33,7 @@ public class NetUIScript : MonoBehaviour {
 		int player_id = int.Parse(Network.player.ToString());
 		ConsoleScript.Log("Telling server that player "+player_id+" is named: "+player_name_);
 		TellServerPlayerName(player_name_);
-		GameObject board_object = (GameObject)Network.Instantiate(board_prefab, GameObject.Find("board_spawn").transform.position, Quaternion.identity,0);
+		GameObject board_object = (GameObject)Network.Instantiate(board_prefab, GameObject.Find("board_spawn").transform.position, GameObject.Find("board_spawn").transform.rotation,0);
 		GameObject cursor_object = (GameObject)Network.Instantiate(cursor_prefab, new Vector3(0,0,0), Quaternion.identity, 0);
 	}
 	

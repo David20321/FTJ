@@ -9,10 +9,10 @@
 + create tile, set tile text, create new rendertexture, render camera to it, assign rendertexture to tile, delete camera and text
 +Roll dice (multiple at once)
 +Board JSON descriptions
++Move pieces
 
 Interface:
 Add colored play areas for each player at bottom of screen
-Move pieces
 Draw cards
 Chat
 Add sounds
