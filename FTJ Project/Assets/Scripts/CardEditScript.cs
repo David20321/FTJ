@@ -35,6 +35,7 @@ public class CardEditScript : MonoBehaviour {
 	}
 	
 	void OnGUI () {
+		GUILayout.BeginArea(new Rect(30,30,300,300));
 		GUILayout.BeginHorizontal();
 		GUILayout.Label("Title: ");
 		card_data.title = GUILayout.TextField(card_data.title, GUILayout.MinWidth(100));
@@ -70,5 +71,6 @@ public class CardEditScript : MonoBehaviour {
 			Test();
 		}
 		GUILayout.EndHorizontal();
+		GUILayout.EndArea();
 	}
 }
