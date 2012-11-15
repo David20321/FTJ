@@ -47,7 +47,9 @@ public class CursorScript : MonoBehaviour {
 	}
 	
 	void OnDestroy() {
-		BoardScript.Instance().UnRegisterCursorObject(gameObject);
+		if(BoardScript.Instance()){
+			BoardScript.Instance().UnRegisterCursorObject(gameObject);
+		}
 		Screen.showCursor = true;
 	}
 	

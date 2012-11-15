@@ -31,7 +31,9 @@ public class DiceScript : MonoBehaviour {
 	}
 	
 	void OnDestroy() {
-		BoardScript.Instance().UnRegisterDiceObject(gameObject);
+		if(BoardScript.Instance()){
+			BoardScript.Instance().UnRegisterDiceObject(gameObject);
+		}
 	}
 	
 	void OnSerializeNetworkView(BitStream stream, NetworkMessageInfo info){
