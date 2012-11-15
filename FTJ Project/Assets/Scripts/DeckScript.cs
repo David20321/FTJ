@@ -22,6 +22,7 @@ public class DeckScript : MonoBehaviour {
 	GameObject bottom_card_ = null;
 	const float CARD_THICKNESS_MULT = 0.04f;
 	const float ORIGINAL_SCALE = 1.0f;
+	const float DECK_MASS_PER_CARD = 0.3f;
 	
 	// Use this for initialization
 	void Start () {
@@ -133,7 +134,7 @@ public class DeckScript : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		transform.FindChild("default").localScale = new Vector3(1,Mathf.Max(2,cards_.Count) * CARD_THICKNESS_MULT,1);	
-		rigidbody.mass = cards_.Count;
+		rigidbody.mass = cards_.Count * DECK_MASS_PER_CARD;
 		/*if(Input.GetMouseButtonDown(0)){
 			var card = TakeTopCard();
 			if(card){

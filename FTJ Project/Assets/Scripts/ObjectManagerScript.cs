@@ -22,10 +22,11 @@ public class ObjectManagerScript : MonoBehaviour {
 	}
 	
 	public void ClientGrab(int grabbed_id, int player_id){
-		ConsoleScript.Log("Player "+player_id+" clicked on grabbable "+grabbed_id);
+		//ConsoleScript.Log("Player "+player_id+" clicked on grabbable "+grabbed_id);
 		// Check if client is already holding dice or tokens
 		bool holding_dice = false;
 		bool holding_token = false;
+		bool holding_deck = false;
 		foreach(GameObject grabbable in grabbable_objects){
 			GrabbableScript grabbable_script = grabbable.GetComponent<GrabbableScript>();
 			if(grabbable_script.held_by_player_ == player_id){
@@ -35,16 +36,21 @@ public class ObjectManagerScript : MonoBehaviour {
 				if(grabbable.GetComponent<DiceScript>()){
 					holding_dice = true;
 				}
+				if(grabbable.GetComponent<DeckScript>()){
+					holding_deck = true;
+				}
 			}
 		}
 		// See if client can grab object given already-grabbed objects
 		foreach(GameObject grabbable in grabbable_objects){
 			GrabbableScript grabbable_script = grabbable.GetComponent<GrabbableScript>();
 			if(grabbable_script.id_ == grabbed_id){
-				if((grabbable.GetComponent<DiceScript>() && !holding_token) ||
-				   (grabbable.GetComponent<TokenScript>() && !holding_dice && !holding_token))
+				if((grabbable.GetComponent<DiceScript>() && !holding_token && !holding_deck) ||
+				   (grabbable.GetComponent<TokenScript>() && !holding_dice && !holding_token)||
+				   (grabbable.GetComponent<DeckScript>() && !holding_dice && !holding_token))
 			    {
 					grabbable_script.held_by_player_ = player_id;
+					//ConsoleScript.Log ("Object "+grabbed_id+" is now held by Player "+player_id);
 				}
 			}
 		}
@@ -174,7 +180,27 @@ public class ObjectManagerScript : MonoBehaviour {
 					}
 					if(holder){
 						var held_rigidbody = grabbable.rigidbody;
-						held_rigidbody.AddForce((holder.transform.position - held_rigidbody.position) * Time.deltaTime * HOLD_FORCE);
+						var target_position = holder.transform.position;
+						if(grabbable.GetComponent<DeckScript>()){
+							target_position.y += 0.6f;
+							Quaternion target_rotation = Quaternion.identity;
+							target_rotation = Quaternion.Euler(0,180,180);
+							Quaternion offset = target_rotation * Quaternion.Inverse(held_rigidbody.rotation);
+							float angle;
+							Vector3 offset_vec3;
+							offset.ToAngleAxis(out angle, out offset_vec3);
+							if(angle > 180){
+								angle -= 360;
+							}
+							if(angle < -180){
+								angle += 360;
+							}
+							if(angle != 0.0f){
+								offset_vec3 *= angle;
+								held_rigidbody.AddTorque(offset_vec3 * Time.deltaTime * 100.0f);
+							}
+						}
+						held_rigidbody.AddForce((target_position - held_rigidbody.position) * Time.deltaTime * HOLD_FORCE * held_rigidbody.mass);
 						held_rigidbody.velocity *= HOLD_LINEAR_DAMPENING;			
 						held_rigidbody.angularVelocity *= HOLD_ANGULAR_DAMPENING;			
 						held_rigidbody.WakeUp();
