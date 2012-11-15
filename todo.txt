@@ -10,18 +10,17 @@
 +Roll dice (multiple at once)
 +Board JSON descriptions
 +Move pieces
++Procedurally display board and cards
++Card JSON descriptions
 
 Interface:
 Add colored play areas for each player at bottom of screen
 Draw cards
 Chat
 Add sounds
-Procedurally display board and cards
-Card JSON descriptions
 Zoom to see better
 Borders for dice?
 
 Graphics:
-Cards with holographic display
 UI display (windows and borders?)
 Splash screen

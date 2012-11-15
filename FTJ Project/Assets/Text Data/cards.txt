@@ -5,7 +5,7 @@
 	  "Type": "Arachnid Monster",
 	  "Rules": "On 1 or 2: skip a turn\nOn 5 or 6: draw four, pick one",
 	  "Flavour": "\"I hate spiders!\" -Some dude"
-	  "Duplicates": 2
+	  "Duplicates": 1
 	  "Image" : 4
 	  "Back" : 0
 	}
