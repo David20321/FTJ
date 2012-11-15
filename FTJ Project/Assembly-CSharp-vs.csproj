@@ -46,6 +46,7 @@
   <ItemGroup>
      <Compile Include="Assets\Scripts\BoardCreateScript.cs" />
      <Compile Include="Assets\Scripts\BoardScript.cs" />
+     <Compile Include="Assets\Scripts\CardEditScript.cs" />
      <Compile Include="Assets\Scripts\CardScript.cs" />
      <Compile Include="Assets\Scripts\ConsoleScript.cs" />
      <Compile Include="Assets\Scripts\CursorScript.cs" />
