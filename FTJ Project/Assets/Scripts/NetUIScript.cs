@@ -292,7 +292,7 @@ public class NetUIScript : MonoBehaviour {
 		GUILayout.EndHorizontal();
 		GUILayout.BeginHorizontal();
 		if(GUILayout.Button("Recover Dice")){
-			BoardScript.Instance().RecoverDice();
+			ObjectManagerScript.Instance().RecoverDice();
 		}
 		GUILayout.EndHorizontal();
 		GUILayout.BeginHorizontal();

@@ -6,15 +6,17 @@ public class GrabbableScript : MonoBehaviour {
 	public int held_by_player_;
 	
 	void Start () {
-		BoardScript.Instance().RegisterGrabbableObject(gameObject);
+		if(ObjectManagerScript.Instance()){
+			ObjectManagerScript.Instance().RegisterGrabbableObject(gameObject);
+		}
 		if(Network.isServer){
 			held_by_player_ = -1;
 		}
 	}
 	
 	void OnDestroy() {
-		if(BoardScript.Instance()){
-			BoardScript.Instance().UnRegisterGrabbableObject(gameObject);
+		if(ObjectManagerScript.Instance()){
+			ObjectManagerScript.Instance().UnRegisterGrabbableObject(gameObject);
 		}
 	}
 	

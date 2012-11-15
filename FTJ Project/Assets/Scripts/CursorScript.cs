@@ -42,13 +42,15 @@ public class CursorScript : MonoBehaviour {
 		if(networkView.isMine){
 			id_ = Net.GetMyID();
 		}
-		BoardScript.Instance().RegisterCursorObject(gameObject);
+		if(ObjectManagerScript.Instance()){
+			ObjectManagerScript.Instance().RegisterCursorObject(gameObject);
+		}
 		Screen.showCursor = false;
 	}
 	
 	void OnDestroy() {
-		if(BoardScript.Instance()){
-			BoardScript.Instance().UnRegisterCursorObject(gameObject);
+		if(ObjectManagerScript.Instance()){
+			ObjectManagerScript.Instance().UnRegisterCursorObject(gameObject);
 		}
 		Screen.showCursor = true;
 	}
@@ -56,13 +58,13 @@ public class CursorScript : MonoBehaviour {
 	
 	
 	[RPC]
-	public void TellBoardAboutGrab(int grab_id, int player_id){
-		BoardScript.Instance().ClientGrab(grab_id, player_id);
+	public void TellObjectManagerAboutGrab(int grab_id, int player_id){
+		ObjectManagerScript.Instance().ClientGrab(grab_id, player_id);
 	}
 	
 	[RPC]
-	public void TellBoardAboutMouseRelease(int player_id){
-		BoardScript.Instance().ClientReleasedMouse(player_id);
+	public void TellObjectManagerAboutMouseRelease(int player_id){
+		ObjectManagerScript.Instance().ClientReleasedMouse(player_id);
 	}
 	
 	void Update () {
@@ -99,17 +101,17 @@ public class CursorScript : MonoBehaviour {
 						continue;
 					}
 					if(!Network.isServer){
-						networkView.RPC("TellBoardAboutGrab",RPCMode.Server,grabbable_script.id_,id_);
+						networkView.RPC("TellObjectManagerAboutGrab",RPCMode.Server,grabbable_script.id_,id_);
 					} else {
-						TellBoardAboutGrab(grabbable_script.id_, id_);
+						TellObjectManagerAboutGrab(grabbable_script.id_, id_);
 					}
 				}
 			}
 			if(Input.GetMouseButtonUp(0)){
 				if(!Network.isServer){
-					networkView.RPC("TellBoardAboutMouseRelease",RPCMode.Server,id_);
+					networkView.RPC("TellObjectManagerAboutMouseRelease",RPCMode.Server,id_);
 				} else {
-					TellBoardAboutMouseRelease(id_);
+					TellObjectManagerAboutMouseRelease(id_);
 				}
 			}
 			rigidbody.position = pos;
