@@ -11,6 +11,7 @@ public class ObjectManagerScript : MonoBehaviour {
 	const float HOLD_ANGULAR_DAMPENING = 0.9f;
 	const float MAX_DICE_VEL = 15.0f;
 	const float DICE_ANG_SPEED = 300.0f;
+	int free_id = 0;
 	
 	public void RegisterBoardObject(GameObject obj){
 		board_object = obj;
@@ -83,6 +84,8 @@ public class ObjectManagerScript : MonoBehaviour {
 	
 	public void RegisterGrabbableObject(GameObject obj) {
 		grabbable_objects.Add(obj);
+		obj.GetComponent<GrabbableScript>().id_ = free_id;
+		++free_id;
 	}
 	
 	public void UnRegisterGrabbableObject(GameObject obj) {
