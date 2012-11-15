@@ -9,6 +9,7 @@ public class BoardScript : MonoBehaviour {
 	List<GameObject> cursor_objects = new List<GameObject>();
 	const float HOLD_FORCE = 10000.0f;
 	const float MAX_DICE_VEL = 15.0f;
+	const float DICE_ANG_SPEED = 300.0f;
 	
 	public void ClientClickedOnDie(int die_id, int player_id){
 		ConsoleScript.Log("Player "+player_id+" clicked on die "+die_id);
@@ -57,7 +58,7 @@ public class BoardScript : MonoBehaviour {
 				}
 				var dice_script = die.GetComponent<DiceScript>();
 				if(dice_script.type_ == DiceScript.Type.DIE){
-					die.rigidbody.angularVelocity = new Vector3(Random.Range(-1.0f,1.0f),Random.Range(-1.0f,1.0f),Random.Range(-1.0f,1.0f)) * 100.0f;			
+					die.rigidbody.angularVelocity = new Vector3(Random.Range(-1.0f,1.0f),Random.Range(-1.0f,1.0f),Random.Range(-1.0f,1.0f)) * DICE_ANG_SPEED;			
 				}
 				dice_script.held_by_player_ = -1;
 			}

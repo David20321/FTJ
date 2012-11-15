@@ -55,7 +55,7 @@ public class DiceScript : MonoBehaviour {
 						PlayRandomSound(dice_impact_wood, volume);
 						break;
 					case 9:						
-						PlayRandomSound(dice_impact_board, volume);
+						PlayRandomSound(dice_impact_board, volume*0.5f);
 						break;
 					default:
 						PlayRandomSound(dice_impact_dice, volume);
