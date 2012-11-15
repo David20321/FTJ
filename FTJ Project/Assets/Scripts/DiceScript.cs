@@ -13,6 +13,10 @@ public class DiceScript : MonoBehaviour {
 	public AudioClip[] dice_impact_dice;
 	float last_sound_time = 0.0f;
 	const float PHYSICS_SOUND_DELAY = 0.1f;
+	const float DICE_GLOBAL_SOUND_MULT = 0.3f;
+	const float DICE_BOARD_SOUND_MULT = 0.4f;
+	const float DICE_WOOD_SOUND_MULT = 1.0f;
+	const float DICE_DICE_SOUND_MULT = 1.0f;
 	
 	void PlayRandomSound(AudioClip[] clips, float volume = 1.0f){
 		audio.PlayOneShot(clips[Random.Range(0,clips.Length)], volume);
@@ -52,13 +56,13 @@ public class DiceScript : MonoBehaviour {
 				float volume = info.relativeVelocity.magnitude*0.1f;
 				switch(info.collider.gameObject.layer){
 					case 8:
-						PlayRandomSound(dice_impact_wood, volume);
+						PlayRandomSound(dice_impact_wood, volume*DICE_WOOD_SOUND_MULT*DICE_GLOBAL_SOUND_MULT);
 						break;
 					case 9:						
-						PlayRandomSound(dice_impact_board, volume*0.5f);
+						PlayRandomSound(dice_impact_board, volume*DICE_BOARD_SOUND_MULT*DICE_GLOBAL_SOUND_MULT);
 						break;
 					default:
-						PlayRandomSound(dice_impact_dice, volume);
+						PlayRandomSound(dice_impact_dice, volume*DICE_DICE_SOUND_MULT*DICE_GLOBAL_SOUND_MULT);
 						break;
 				}
 				last_sound_time = Time.time;
