@@ -3,7 +3,7 @@ using System.Collections;
 
 public class CardScript : MonoBehaviour {
 	public Texture2D[] back_textures;
-	public Material pure_white;
+	public Texture2D[] content_textures;
 	public Material cutout;
 	public CardData card_data_ = new CardData();
 	
@@ -21,7 +21,11 @@ public class CardScript : MonoBehaviour {
 		var flavour_text = transform.FindChild("Flavour").GetComponent<TextMesh>();
 		flavour_text.text = card_data_.flavour;
 		var card_back = transform.FindChild("Back").transform.FindChild("default");
+		card_back.renderer.material = new Material(card_back.renderer.material);
 		card_back.renderer.material.mainTexture = back_textures[card_data_.back];
+		var card_contents = transform.FindChild("Contents").transform.FindChild("default");
+		card_contents.renderer.material = new Material(card_contents.renderer.material);
+		card_contents.renderer.material.mainTexture = content_textures[card_data_.image];
 	
 		var camera_obj = transform.FindChild("Camera").gameObject;
 		var camera = camera_obj.GetComponent<Camera>();
