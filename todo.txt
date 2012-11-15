@@ -12,13 +12,13 @@
 +Move pieces
 +Procedurally display board and cards
 +Card JSON descriptions
++Zoom to see better
 
 Interface:
 Add colored play areas for each player at bottom of screen
 Draw cards
 Chat
 Add sounds
-Zoom to see better
 Borders for dice?
 
 Graphics:

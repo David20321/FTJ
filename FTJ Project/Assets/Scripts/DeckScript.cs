@@ -136,7 +136,7 @@ public class DeckScript : MonoBehaviour {
 			var card = TakeTopCard();
 			if(card){
 				card.rigidbody.AddForce(new Vector3(0,1000,0));
-				GameObject.Destroy(card);
+				//GameObject.Destroy(card);
 			}
 		}
 	}

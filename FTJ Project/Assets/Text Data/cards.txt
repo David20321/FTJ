@@ -1,12 +1,252 @@
 {
   "Dungeon Lvl 1": [
     {
+      "Title": "Restless Tower",
+	  "Type": "Castle",
+	  "Rules": "On 1 or 2: skip a turn\nOn 5 or 6: draw four, pick one",
+	  "Flavour": "\"I hate spiders!\" -Some dude"
+	  "Duplicates": 1
+	  "Image" : 0
+	  "Back" : 0
+	}{
+      "Title": "Pleased Troll",
+	  "Type": "Nocturnal Monster",
+	  "Rules": "On 1 or 2: skip a turn\nOn 5 or 6: draw four, pick one",
+	  "Flavour": "\"I hate spiders!\" -Some dude"
+	  "Duplicates": 1
+	  "Image" : 1
+	  "Back" : 0
+	}{
+      "Title": "Determined Explorer",
+	  "Type": "Human Warrior",
+	  "Rules": "On 1 or 2: skip a turn\nOn 5 or 6: draw four, pick one",
+	  "Flavour": "\"I hate spiders!\" -Some dude"
+	  "Duplicates": 1
+	  "Image" : 2
+	  "Back" : 0
+	}{
+      "Title": "Woeful Dryad",
+	  "Type": "Undead Tree Monster",
+	  "Rules": "On 1 or 2: skip a turn\nOn 5 or 6: draw four, pick one",
+	  "Flavour": "\"I hate spiders!\" -Some dude"
+	  "Duplicates": 1
+	  "Image" : 3
+	  "Back" : 0
+	}{  
       "Title": "Chasm Guardian",
 	  "Type": "Arachnid Monster",
 	  "Rules": "On 1 or 2: skip a turn\nOn 5 or 6: draw four, pick one",
 	  "Flavour": "\"I hate spiders!\" -Some dude"
 	  "Duplicates": 1
 	  "Image" : 4
+	  "Back" : 0
+	}{
+     "Title": "Incensed Wizard",
+	  "Type": "Human Wizard",
+	  "Rules": "On 1 or 2: skip a turn\nOn 5 or 6: draw four, pick one",
+	  "Flavour": "\"I hate spiders!\" -Some dude"
+	  "Duplicates": 1
+	  "Image" : 5
+	  "Back" : 0
+	}{
+      "Title": "Dominated Baghead",
+	  "Type": "Human Monster",
+	  "Rules": "On 1 or 2: skip a turn\nOn 5 or 6: draw four, pick one",
+	  "Flavour": "\"I hate spiders!\" -Some dude"
+	  "Duplicates": 1
+	  "Image" : 6
+	  "Back" : 0
+	}{
+      "Title": "Cold Golem",
+	  "Type": "Iron Monster",
+	  "Rules": "On 1 or 2: skip a turn\nOn 5 or 6: draw four, pick one",
+	  "Flavour": "\"I hate spiders!\" -Some dude"
+	  "Duplicates": 1
+	  "Image" : 7
+	  "Back" : 0
+	}{
+      "Title": "Alarmed Knight",
+	  "Type": "Human Warrior",
+	  "Rules": "On 1 or 2: skip a turn\nOn 5 or 6: draw four, pick one",
+	  "Flavour": "\"I hate spiders!\" -Some dude"
+	  "Duplicates": 1
+	  "Image" : 8
+	  "Back" : 0
+	}{
+      "Title": "Quaking Bastion",
+	  "Type": "Castle",
+	  "Rules": "On 1 or 2: skip a turn\nOn 5 or 6: draw four, pick one",
+	  "Flavour": "\"I hate spiders!\" -Some dude"
+	  "Duplicates": 1
+	  "Image" : 9
+	  "Back" : 0
+	}{
+      "Title": "Lost Wanderer",
+	  "Type": "Undead Monster",
+	  "Rules": "On 1 or 2: skip a turn\nOn 5 or 6: draw four, pick one",
+	  "Flavour": "\"I hate spiders!\" -Some dude"
+	  "Duplicates": 1
+	  "Image" : 10
+	  "Back" : 0
+	}{
+      "Title": "Deprived Succubus",
+	  "Type": "Demonic Monster",
+	  "Rules": "On 1 or 2: skip a turn\nOn 5 or 6: draw four, pick one",
+	  "Flavour": "\"I hate spiders!\" -Some dude"
+	  "Duplicates": 1
+	  "Image" : 11
+	  "Back" : 0
+	}{
+      "Title": "Nonchalant Guard",
+	  "Type": "Orc Monster",
+	  "Rules": "On 1 or 2: skip a turn\nOn 5 or 6: draw four, pick one",
+	  "Flavour": "\"I hate spiders!\" -Some dude"
+	  "Duplicates": 1
+	  "Image" : 12
+	  "Back" : 0
+	}{
+      "Title": "Preoccupied Serpent",
+	  "Type": "Aquatic Monster",
+	  "Rules": "On 1 or 2: skip a turn\nOn 5 or 6: draw four, pick one",
+	  "Flavour": "\"I hate spiders!\" -Some dude"
+	  "Duplicates": 1
+	  "Image" : 13
+	  "Back" : 0
+	}{
+      "Title": "Certain Adventurer",
+	  "Type": "Lizard Monster",
+	  "Rules": "On 1 or 2: skip a turn\nOn 5 or 6: draw four, pick one",
+	  "Flavour": "\"I hate spiders!\" -Some dude"
+	  "Duplicates": 1
+	  "Image" : 14
+	  "Back" : 0
+	}{
+      "Title": "Curious Slug",
+	  "Type": "Slug Monster",
+	  "Rules": "On 1 or 2: skip a turn\nOn 5 or 6: draw four, pick one",
+	  "Flavour": "\"I hate spiders!\" -Some dude"
+	  "Duplicates": 1
+	  "Image" : 15
+	  "Back" : 0
+	}{
+      "Title": "Reliable Sword",
+	  "Type": "Equipment",
+	  "Rules": "On 1 or 2: skip a turn\nOn 5 or 6: draw four, pick one",
+	  "Flavour": "\"I hate spiders!\" -Some dude"
+	  "Duplicates": 1
+	  "Image" : 16
+	  "Back" : 0
+	}{
+      "Title": "Engrossed Priestess",
+	  "Type": "Human Priestess",
+	  "Rules": "On 1 or 2: skip a turn\nOn 5 or 6: draw four, pick one",
+	  "Flavour": "\"I hate spiders!\" -Some dude"
+	  "Duplicates": 1
+	  "Image" : 17
+	  "Back" : 0
+	}{
+      "Title": "Alone Head",
+	  "Type": "Minor God",
+	  "Rules": "On 1 or 2: skip a turn\nOn 5 or 6: draw four, pick one",
+	  "Flavour": "\"I hate spiders!\" -Some dude"
+	  "Duplicates": 1
+	  "Image" : 18
+	  "Back" : 0
+	}{
+      "Title": "Hostile Rider",
+	  "Type": "Flying Wyvern",
+	  "Rules": "On 1 or 2: skip a turn\nOn 5 or 6: draw four, pick one",
+	  "Flavour": "\"I hate spiders!\" -Some dude"
+	  "Duplicates": 1
+	  "Image" : 19
+	  "Back" : 0
+	}{
+      "Title": "Spirited Altar",
+	  "Type": "Location",
+	  "Rules": "On 1 or 2: skip a turn\nOn 5 or 6: draw four, pick one",
+	  "Flavour": "\"I hate spiders!\" -Some dude"
+	  "Duplicates": 1
+	  "Image" : 20
+	  "Back" : 0
+	}{
+      "Title": "Warm Potion",
+	  "Type": "Equipment",
+	  "Rules": "On 1 or 2: skip a turn\nOn 5 or 6: draw four, pick one",
+	  "Flavour": "\"I hate spiders!\" -Some dude"
+	  "Duplicates": 1
+	  "Image" : 21
+	  "Back" : 0
+	}{
+      "Title": "Sympathetic Death",
+	  "Type": "Minor God",
+	  "Rules": "On 1 or 2: skip a turn\nOn 5 or 6: draw four, pick one",
+	  "Flavour": "\"I hate spiders!\" -Some dude"
+	  "Duplicates": 1
+	  "Image" : 22
+	  "Back" : 0
+	}{
+      "Title": "Secure Stronghold",
+	  "Type": "Castle",
+	  "Rules": "On 1 or 2: skip a turn\nOn 5 or 6: draw four, pick one",
+	  "Flavour": "\"I hate spiders!\" -Some dude"
+	  "Duplicates": 1
+	  "Image" : 23
+	  "Back" : 0
+	}{
+      "Title": "Concerned Swordsman",
+	  "Type": "Elf Warrior",
+	  "Rules": "On 1 or 2: skip a turn\nOn 5 or 6: draw four, pick one",
+	  "Flavour": "\"I hate spiders!\" -Some dude"
+	  "Duplicates": 1
+	  "Image" : 24
+	  "Back" : 0
+	}{
+      "Title": "Clever Slime",
+	  "Type": "Slime Monster",
+	  "Rules": "On 1 or 2: skip a turn\nOn 5 or 6: draw four, pick one",
+	  "Flavour": "\"I hate spiders!\" -Some dude"
+	  "Duplicates": 1
+	  "Image" : 25
+	  "Back" : 0
+	}{
+      "Title": "Serene Wyrm",
+	  "Type": "Minor God",
+	  "Rules": "On 1 or 2: skip a turn\nOn 5 or 6: draw four, pick one",
+	  "Flavour": "\"I hate spiders!\" -Some dude"
+	  "Duplicates": 1
+	  "Image" : 26
+	  "Back" : 0
+	}{
+      "Title": "Anxious Wizard",
+	  "Type": "Human Wizard",
+	  "Rules": "On 1 or 2: skip a turn\nOn 5 or 6: draw four, pick one",
+	  "Flavour": "\"I hate spiders!\" -Some dude"
+	  "Duplicates": 1
+	  "Image" : 27
+	  "Back" : 0
+	}{
+      "Title": "Keen Sphere",
+	  "Type": "Minor God",
+	  "Rules": "On 1 or 2: skip a turn\nOn 5 or 6: draw four, pick one",
+	  "Flavour": "\"I hate spiders!\" -Some dude"
+	  "Duplicates": 1
+	  "Image" : 28
+	  "Back" : 0
+	}{
+      "Title": "Relaxed Wizard",
+	  "Type": "Human Wizard",
+	  "Rules": "On 1 or 2: skip a turn\nOn 5 or 6: draw four, pick one",
+	  "Flavour": "\"I hate spiders!\" -Some dude"
+	  "Duplicates": 1
+	  "Image" : 29
+	  "Back" : 0
+	}{
+      "Title": "Satisfied Ghoul",
+	  "Type": "Human Monster",
+	  "Rules": "On 1 or 2: skip a turn\nOn 5 or 6: draw four, pick one",
+	  "Flavour": "\"I hate spiders!\" -Some dude"
+	  "Duplicates": 1
+	  "Image" : 30
 	  "Back" : 0
 	}
   ]
