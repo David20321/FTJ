@@ -307,15 +307,19 @@ public class NetUIScript : MonoBehaviour {
 		}
 	}
 	
+	void TryToCreateGame(bool local){
+		SetState(State.CREATING);
+		NetworkConnectionError err = CreateGame(local);
+		if(err != NetworkConnectionError.NoError){
+			display_err_ = ""+err;
+			SetState(State.CREATE_FAIL);
+		}
+	}
+	
 	void DrawMainMenuGUI() {
 		GUILayout.BeginHorizontal();
 		if(GUILayout.Button("Local Game")){
-			SetState(State.CREATING);
-			NetworkConnectionError err = CreateGame(true);
-			if(err != NetworkConnectionError.NoError){
-				display_err_ = ""+err;
-				SetState(State.CREATE_FAIL);
-			}
+			TryToCreateGame(true);
 		}
 		GUILayout.EndHorizontal();
 		GUILayout.BeginHorizontal();
@@ -341,12 +345,7 @@ public class NetUIScript : MonoBehaviour {
 		GUILayout.EndHorizontal();
 		GUILayout.BeginHorizontal();
 		if(GUILayout.Button("Create")){
-			SetState(State.CREATING);
-			NetworkConnectionError err = CreateGame(false);
-			if(err != NetworkConnectionError.NoError){
-				display_err_ = ""+err;
-				SetState(State.CREATE_FAIL);
-			}
+			TryToCreateGame(false);
 		}
 		if(GUILayout.Button("Back")){
 			SetState(State.MAIN_MENU);
