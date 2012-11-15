@@ -53,6 +53,7 @@
      <Compile Include="Assets\Scripts\DeckScript.cs" />
      <Compile Include="Assets\Scripts\DiceScript.cs" />
      <Compile Include="Assets\Scripts\DrawEmptyScript.cs" />
+     <Compile Include="Assets\Scripts\GrabbableScript.cs" />
      <Compile Include="Assets\Scripts\JSONTest.cs" />
      <Compile Include="Assets\Scripts\MiniJSON.cs" />
      <Compile Include="Assets\Scripts\NetEventScript.cs" />
@@ -61,6 +62,7 @@
      <Compile Include="Assets\Scripts\PlayerListScript.cs" />
      <Compile Include="Assets\Scripts\ShadowCamScript.cs" />
      <Compile Include="Assets\Scripts\TileScript.cs" />
+     <Compile Include="Assets\Scripts\TokenScript.cs" />
      <Compile Include="Assets\Scripts\ZoomCameraScript.cs" />
      <None Include="Assets\Standard Assets\Projectors\Guidelines.txt" />
      <None Include="Assets\Standard Assets\Image Effects (Pro Only)\_Sources\Shaders\_BloomAndFlares\BlendOneOne.shader" />

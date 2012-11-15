@@ -56,8 +56,8 @@ public class CursorScript : MonoBehaviour {
 	
 	
 	[RPC]
-	public void TellBoardAboutDiceClick(int die_id, int player_id){
-		BoardScript.Instance().ClientClickedOnDie(die_id, player_id);
+	public void TellBoardAboutGrab(int grab_id, int player_id){
+		BoardScript.Instance().ClientGrab(grab_id, player_id);
 	}
 	
 	[RPC]
@@ -87,20 +87,21 @@ public class CursorScript : MonoBehaviour {
 				raycast_hits = Physics.RaycastAll(ray);
 				System.Array.Sort(raycast_hits, new RaycastHitComparator());
 				foreach(RaycastHit hit in raycast_hits){ 
-					if(hit.collider.gameObject.layer != 10){
+					var hit_obj = hit.collider.gameObject;
+					if(hit_obj.layer != 10){
 						continue;
 					}
-					DiceScript dice_script = hit.collider.gameObject.GetComponent<DiceScript>();
-					if(dice_script.held_by_player_ == id_){
+					GrabbableScript grabbable_script = hit_obj.GetComponent<GrabbableScript>();
+					if(grabbable_script.held_by_player_ == id_){
 						continue;
 					}
-					if(dice_script.type_ == DiceScript.Type.TOKEN && !Input.GetMouseButtonDown(0)){
+					if(hit_obj.GetComponent<TokenScript>() && !Input.GetMouseButtonDown(0)){
 						continue;
 					}
 					if(!Network.isServer){
-						networkView.RPC("TellBoardAboutDiceClick",RPCMode.Server,dice_script.id_,id_);
+						networkView.RPC("TellBoardAboutGrab",RPCMode.Server,grabbable_script.id_,id_);
 					} else {
-						TellBoardAboutDiceClick(dice_script.id_, id_);
+						TellBoardAboutGrab(grabbable_script.id_, id_);
 					}
 				}
 			}
