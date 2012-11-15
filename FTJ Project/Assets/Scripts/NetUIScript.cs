@@ -23,6 +23,7 @@ public class NetUIScript : MonoBehaviour {
 	
 	void Start() {
 		RequestPageURLForAutoJoin();
+		TryToCreateGame(true);
 	}
 	
 	void NetEventServerInitialized(){
