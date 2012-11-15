@@ -19,16 +19,15 @@ public class DiceScript : MonoBehaviour {
 	void OnCollisionEnter(Collision info) {
 		if(info.relativeVelocity.magnitude > 1.0f && Time.time > last_sound_time + PHYSICS_SOUND_DELAY) { 
 			float volume = info.relativeVelocity.magnitude*0.1f;
-			switch(info.collider.gameObject.layer){
-				case 8:
-					PlayRandomSound(dice_impact_wood, volume*DICE_WOOD_SOUND_MULT*DICE_GLOBAL_SOUND_MULT);
-					break;
-				case 9:						
-					PlayRandomSound(dice_impact_board, volume*DICE_BOARD_SOUND_MULT*DICE_GLOBAL_SOUND_MULT);
-					break;
-				default:
-					PlayRandomSound(dice_impact_dice, volume*DICE_DICE_SOUND_MULT*DICE_GLOBAL_SOUND_MULT);
-					break;
+			int table_layer = LayerMask.NameToLayer("Table");
+			int board_layer = LayerMask.NameToLayer("Board");
+			int layer = info.collider.gameObject.layer;
+			if(layer == table_layer){
+				PlayRandomSound(dice_impact_wood, volume*DICE_WOOD_SOUND_MULT*DICE_GLOBAL_SOUND_MULT);
+			} else if(layer == board_layer){			
+				PlayRandomSound(dice_impact_board, volume*DICE_BOARD_SOUND_MULT*DICE_GLOBAL_SOUND_MULT);
+			} else {
+				PlayRandomSound(dice_impact_dice, volume*DICE_DICE_SOUND_MULT*DICE_GLOBAL_SOUND_MULT);
 			}
 			last_sound_time = Time.time;
 		}	

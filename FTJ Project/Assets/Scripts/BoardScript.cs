@@ -22,8 +22,8 @@ public class BoardScript : MonoBehaviour {
 			token_object.GetComponent<GrabbableScript>().id_ = next_id;
 			next_id++;
 		}
-		//Transform deck_spawn = transform.Find("deck_spawn");
-		//GameObject deck_object = (GameObject)Network.Instantiate(deck_prefab, deck_spawn.transform.position, deck_spawn.transform.rotation, 0);
+		Transform deck_spawn = transform.Find("deck_spawn");
+		GameObject deck_object = (GameObject)Network.Instantiate(deck_prefab, deck_spawn.transform.position, deck_spawn.transform.rotation, 0);
 	}
 	
 	void Start () {

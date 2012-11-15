@@ -35,13 +35,14 @@ public class CardScript : MonoBehaviour {
 		render_texture.mipMapBias = -0.5f;
 		camera.targetTexture = render_texture; 
 		
-		transform.FindChild("Title").gameObject.layer = 14;
-		transform.FindChild("Type").gameObject.layer = 14;
-		transform.FindChild("Rules").gameObject.layer = 14;
-		transform.FindChild("Flavour").gameObject.layer = 14;
-		transform.FindChild("Contents").FindChild("default").gameObject.layer = 14;
-		transform.FindChild("AlphaBackdrop").FindChild("default").gameObject.layer = 14;
-		transform.FindChild("FrontBorder").FindChild("default").gameObject.layer = 14;
+		int active_card_layer = LayerMask.NameToLayer("Active Card Render Texture");
+		transform.FindChild("Title").gameObject.layer = active_card_layer;
+		transform.FindChild("Type").gameObject.layer = active_card_layer;
+		transform.FindChild("Rules").gameObject.layer = active_card_layer;
+		transform.FindChild("Flavour").gameObject.layer = active_card_layer;
+		transform.FindChild("Contents").FindChild("default").gameObject.layer = active_card_layer;
+		transform.FindChild("AlphaBackdrop").FindChild("default").gameObject.layer = active_card_layer;
+		transform.FindChild("FrontBorder").FindChild("default").gameObject.layer = active_card_layer;
 		camera.Render();
 		GameObject.Destroy(camera_obj);
 		GameObject.Destroy(transform.FindChild("Title").gameObject);
@@ -53,7 +54,7 @@ public class CardScript : MonoBehaviour {
 		Material new_material = new Material(cutout);
 		new_material.mainTexture = render_texture;
 		transform.FindChild("FrontBorder").FindChild("default").renderer.material = new_material;
-		transform.FindChild("FrontBorder").FindChild("default").gameObject.layer = 12;
+		transform.FindChild("FrontBorder").FindChild("default").gameObject.layer = LayerMask.NameToLayer("Cards");
 	}
 	
 	// Use this for initialization

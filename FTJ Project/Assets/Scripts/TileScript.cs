@@ -13,8 +13,8 @@ public class TileScript : MonoBehaviour {
 		render_texture.mipMapBias = -0.5f;
 		camera.targetTexture = render_texture; 
 		
-		transform.FindChild("Title").gameObject.layer = 14;
-		transform.FindChild("Rules").gameObject.layer = 14;
+		transform.FindChild("Title").gameObject.layer = LayerMask.NameToLayer("Active Card Render Texture");
+		transform.FindChild("Rules").gameObject.layer = LayerMask.NameToLayer("Active Card Render Texture");
 		
 		var tile_mesh = transform.FindChild("Tile_base").FindChild("default");
 		var material = new Material(tile_mesh.renderer.material);

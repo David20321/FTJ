@@ -81,10 +81,16 @@ public class CursorScript : MonoBehaviour {
 				System.Array.Sort(raycast_hits, new RaycastHitComparator());
 				foreach(RaycastHit hit in raycast_hits){ 
 					var hit_obj = hit.collider.gameObject;
-					if(hit_obj.layer != 10){
+					if(hit_obj.layer != LayerMask.NameToLayer("Dice") && 
+					   hit_obj.layer != LayerMask.NameToLayer("Tokens") && 
+					   hit_obj.layer != LayerMask.NameToLayer("Cards"))
+				    {
 						continue;
 					}
 					GrabbableScript grabbable_script = hit_obj.GetComponent<GrabbableScript>();
+					if(!grabbable_script){
+						grabbable_script = hit_obj.transform.parent.GetComponent<GrabbableScript>();
+					}
 					if(grabbable_script.held_by_player_ == id_){
 						continue;
 					}

@@ -133,12 +133,13 @@ public class DeckScript : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		transform.FindChild("default").localScale = new Vector3(1,Mathf.Max(2,cards_.Count) * CARD_THICKNESS_MULT,1);	
-		if(Input.GetMouseButtonDown(0)){
+		rigidbody.mass = cards_.Count;
+		/*if(Input.GetMouseButtonDown(0)){
 			var card = TakeTopCard();
 			if(card){
 				card.rigidbody.AddForce(new Vector3(0,1000,0));
 				//GameObject.Destroy(card);
 			}
-		}
+		}*/
 	}
 }
