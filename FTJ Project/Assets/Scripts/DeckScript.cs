@@ -72,7 +72,7 @@ public class DeckScript : MonoBehaviour {
 		if(!top_card_ && cards_.Count > 1){
 			var pos = transform.FindChild("bottom_card").transform.position;
 			var rot = transform.FindChild("bottom_card").transform.rotation;
-			pos += transform.rotation * new Vector3(0,cards_.Count*0.012f+0.1f,0);
+			pos += transform.rotation * new Vector3(0,(cards_.Count*0.012f+0.1f)*transform.localScale.y,0);
 			top_card_ = CreateCard(cards_[0],pos,rot);
 		}		
 		if(!bottom_card_ && cards_.Count > 0){
@@ -90,6 +90,7 @@ public class DeckScript : MonoBehaviour {
 		var card_script = card.GetComponent<CardScript>();
 		card_script.SetCardData(card_data);
 		card_script.Bake();
+		card.transform.localScale = new Vector3(1,1,1);
 		return card;
 	}
 	
@@ -125,7 +126,7 @@ public class DeckScript : MonoBehaviour {
 		CopyComponent(card_prefab.rigidbody, card);
 		card.collider.enabled = true;
 		card.transform.parent = null;
-		card.transform.localScale = new Vector3(1,1,1);
+		card.transform.localScale = transform.localScale;
 		return card;
 	}
 	
