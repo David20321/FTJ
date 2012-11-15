@@ -43,7 +43,7 @@ public class NetUIScript : MonoBehaviour {
 		}
 		ConsoleScript.Log("Connected to server with ID: "+Network.player);
 		TellServerPlayerName(player_name_);
-		GameObject cursor_object = (GameObject)Network.Instantiate(cursor_prefab, new Vector3(0,0,0), Quaternion.identity, 0);
+		Network.Instantiate(cursor_prefab, new Vector3(0,0,0), Quaternion.identity, 0);
 	}
 	
 	void NetEventFailedToConnectToMasterServer(NetEvent net_event) {
@@ -231,7 +231,6 @@ public class NetUIScript : MonoBehaviour {
 		}
 	}
     
-	
 	void SetState(State state) {
 		switch(state){
 			case State.JOIN:
@@ -310,6 +309,16 @@ public class NetUIScript : MonoBehaviour {
 	
 	void DrawMainMenuGUI() {
 		GUILayout.BeginHorizontal();
+		if(GUILayout.Button("Local Game")){
+			SetState(State.CREATING);
+			NetworkConnectionError err = CreateGame(true);
+			if(err != NetworkConnectionError.NoError){
+				display_err_ = ""+err;
+				SetState(State.CREATE_FAIL);
+			}
+		}
+		GUILayout.EndHorizontal();
+		GUILayout.BeginHorizontal();
 		if(GUILayout.Button("Create Game")){
 			SetState(State.CREATE);
 		}
@@ -333,7 +342,7 @@ public class NetUIScript : MonoBehaviour {
 		GUILayout.BeginHorizontal();
 		if(GUILayout.Button("Create")){
 			SetState(State.CREATING);
-			NetworkConnectionError err = CreateGame();
+			NetworkConnectionError err = CreateGame(false);
 			if(err != NetworkConnectionError.NoError){
 				display_err_ = ""+err;
 				SetState(State.CREATE_FAIL);
@@ -423,7 +432,6 @@ public class NetUIScript : MonoBehaviour {
 		GUILayout.EndHorizontal();
 	}
 
-	
 	void DrawMasterServerFailGUI() {
 		GUILayout.BeginHorizontal();
 		GUILayout.Label("Failed to connect to master server.");
@@ -459,12 +467,17 @@ public class NetUIScript : MonoBehaviour {
 		GUILayout.EndHorizontal();
 	}
 	
-	NetworkConnectionError CreateGame() {
-		Network.InitializeSecurity();
-		NetworkConnectionError err = Network.InitializeServer(MAX_CONNECTIONS,DEFAULT_PORT,true);
-		if(err == NetworkConnectionError.NoError){
-			MasterServer.RegisterHost(GAME_IDENTIFIER, game_name_, "Comments could go here");
-		}
+	NetworkConnectionError CreateGame(bool local) {
+		NetworkConnectionError err;
+		if(local){			
+			err = Network.InitializeServer(1,DEFAULT_PORT,false);
+		} else {
+			Network.InitializeSecurity();
+			err = Network.InitializeServer(MAX_CONNECTIONS,DEFAULT_PORT,true);
+			if(err == NetworkConnectionError.NoError){
+				MasterServer.RegisterHost(GAME_IDENTIFIER, game_name_, "Comments could go here");
+			}
+		}			
 		return err;
 	}
 	

@@ -1,13 +1,6 @@
 using UnityEngine;
 using System.Collections;
 
-public class Net {
-	public static int GetMyID(){
-		return int.Parse(Network.player.ToString());
-	}
-};
-
-
 public class RaycastHitComparator : IComparer
 {
     public int Compare(object x, object y)
@@ -54,9 +47,7 @@ public class CursorScript : MonoBehaviour {
 		}
 		Screen.showCursor = true;
 	}
-	
-	
-	
+		
 	[RPC]
 	public void TellObjectManagerAboutGrab(int grab_id, int player_id){
 		ObjectManagerScript.Instance().ClientGrab(grab_id, player_id);

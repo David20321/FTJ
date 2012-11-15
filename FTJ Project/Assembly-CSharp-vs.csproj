@@ -56,6 +56,7 @@
      <Compile Include="Assets\Scripts\GrabbableScript.cs" />
      <Compile Include="Assets\Scripts\JSONTest.cs" />
      <Compile Include="Assets\Scripts\MiniJSON.cs" />
+     <Compile Include="Assets\Scripts\Net.cs" />
      <Compile Include="Assets\Scripts\NetEventScript.cs" />
      <Compile Include="Assets\Scripts\NetUIScript.cs" />
      <Compile Include="Assets\Scripts\NetworkRigidbody.cs" />
