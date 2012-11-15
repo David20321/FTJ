@@ -3,8 +3,9 @@ using System.Collections;
 using System.Collections.Generic;
 
 public class BoardScript : MonoBehaviour {
-	public GameObject[] dice_prefabs;	
-	public GameObject[] token_prefabs;	
+	public GameObject[] dice_prefabs;
+	public GameObject[] token_prefabs;
+	public GameObject deck_prefab;		
 	List<GameObject> dice_objects = new List<GameObject>();	
 	List<GameObject> cursor_objects = new List<GameObject>();
 	const float HOLD_FORCE = 10000.0f;
@@ -116,6 +117,9 @@ public class BoardScript : MonoBehaviour {
 			token_object.GetComponent<DiceScript>().id_ = next_id;
 			next_id++;
 		}
+		Transform deck_spawn = transform.Find("deck_spawn");
+		GameObject deck_object = (GameObject)Network.Instantiate(deck_prefab, deck_spawn.transform.position, deck_spawn.transform.rotation, 0);
+		//deck_object.transform.localScale = deck_spawn.localScale;
 	}
 	
 	// Use this for initialization
