@@ -77,10 +77,15 @@ public class ObjectManagerScript : MonoBehaviour {
 					if(grabbable.GetComponent<DeckScript>()){
 						card_face_up = (grabbable.transform.up.y > 0.0f);
 						card_rotated = GetRotateFromGrabbable(grabbable);
+						grabbable.GetComponent<DeckScript>().PickUpSound();
 					}
 					if(grabbable.GetComponent<CardScript>()){
 						card_face_up = (grabbable.transform.up.y < 0.0f);
 						card_rotated = GetRotateFromGrabbable(grabbable);
+						grabbable.GetComponent<CardScript>().PickUpSound();
+					}
+					if(grabbable.GetComponent<TokenScript>()){
+						grabbable.GetComponent<TokenScript>().PickUpSound();
 					}
 					grabbable.rigidbody.mass = 0.2f;
 				}
@@ -119,6 +124,7 @@ public class ObjectManagerScript : MonoBehaviour {
 		card.GetComponent<GrabbableScript>().held_by_player_ = player_id;
 		card_face_up = (card.transform.up.y < 0.0f);
 		card_rotated = GetRotateFromGrabbable(card);
+		card.GetComponent<CardScript>().PickUpSound();
 	}
 	
 	public GameObject GetMyCursorObject() {

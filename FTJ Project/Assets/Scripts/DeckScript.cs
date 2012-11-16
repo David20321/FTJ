@@ -19,6 +19,7 @@ public class DeckScript : MonoBehaviour {
 	
 	public AudioClip[] shuffle_sound;
 	public AudioClip[] impact_sound;
+	public AudioClip[] pick_up_sound;
 	float last_sound_time = 0.0f;
 	float last_shuffle_time = 0.0f;
 	const float PHYSICS_SOUND_DELAY = 0.1f;
@@ -27,6 +28,10 @@ public class DeckScript : MonoBehaviour {
 	void PlayRandomSound(AudioClip[] clips, float volume){
 		audio.PlayOneShot(clips[Random.Range(0,clips.Length)], volume);
 	}	
+	
+	public void PickUpSound() {
+		PlayRandomSound(pick_up_sound, 0.1f);
+	}
 	
 	public void Shuffle(){
 		if(Time.time < last_shuffle_time + SHUFFLE_DELAY){

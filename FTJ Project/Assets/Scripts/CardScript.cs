@@ -3,6 +3,11 @@ using System.Collections;
 
 public class CardScript : MonoBehaviour {	
 	int card_id_ = -1;
+	
+	public AudioClip[] impact_sound;
+	public AudioClip[] pick_up_sound;
+	float last_sound_time = 0.0f;
+	const float PHYSICS_SOUND_DELAY = 0.1f;
 
 	[RPC]
 	public void PrepareLocal(int card_id) {
@@ -21,6 +26,10 @@ public class CardScript : MonoBehaviour {
 		}
 	}
 	
+	public void PickUpSound() {
+		PlayRandomSound(pick_up_sound, 0.1f);
+	}
+	
 	public int card_id(){
 		return card_id_;
 	}
@@ -28,10 +37,19 @@ public class CardScript : MonoBehaviour {
 		card_id_ = id;
 	}
 		
-	void OnCollisionEnter(Collision collision){
+	void PlayRandomSound(AudioClip[] clips, float volume){
+		audio.PlayOneShot(clips[Random.Range(0,clips.Length)], volume);
+	}		
+	
+	void OnCollisionEnter(Collision info){
+		if(info.relativeVelocity.magnitude > 1.0f && Time.time > last_sound_time + PHYSICS_SOUND_DELAY) { 
+			float volume = info.relativeVelocity.magnitude*0.1f;
+			PlayRandomSound(impact_sound, volume*0.2f);
+			last_sound_time = Time.time;
+		}
 		if(Network.isServer){
-			if(collision.collider.GetComponent<DeckScript>()){
-				ObjectManagerScript.Instance().NotifyCardHitDeck(gameObject, collision.collider.gameObject);
+			if(info.collider.GetComponent<DeckScript>()){
+				ObjectManagerScript.Instance().NotifyCardHitDeck(gameObject, info.collider.gameObject);
 			}
 		}
 	}

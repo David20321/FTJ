@@ -4,6 +4,7 @@ using System.Collections;
 public class TokenScript : MonoBehaviour {
 	public int owner_id_;
 	public AudioClip[] token_impact;
+	public AudioClip[] pick_up_sound;
 	float last_sound_time = 0.0f;
 	const float PHYSICS_SOUND_DELAY = 0.1f;
 	
@@ -22,6 +23,10 @@ public class TokenScript : MonoBehaviour {
 			stream.Serialize(ref owner_id);
 			owner_id_ = owner_id;
 		}
+	}
+	
+	public void PickUpSound() {
+		PlayRandomSound(pick_up_sound, 0.1f);
 	}
 	
 	void PlayRandomSound(AudioClip[] clips, float volume){
