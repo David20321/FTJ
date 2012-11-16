@@ -1,24 +1,28 @@
 {
-  "Dungeon Lvl 1": [
-    {
-      "Title": "Restless Tower",
-	  "Type": "Castle",
-	  "Rules": "Target: 8   Gold: 3    Points: 6
-On loss: skip your next turn",
+  "Wilderness": [
+	{
+      "Title": "Curious Slug",
+	  "Type": "Slug Monster",
+	  "Rules": "Target: 2   Gold: 1    Points: 1
+On loss: move one space",
 	  "Flavour": "\"I hate spiders!\" -Some dude"
 	  "Duplicates": 1
-	  "Image" : 0
-	  "Back" : 0
-	}{
-      "Title": "Pleased Troll",
-	  "Type": "Nocturnal Monster",
-	  "Rules": "Target: 4   Gold: 3    Points: 3
-On loss: pay 3 gold",
+	  "Image" : 15
+	  "Back" : 4
+	}
+	{
+      "Title": "Lost Wanderer",
+	  "Type": "Undead Monster",
+	  "Rules": "Target: 1   Gold: 1    Points: 1
+On win: roll a die. On 1
+do not move, and fight this
+monster again next turn",
 	  "Flavour": "\"I hate spiders!\" -Some dude"
 	  "Duplicates": 1
-	  "Image" : 1
-	  "Back" : 0
-	}{
+	  "Image" : 10
+	  "Back" : 4
+	}
+	{
       "Title": "Determined Explorer",
 	  "Type": "Human Warrior",
 	  "Rules": "Target: 2   Gold: 0    Points: 1
@@ -26,8 +30,9 @@ On win: Move 2 spaces",
 	  "Flavour": "\"I hate spiders!\" -Some dude"
 	  "Duplicates": 1
 	  "Image" : 2
-	  "Back" : 0
-	}{
+	  "Back" : 4
+	}
+     {
       "Title": "Woeful Dryad",
 	  "Type": "Undead Tree Monster",
 	  "Rules": "Target: 3   Gold: 1    Points: 3
@@ -36,8 +41,9 @@ your victory pile and discard it",
 	  "Flavour": "\"I hate spiders!\" -Some dude"
 	  "Duplicates": 1
 	  "Image" : 3
-	  "Back" : 0
-	}{  
+	  "Back" : 4
+	}
+	{  
       "Title": "Eager Guardian",
 	  "Type": "Arachnid Monster",
 	  "Rules": "Target: 2   Gold: 1    Points: 1
@@ -47,19 +53,45 @@ your move roll this turn",
 	  "Flavour": "\"I hate spiders!\" -Some dude"
 	  "Duplicates": 1
 	  "Image" : 4
-	  "Back" : 0
-	}{
+	  "Back" : 4
+	}
+	{
      "Title": "Incensed Wizard",
 	  "Type": "Human Wizard",
 	  "Rules": "Target: 4   Gold: 1    Points: 3
 On win: gain Storm Gem
-Discard Storm Staff to add 2 to
+Discard Storm Gem to add 2 to
 your magic test this turn",
 	  "Flavour": "\"I hate spiders!\" -Some dude"
 	  "Duplicates": 1
 	  "Image" : 5
+	  "Back" : 4
+	}
+	{
+      "Title": "Secure Stronghold",
+	  "Type": "Castle",
+	  "Rules": "Location acts
+as Town for this turn",
+	  "Flavour": "\"I hate spiders!\" -Some dude"
+	  "Duplicates": 1
+	  "Image" : 23
+	  "Back" : 5
+	}
+
+   ]
+
+  "Dungeon Lvl 1": [
+   {
+      "Title": "Pleased Troll",
+	  "Type": "Nocturnal Monster",
+	  "Rules": "Target: 4   Gold: 3    Points: 3
+On loss: pay 3 gold",
+	  "Flavour": "\"I hate spiders!\" -Some dude"
+	  "Duplicates": 1
+	  "Image" : 1
 	  "Back" : 0
-	}{
+	}
+	{
       "Title": "Dominated Baghead",
 	  "Type": "Human Monster",
 	  "Rules": "Target: 4   Gold: 0    Points: 3
@@ -70,17 +102,8 @@ Altar",
 	  "Duplicates": 1
 	  "Image" : 6
 	  "Back" : 0
-	}{
-      "Title": "Cold Golem",
-	  "Type": "Iron Monster",
-	  "Rules": "Target: 6   Gold: 0    Points: 2
-On win: roll a die. gain
-amount of gold",
-	  "Flavour": "\"I hate spiders!\" -Some dude"
-	  "Duplicates": 1
-	  "Image" : 7
-	  "Back" : 0
-	}{
+	}
+	{
       "Title": "Alarmed Knight",
 	  "Type": "Human Warrior",
 	  "Rules": "Target: 4   Gold: 2    Points: 2",
@@ -88,39 +111,8 @@ amount of gold",
 	  "Duplicates": 1
 	  "Image" : 8
 	  "Back" : 0
-	}{
-      "Title": "Quaking Bastion",
-	  "Type": "Castle",
-	  "Rules": "Target: 6   Gold: 3    Points: 4
-On win: roll a die. On 3+
-draw an gear card",
-	  "Flavour": "\"I hate spiders!\" -Some dude"
-	  "Duplicates": 1
-	  "Image" : 9
-	  "Back" : 0
-	}{
-      "Title": "Lost Wanderer",
-	  "Type": "Undead Monster",
-	  "Rules": "Target: 1   Gold: 1    Points: 1
-On win: roll a die. On 1
-do not move, and fight this
-monster again next turn",
-	  "Flavour": "\"I hate spiders!\" -Some dude"
-	  "Duplicates": 1
-	  "Image" : 10
-	  "Back" : 0
-	}{
-      "Title": "Deprived Succubus",
-	  "Type": "Demonic Monster",
-	  "Rules": "Target: 5   Gold: 5    Points: 3
-On win: Move another player's
-token 2 spaces and resolve
-any events",
-	  "Flavour": "\"I hate spiders!\" -Some dude"
-	  "Duplicates": 1
-	  "Image" : 11
-	  "Back" : 0
-	}{
+	}
+	{
       "Title": "Nonchalant Guard",
 	  "Type": "Orc Monster",
 	  "Rules": "Target: 3   Gold: 2    Points: 2
@@ -130,7 +122,8 @@ Altar",
 	  "Duplicates": 1
 	  "Image" : 12
 	  "Back" : 0
-	}{
+	}
+	{
       "Title": "Preoccupied Serpent",
 	  "Type": "Aquatic Monster",
 	  "Rules": "Target: 4   Gold: 1    Points: 2
@@ -140,7 +133,8 @@ and draw one gear card",
 	  "Duplicates": 1
 	  "Image" : 13
 	  "Back" : 0
-	}{
+	}
+	{
       "Title": "Certain Adventurer",
 	  "Type": "Lizard Monster",
 	  "Rules": "Target: 3   Gold: 3    Points: 2
@@ -150,135 +144,208 @@ the Altar",
 	  "Duplicates": 1
 	  "Image" : 14
 	  "Back" : 0
-	}{
-      "Title": "Curious Slug",
-	  "Type": "Slug Monster",
-	  "Rules": "Target: 2   Gold: 1    Points: 1
-On loss: move one space",
-	  "Flavour": "\"I hate spiders!\" -Some dude"
-	  "Duplicates": 1
-	  "Image" : 15
-	  "Back" : 0
-	}{
-      "Title": "Reliable Sword",
-	  "Type": "Equipment",
-	  "Rules": "On 1 or 2: skip a turnOn 5 or 6: draw four, pick one",
-	  "Flavour": "\"I hate spiders!\" -Some dude"
-	  "Duplicates": 1
-	  "Image" : 16
-	  "Back" : 0
-	}{
+	}
+	{
       "Title": "Engrossed Priestess",
 	  "Type": "Human Priestess",
-	  "Rules": "On 1 or 2: skip a turnOn 5 or 6: draw four, pick one",
+	  "Rules": "Target: 4   Gold: 2    Points: 4
+On loss: put two gear cards 
+on the Altar. Gain 2 gold",
 	  "Flavour": "\"I hate spiders!\" -Some dude"
 	  "Duplicates": 1
 	  "Image" : 17
 	  "Back" : 0
-	}{
-      "Title": "Alone Head",
-	  "Type": "Minor God",
-	  "Rules": "On 1 or 2: skip a turnOn 5 or 6: draw four, pick one",
-	  "Flavour": "\"I hate spiders!\" -Some dude"
-	  "Duplicates": 1
-	  "Image" : 18
-	  "Back" : 0
-	}{
-      "Title": "Hostile Rider",
-	  "Type": "Flying Wyvern",
-	  "Rules": "On 1 or 2: skip a turnOn 5 or 6: draw four, pick one",
-	  "Flavour": "\"I hate spiders!\" -Some dude"
-	  "Duplicates": 1
-	  "Image" : 19
-	  "Back" : 0
-	}{
-      "Title": "Spirited Altar",
-	  "Type": "Location",
-	  "Rules": "On 1 or 2: skip a turnOn 5 or 6: draw four, pick one",
-	  "Flavour": "\"I hate spiders!\" -Some dude"
-	  "Duplicates": 1
-	  "Image" : 20
-	  "Back" : 0
-	}{
-      "Title": "Warm Potion",
-	  "Type": "Equipment",
-	  "Rules": "On 1 or 2: skip a turnOn 5 or 6: draw four, pick one",
-	  "Flavour": "\"I hate spiders!\" -Some dude"
-	  "Duplicates": 1
-	  "Image" : 21
-	  "Back" : 0
-	}{
-      "Title": "Sympathetic Stalker",
-	  "Type": "Minor God",
-	  "Rules": "On 1 or 2: skip a turnOn 5 or 6: draw four, pick one",
-	  "Flavour": "\"I hate spiders!\" -Some dude"
-	  "Duplicates": 1
-	  "Image" : 22
-	  "Back" : 0
-	}{
-      "Title": "Secure Stronghold",
-	  "Type": "Castle",
-	  "Rules": "On 1 or 2: skip a turnOn 5 or 6: draw four, pick one",
-	  "Flavour": "\"I hate spiders!\" -Some dude"
-	  "Duplicates": 1
-	  "Image" : 23
-	  "Back" : 0
-	}{
-      "Title": "Concerned Swordsman",
-	  "Type": "Elf Warrior",
-	  "Rules": "On 1 or 2: skip a turnOn 5 or 6: draw four, pick one",
-	  "Flavour": "\"I hate spiders!\" -Some dude"
-	  "Duplicates": 1
-	  "Image" : 24
-	  "Back" : 0
-	}{
+	}
+	{
       "Title": "Clever Slime",
 	  "Type": "Slime Monster",
-	  "Rules": "On 1 or 2: skip a turnOn 5 or 6: draw four, pick one",
+	  "Rules": "Target: 3   Gold: 4    Points: 1
+On win: retreive a gear
+card from the discard
+pile",
+
 	  "Flavour": "\"I hate spiders!\" -Some dude"
 	  "Duplicates": 1
 	  "Image" : 25
 	  "Back" : 0
-	}{
-      "Title": "Serene Wyrm",
-	  "Type": "Minor God",
-	  "Rules": "On 1 or 2: skip a turnOn 5 or 6: draw four, pick one",
+	}
+	{
+      "Title": "Relaxed Wizard",
+	  "Type": "Human Wizard",
+	  "Rules": "Target: 4   Gold: 2    Points: 3
+On loss: move to the Dungeon
+Entrance",
 	  "Flavour": "\"I hate spiders!\" -Some dude"
 	  "Duplicates": 1
-	  "Image" : 26
+	  "Image" : 29
 	  "Back" : 0
-	}{
+	}
+	{
+      "Title": "Satisfied Ghoul",
+	  "Type": "Human Monster",
+	  "Rules": "Target: 3   Gold: 0    Points: 1
+On loss: move to the Cemetery",
+	  "Flavour": "\"I hate spiders!\" -Some dude"
+	  "Duplicates": 1
+	  "Image" : 30
+	  "Back" : 0
+	}
+	{
+      "Title": "Spirited Shrine",
+	  "Type": "Location",
+	  "Rules": "Choose one gear
+card from the Altar",
+	  "Flavour": "\"I hate spiders!\" -Some dude"
+	  "Duplicates": 1
+	  "Image" : 20
+	  "Back" : 5
+	}
+  ]
+ "Dungeon Lvl 2": [
+	{
       "Title": "Anxious Wizard",
 	  "Type": "Human Wizard",
-	  "Rules": "On 1 or 2: skip a turnOn 5 or 6: draw four, pick one",
+	  "Rules": "Target: 5   Gold: 4    Points: 4
+On win: move to the Cemetery",
 	  "Flavour": "\"I hate spiders!\" -Some dude"
 	  "Duplicates": 1
 	  "Image" : 27
+	  "Back" : 1
+	}
+	{
+      "Title": "Cold Golem",
+	  "Type": "Iron Monster",
+	  "Rules": "Target: 6   Gold: 0    Points: 2
+On win: roll a die. gain
+amount of gold",
+	  "Flavour": "\"I hate spiders!\" -Some dude"
+	  "Duplicates": 1
+	  "Image" : 7
+	  "Back" : 1
+	}
+	{
+      "Title": "Deprived Succubus",
+	  "Type": "Demonic Monster",
+	  "Rules": "Target: 5   Gold: 5    Points: 3
+On win: move another player's
+token 2 spaces and resolve
+any events",
+	  "Flavour": "\"I hate spiders!\" -Some dude"
+	  "Duplicates": 1
+	  "Image" : 11
+	  "Back" : 1
+	}
+	{
+      "Title": "Hostile Rider",
+	  "Type": "Flying Wyvern",
+	  "Rules": "Target: 6   Gold: 3    Points: 5
+On win: gain Wyvern. Discard
+Wyvern to add 3 to your
+attack or move this turn",
+	  "Flavour": "\"I hate spiders!\" -Some dude"
+	  "Duplicates": 1
+	  "Image" : 19
+	  "Back" : 1
+	}
+	{
+      "Title": "Concerned Swordsman",
+	  "Type": "Elf Warrior",
+	  "Rules": "Target: 5   Gold: 2    Points: 4
+On win: roll. On odds, skip
+next turn",
+	  "Flavour": "\"I hate spiders!\" -Some dude"
+	  "Duplicates": 1
+	  "Image" : 24
+	  "Back" : 1
+	}
+	{
+ 	 "Title": "Restless Tower",
+	  "Type": "Castle",
+	  "Rules": "Automatically win
+your next combat",
+	  "Flavour": "\"I hate spiders!\" -Some dude"
+	  "Duplicates": 1
+	  "Image" : 0
 	  "Back" : 0
-	}{
+	}
+  ]
+ "Dungeon Lvl 3": [
+	{
+	
+      "Title": "Lonely Flight",
+	  "Type": "Minor God",
+	  "Rules": "Target: 10   Gold: 2    Points: 12
+On loss: all gear goes to 
+the Altar. Return to town",
+	  "Flavour": "\"I hate spiders!\" -Some dude"
+	  "Duplicates": 1
+	  "Image" : 18
+	  "Back" : 2
+	}
+	{
       "Title": "Keen Sphere",
 	  "Type": "Minor God",
 	  "Rules": "On 1 or 2: skip a turnOn 5 or 6: draw four, pick one",
 	  "Flavour": "\"I hate spiders!\" -Some dude"
 	  "Duplicates": 1
 	  "Image" : 28
-	  "Back" : 0
-	}{
-      "Title": "Relaxed Wizard",
-	  "Type": "Human Wizard",
+	  "Back" : 2
+	}
+	{
+      "Title": "Serene Way",
+	  "Type": "Minor God",
 	  "Rules": "On 1 or 2: skip a turnOn 5 or 6: draw four, pick one",
 	  "Flavour": "\"I hate spiders!\" -Some dude"
 	  "Duplicates": 1
-	  "Image" : 29
-	  "Back" : 0
-	}{
-      "Title": "Satisfied Ghoul",
-	  "Type": "Human Monster",
+	  "Image" : 26
+	  "Back" : 2
+	}
+	{
+      "Title": "Sympathetic Shadow",
+	  "Type": "Minor God",
 	  "Rules": "On 1 or 2: skip a turnOn 5 or 6: draw four, pick one",
+	  "Flavour": "\"We are one person. For us
+to try to go back together is
+natural\" (Killers)"
+	  "Duplicates": 1
+	  "Image" : 22
+	  "Back" : 2
+	}
+	{
+	 "Title": "Quaking Bastion",
+	  "Type": "Castle",
+	  "Rules": "Draw 3 gear
+cards. Select 1. Discard
+the other 2",
 	  "Flavour": "\"I hate spiders!\" -Some dude"
 	  "Duplicates": 1
-	  "Image" : 30
-	  "Back" : 0
+	  "Image" : 9
+	  "Back" : 2
+	}
+	
+  ]
+ "Gear": [
+   
+	{
+      "Title": "Reliable Sword",
+	  "Type": "Equipment",
+	  "Rules": "Roll one extra
+ dice in combat",
+	  "Flavour": "\"I hate spiders!\" -Some dude"
+	  "Duplicates": 1
+	  "Image" : 16
+	  "Back" : 5
+	}
+	{
+      "Title": "Warm Potion",
+	  "Type": "Equipment",
+	  "Rules": "Discard Warm
+Potion to ignore any loss
+event this turn",
+	  "Flavour": "\"I hate spiders!\" -Some dude"
+	  "Duplicates": 1
+	  "Image" : 21
+	  "Back" : 5
 	}
   ]
 }

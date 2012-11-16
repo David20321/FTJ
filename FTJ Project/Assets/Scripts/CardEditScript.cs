@@ -19,8 +19,8 @@ public class CardEditScript : MonoBehaviour {
 	
 	void CreateCard(Transform the_transform){
 		var card = (GameObject)GameObject.Instantiate(card_prefab, the_transform.position, the_transform.rotation);
-		card.GetComponent<CardScript>().SetCardData(card_data);
-		card.GetComponent<CardScript>().Bake();
+		//card.GetComponent<CardScript>().SetCardData(card_data);
+		//card.GetComponent<CardScript>().Bake();
 		GameObject.Destroy(card.rigidbody);
 		spawned_cards.Add(card);
 	}
