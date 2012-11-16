@@ -210,7 +210,7 @@ public class ObjectManagerScript : MonoBehaviour {
 						var held_rigidbody = grabbable.rigidbody;
 						var target_position = holder.transform.position;
 						if(grabbable.GetComponent<DeckScript>() || grabbable.GetComponent<CardScript>()){
-							target_position.y += 0.6f;
+							target_position.y += 1.0f;
 							Quaternion target_rotation = Quaternion.identity;
 							if(grabbable.GetComponent<DeckScript>()){
 								target_rotation = Quaternion.Euler(0,180,180);
