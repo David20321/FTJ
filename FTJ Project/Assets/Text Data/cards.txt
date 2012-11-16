@@ -5,7 +5,9 @@
 	  "Type": "Slug Monster",
 	  "Rules": "Target: 2   Gold: 1    Points: 1
 On loss: move one space",
-	  "Flavour": "\"I hate spiders!\" -Some dude"
+	  "Flavour": "\"there are all manner of
+strange and unique
+creatures\" (Beggars 11.2)"
 	  "Duplicates": 1
 	  "Image" : 15
 	  "Back" : 4
@@ -17,7 +19,9 @@ On loss: move one space",
 On win: roll a die. On 1
 do not move, and fight this
 monster again next turn",
-	  "Flavour": "\"I hate spiders!\" -Some dude"
+	  "Flavour": "\"Those that once lived that
+don’t realize they are dead\"
+(Beggars 11.6)"
 	  "Duplicates": 1
 	  "Image" : 10
 	  "Back" : 4
@@ -27,7 +31,8 @@ monster again next turn",
 	  "Type": "Human Warrior",
 	  "Rules": "Target: 2   Gold: 0    Points: 1
 On win: Move 2 spaces",
-	  "Flavour": "\"I hate spiders!\" -Some dude"
+	  "Flavour": "\"humanity has so many
+heros\" (Beggars 14.1)"
 	  "Duplicates": 1
 	  "Image" : 2
 	  "Back" : 4
@@ -38,7 +43,9 @@ On win: Move 2 spaces",
 	  "Rules": "Target: 3   Gold: 1    Points: 3
 On loss: Choose a card from
 your victory pile and discard it",
-	  "Flavour": "\"I hate spiders!\" -Some dude"
+	  "Flavour": "\"and everywhere it splashed
+sprange up new growth\"
+(Killers 2.2)"
 	  "Duplicates": 1
 	  "Image" : 3
 	  "Back" : 4
@@ -50,7 +57,9 @@ your victory pile and discard it",
 On win: gain Silk Rope
 Discard Silk Rope to add 2 to
 your move roll this turn",
-	  "Flavour": "\"I hate spiders!\" -Some dude"
+	  "Flavour": "\"Humanity faces many common
+threats to its existence\"
+ (Beggars 11.1)"
 	  "Duplicates": 1
 	  "Image" : 4
 	  "Back" : 4
@@ -62,7 +71,9 @@ your move roll this turn",
 On win: gain Storm Gem
 Discard Storm Gem to add 2 to
 your magic test this turn",
-	  "Flavour": "\"I hate spiders!\" -Some dude"
+	  "Flavour": "\"Wizards were able to, at
+great loss of life, activate a
+divine artifact\" (Beggars 8.2)"
 	  "Duplicates": 1
 	  "Image" : 5
 	  "Back" : 4
@@ -72,10 +83,12 @@ your magic test this turn",
 	  "Type": "Castle",
 	  "Rules": "Location acts
 as Town for this turn",
-	  "Flavour": "\"I hate spiders!\" -Some dude"
+	  "Flavour": "\"Institutions have proven
+to be critical to humanity’s
+survival\" (Beggars 8.1)"
 	  "Duplicates": 1
 	  "Image" : 23
-	  "Back" : 5
+	  "Back" : 4
 	}
 
    ]
@@ -86,8 +99,9 @@ as Town for this turn",
 	  "Type": "Nocturnal Monster",
 	  "Rules": "Target: 4   Gold: 3    Points: 3
 On loss: pay 3 gold",
-	  "Flavour": "\"I hate spiders!\" -Some dude"
-	  "Duplicates": 1
+	  "Flavour": "\"Mindlessly they live
+on and procreate\" 
+(Beggars 11.11)"
 	  "Image" : 1
 	  "Back" : 0
 	}
@@ -98,7 +112,9 @@ On loss: pay 3 gold",
 On loss: choose one gear card
 you own and place it on the
 Altar",
-	  "Flavour": "\"I hate spiders!\" -Some dude"
+	  "Flavour": "\"They are only allowed
+to remove the bag to eat\"
+(Beggars 9.5)"
 	  "Duplicates": 1
 	  "Image" : 6
 	  "Back" : 0
@@ -107,7 +123,8 @@ Altar",
       "Title": "Alarmed Knight",
 	  "Type": "Human Warrior",
 	  "Rules": "Target: 4   Gold: 2    Points: 2",
-	  "Flavour": "\"I hate spiders!\" -Some dude"
+	  "Flavour": "\"Oh no. What is that?\"
+ (Lovers 2.11)"
 	  "Duplicates": 1
 	  "Image" : 8
 	  "Back" : 0
@@ -118,7 +135,9 @@ Altar",
 	  "Rules": "Target: 3   Gold: 2    Points: 2
 On loss: put 1 gold on the
 Altar",
-	  "Flavour": "\"I hate spiders!\" -Some dude"
+	  "Flavour": "\"They whorship savage,
+powerful gods\"
+(Beggars 12.6)"
 	  "Duplicates": 1
 	  "Image" : 12
 	  "Back" : 0
@@ -129,7 +148,9 @@ Altar",
 	  "Rules": "Target: 4   Gold: 1    Points: 2
 On win: discard one gear card
 and draw one gear card",
-	  "Flavour": "\"I hate spiders!\" -Some dude"
+	  "Flavour": "\"Guardians of the dark
+places long forgotten\"
+(Beggars 11.3)"
 	  "Duplicates": 1
 	  "Image" : 13
 	  "Back" : 0
@@ -140,7 +161,9 @@ and draw one gear card",
 	  "Rules": "Target: 3   Gold: 3    Points: 2
 On loss: put one gear card on
 the Altar",
-	  "Flavour": "\"I hate spiders!\" -Some dude"
+	  "Flavour": "\"There are also many
+sentient races besides
+humans\" (Beggars 12.1)"
 	  "Duplicates": 1
 	  "Image" : 14
 	  "Back" : 0
@@ -151,7 +174,9 @@ the Altar",
 	  "Rules": "Target: 4   Gold: 2    Points: 4
 On loss: put two gear cards 
 on the Altar. Gain 2 gold",
-	  "Flavour": "\"I hate spiders!\" -Some dude"
+	  "Flavour": "\"your people have taken
+the powers they could 
+control\" (Spirits 1.4)"
 	  "Duplicates": 1
 	  "Image" : 17
 	  "Back" : 0
@@ -160,11 +185,12 @@ on the Altar. Gain 2 gold",
       "Title": "Clever Slime",
 	  "Type": "Slime Monster",
 	  "Rules": "Target: 3   Gold: 4    Points: 1
-On win: retreive a gear
-card from the discard
-pile",
+On win: retreive a gear card
+from the discard pile",
 
-	  "Flavour": "\"I hate spiders!\" -Some dude"
+	  "Flavour": "\"gelatinous monsters
+whose touch will dissolve
+flesh\" (Beggars 11.5)"
 	  "Duplicates": 1
 	  "Image" : 25
 	  "Back" : 0
@@ -175,7 +201,8 @@ pile",
 	  "Rules": "Target: 4   Gold: 2    Points: 3
 On loss: move to the Dungeon
 Entrance",
-	  "Flavour": "\"I hate spiders!\" -Some dude"
+	  "Flavour": "\"The red wizard was from
+the desert\" (Beggars 7.4)"
 	  "Duplicates": 1
 	  "Image" : 29
 	  "Back" : 0
@@ -185,7 +212,9 @@ Entrance",
 	  "Type": "Human Monster",
 	  "Rules": "Target: 3   Gold: 0    Points: 1
 On loss: move to the Cemetery",
-	  "Flavour": "\"I hate spiders!\" -Some dude"
+	  "Flavour": "\"Death slept a deep, 
+dreamless sleep\" 
+(Lovers 2.1)"
 	  "Duplicates": 1
 	  "Image" : 30
 	  "Back" : 0
@@ -195,10 +224,12 @@ On loss: move to the Cemetery",
 	  "Type": "Location",
 	  "Rules": "Choose one gear
 card from the Altar",
-	  "Flavour": "\"I hate spiders!\" -Some dude"
+	  "Flavour": "\"All true magic in this
+world still comes from
+that corpse\" (Beggars 5.1)"
 	  "Duplicates": 1
 	  "Image" : 20
-	  "Back" : 5
+	  "Back" : 0
 	}
   ]
  "Dungeon Lvl 2": [
@@ -207,7 +238,8 @@ card from the Altar",
 	  "Type": "Human Wizard",
 	  "Rules": "Target: 5   Gold: 4    Points: 4
 On win: move to the Cemetery",
-	  "Flavour": "\"I hate spiders!\" -Some dude"
+	  "Flavour": "\"it would take too long
+to explain it\" (Rest 3.6)"
 	  "Duplicates": 1
 	  "Image" : 27
 	  "Back" : 1
@@ -218,7 +250,8 @@ On win: move to the Cemetery",
 	  "Rules": "Target: 6   Gold: 0    Points: 2
 On win: roll a die. gain
 amount of gold",
-	  "Flavour": "\"I hate spiders!\" -Some dude"
+	  "Flavour": "\"a tiny chip of his blue
+crystal irises\" (Beggars 5.3)"
 	  "Duplicates": 1
 	  "Image" : 7
 	  "Back" : 1
@@ -230,7 +263,8 @@ amount of gold",
 On win: move another player's
 token 2 spaces and resolve
 any events",
-	  "Flavour": "\"I hate spiders!\" -Some dude"
+	  "Flavour": "\"I will call her Lust\"
+(Lovers 2.10)"
 	  "Duplicates": 1
 	  "Image" : 11
 	  "Back" : 1
@@ -242,7 +276,9 @@ any events",
 On win: gain Wyvern. Discard
 Wyvern to add 3 to your
 attack or move this turn",
-	  "Flavour": "\"I hate spiders!\" -Some dude"
+	  "Flavour": "\"Wizards are not the only
+defense humans have\" 
+(Beggars 9.1)"
 	  "Duplicates": 1
 	  "Image" : 19
 	  "Back" : 1
@@ -253,7 +289,9 @@ attack or move this turn",
 	  "Rules": "Target: 5   Gold: 2    Points: 4
 On win: roll. On odds, skip
 next turn",
-	  "Flavour": "\"I hate spiders!\" -Some dude"
+	  "Flavour": "\"Among those that are
+successful are the inscrutable
+elves\" (12.1)"
 	  "Duplicates": 1
 	  "Image" : 24
 	  "Back" : 1
@@ -263,10 +301,12 @@ next turn",
 	  "Type": "Castle",
 	  "Rules": "Automatically win
 your next combat",
-	  "Flavour": "\"I hate spiders!\" -Some dude"
+	  "Flavour": "\"Perhaps in a billion years
+from now you are reading
+this\" (Spirits 1.2)"
 	  "Duplicates": 1
 	  "Image" : 0
-	  "Back" : 0
+	  "Back" : 1
 	}
   ]
  "Dungeon Lvl 3": [
@@ -277,7 +317,9 @@ your next combat",
 	  "Rules": "Target: 10   Gold: 2    Points: 12
 On loss: all gear goes to 
 the Altar. Return to town",
-	  "Flavour": "\"I hate spiders!\" -Some dude"
+	  "Flavour": "\"These small gods still
+control incredible power\"
+(Beggars 13.2)"
 	  "Duplicates": 1
 	  "Image" : 18
 	  "Back" : 2
@@ -286,7 +328,9 @@ the Altar. Return to town",
       "Title": "Keen Sphere",
 	  "Type": "Minor God",
 	  "Rules": "On 1 or 2: skip a turnOn 5 or 6: draw four, pick one",
-	  "Flavour": "\"I hate spiders!\" -Some dude"
+	  "Flavour": "\"More terrifying for humans
+than the prospect of large
+scale war\" (Beggars 13.1)"
 	  "Duplicates": 1
 	  "Image" : 28
 	  "Back" : 2
@@ -295,7 +339,9 @@ the Altar. Return to town",
       "Title": "Serene Way",
 	  "Type": "Minor God",
 	  "Rules": "On 1 or 2: skip a turnOn 5 or 6: draw four, pick one",
-	  "Flavour": "\"I hate spiders!\" -Some dude"
+	  "Flavour": "\"Driven mad through exposure
+to their selfish gods\" 
+(Beggars 11.7)"
 	  "Duplicates": 1
 	  "Image" : 26
 	  "Back" : 2
@@ -306,7 +352,7 @@ the Altar. Return to town",
 	  "Rules": "On 1 or 2: skip a turnOn 5 or 6: draw four, pick one",
 	  "Flavour": "\"We are one person. For us
 to try to go back together is
-natural\" (Killers)"
+natural\" (Killers 1.9)"
 	  "Duplicates": 1
 	  "Image" : 22
 	  "Back" : 2
@@ -317,7 +363,9 @@ natural\" (Killers)"
 	  "Rules": "Draw 3 gear
 cards. Select 1. Discard
 the other 2",
-	  "Flavour": "\"I hate spiders!\" -Some dude"
+	  "Flavour": "\"Have they have steered a
+ course to the stars and
+ beyond?\" (Spirits 1.6)"
 	  "Duplicates": 1
 	  "Image" : 9
 	  "Back" : 2
@@ -331,7 +379,8 @@ the other 2",
 	  "Type": "Equipment",
 	  "Rules": "Roll one extra
  dice in combat",
-	  "Flavour": "\"I hate spiders!\" -Some dude"
+	  "Flavour": "\"Everything got a lot
+more dangerous\" (Beggars 1.2)"
 	  "Duplicates": 1
 	  "Image" : 16
 	  "Back" : 5
@@ -342,7 +391,9 @@ the other 2",
 	  "Rules": "Discard Warm
 Potion to ignore any loss
 event this turn",
-	  "Flavour": "\"I hate spiders!\" -Some dude"
+	  "Flavour": "\"everywhere it splashed 
+sprang up new growth\" 
+(Killers 2.2)"
 	  "Duplicates": 1
 	  "Image" : 21
 	  "Back" : 5

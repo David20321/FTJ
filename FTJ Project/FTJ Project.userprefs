@@ -1,20 +1,17 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\CardScript.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\NetUIScript.cs">
     <Files>
-      <File FileName="Assets\Scripts\CardData.cs" Line="11" Column="26" />
-      <File FileName="Assets\Scripts\DeckScript.cs" Line="7" Column="24" />
-      <File FileName="Assets\Text Data\cards.txt" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\BoardCreateScript.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\BoardScript.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\CursorScript.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\CardScript.cs" Line="15" Column="1" />
-      <File FileName="Assets\Scripts\TileScript.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\DiceScript.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\GrabbableScript.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\ObjectManagerScript.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\NetUIScript.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\CardManagerScript.cs" Line="58" Column="23" />
+      <File FileName="Assets\Text Data\cards.txt" Line="281" Column="19" />
+      <File FileName="Assets\Scripts\CardManagerScript.cs" Line="24" Column="1" />
+      <File FileName="Assets\Scripts\CardBakeScript.cs" Line="21" Column="42" />
+      <File FileName="Assets\Scripts\DeckScript.cs" Line="76" Column="3" />
+      <File FileName="Assets\Scripts\ObjectManagerScript.cs" Line="32" Column="29" />
+      <File FileName="Assets\Scripts\CursorScript.cs" Line="66" Column="64" />
+      <File FileName="Assets\Scripts\GrabbableScript.cs" Line="16" Column="4" />
+      <File FileName="Assets\Scripts\CardScript.cs" Line="17" Column="26" />
+      <File FileName="Assets\Scripts\DiceScript.cs" Line="16" Column="66" />
+      <File FileName="Assets\Scripts\NetUIScript.cs" Line="12" Column="51" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
