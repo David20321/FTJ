@@ -52,17 +52,18 @@ public class CursorScript : MonoBehaviour {
 	}
 		
 	[RPC]
-	public static void TellObjectManagerAboutGrab(int grab_id, int player_id){
+	public void TellObjectManagerAboutGrab(int grab_id, int player_id){
+		ConsoleScript.Log ("Telling object manager that player "+player_id+" clicked on "+grab_id);
 		ObjectManagerScript.Instance().ClientGrab(grab_id, player_id);
 	}
 	
 	[RPC]
-	public static void TellObjectManagerAboutCardPeel(int grab_id, int player_id){
+	public void TellObjectManagerAboutCardPeel(int grab_id, int player_id){
 		ObjectManagerScript.Instance().ClientCardPeel(grab_id, player_id);
 	}
 	
 	[RPC]
-	public static void TellObjectManagerAboutMouseRelease(int player_id){
+	public void TellObjectManagerAboutMouseRelease(int player_id){
 		ObjectManagerScript.Instance().ClientReleasedMouse(player_id);
 	}
 	

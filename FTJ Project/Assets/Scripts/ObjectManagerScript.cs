@@ -22,7 +22,7 @@ public class ObjectManagerScript : MonoBehaviour {
 	}
 	
 	public void ClientGrab(int grabbed_id, int player_id){
-		//ConsoleScript.Log("Player "+player_id+" clicked on grabbable "+grabbed_id);
+		ConsoleScript.Log("Player "+player_id+" clicked on grabbable "+grabbed_id);
 		// Check if client is already holding dice or tokens
 		bool holding_anything = false;
 		bool holding_anything_but_dice = false;
@@ -45,7 +45,7 @@ public class ObjectManagerScript : MonoBehaviour {
 			       (grabbable.GetComponent<CardScript>() && !holding_anything))
 			    {
 					grabbable_script.held_by_player_ = player_id;
-					//ConsoleScript.Log ("Object "+grabbed_id+" is now held by Player "+player_id);
+					ConsoleScript.Log ("Object "+grabbed_id+" is now held by Player "+player_id);
 				}
 			}
 		}
