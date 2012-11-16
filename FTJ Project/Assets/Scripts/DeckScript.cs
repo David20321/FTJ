@@ -106,6 +106,17 @@ public class DeckScript : MonoBehaviour {
 		return new_card;
 	}
 	
+	public void AddCard(bool top, int id){
+		if(top){
+			cards_.Insert(0, id);
+		} else {
+			cards_.Add(id);
+		}
+		++num_cards_;
+		RegenerateEndCardIDs();
+		RegenerateEndCards();
+	}
+	
 	public GameObject TakeBottomCard(){
 		return TakeCard(false);
 	}
