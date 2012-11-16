@@ -24,20 +24,14 @@ public class ObjectManagerScript : MonoBehaviour {
 	public void ClientGrab(int grabbed_id, int player_id){
 		//ConsoleScript.Log("Player "+player_id+" clicked on grabbable "+grabbed_id);
 		// Check if client is already holding dice or tokens
-		bool holding_dice = false;
-		bool holding_token = false;
-		bool holding_deck = false;
+		bool holding_anything = false;
+		bool holding_anything_but_dice = false;
 		foreach(GameObject grabbable in grabbable_objects){
 			GrabbableScript grabbable_script = grabbable.GetComponent<GrabbableScript>();
 			if(grabbable_script.held_by_player_ == player_id){
-				if(grabbable.GetComponent<TokenScript>()){
-					holding_token = true;
-				}
-				if(grabbable.GetComponent<DiceScript>()){
-					holding_dice = true;
-				}
-				if(grabbable.GetComponent<DeckScript>()){
-					holding_deck = true;
+				holding_anything = true;
+				if(!grabbable.GetComponent<DiceScript>()){
+					holding_anything_but_dice = true;
 				}
 			}
 		}
@@ -45,9 +39,10 @@ public class ObjectManagerScript : MonoBehaviour {
 		foreach(GameObject grabbable in grabbable_objects){
 			GrabbableScript grabbable_script = grabbable.GetComponent<GrabbableScript>();
 			if(grabbable_script.id_ == grabbed_id){
-				if((grabbable.GetComponent<DiceScript>() && !holding_token && !holding_deck) ||
-				   (grabbable.GetComponent<TokenScript>() && !holding_dice && !holding_token)||
-				   (grabbable.GetComponent<DeckScript>() && !holding_dice && !holding_token))
+				if((grabbable.GetComponent<DiceScript>() && !holding_anything_but_dice) ||
+				   (grabbable.GetComponent<TokenScript>() && !holding_anything)||
+				   (grabbable.GetComponent<DeckScript>() && !holding_anything) ||
+			       (grabbable.GetComponent<CardScript>() && !holding_anything))
 			    {
 					grabbable_script.held_by_player_ = player_id;
 					//ConsoleScript.Log ("Object "+grabbed_id+" is now held by Player "+player_id);
@@ -58,6 +53,13 @@ public class ObjectManagerScript : MonoBehaviour {
 	
 	
 	public void ClientCardPeel(int grabbed_id, int player_id){
+		// Return if player is already holding something
+		foreach(GameObject grabbable in grabbable_objects){
+			if(grabbable.GetComponent<GrabbableScript>().held_by_player_ == player_id){
+		   		return;
+		    }
+		}
+		// Find the deck, return if can't find it
 		GameObject deck = null;
 		foreach(GameObject grabbable in grabbable_objects){
 			if(grabbable.GetComponent<GrabbableScript>().id_ == grabbed_id &&
@@ -66,8 +68,18 @@ public class ObjectManagerScript : MonoBehaviour {
 		   		deck = grabbable;
 		    }
 		}
-		if(deck){
-			var card = deck.GetComponent<DeckScript>().TakeTopCard();
+		if(!deck){
+			return;
+		}
+		// Grab whatever card is on top of the deck, depending on which way
+		// the deck is facing
+		GameObject card = null;
+		if((deck.rigidbody.rotation * new Vector3(0,1,0)).y >= 0.0f){
+			card = deck.GetComponent<DeckScript>().TakeTopCard();
+		} else {
+			card = deck.GetComponent<DeckScript>().TakeBottomCard();
+		}
+		if(card){
 			card.GetComponent<GrabbableScript>().held_by_player_ = player_id;
 		}
 	}
@@ -197,10 +209,12 @@ public class ObjectManagerScript : MonoBehaviour {
 					if(holder){
 						var held_rigidbody = grabbable.rigidbody;
 						var target_position = holder.transform.position;
-						if(grabbable.GetComponent<DeckScript>()){
+						if(grabbable.GetComponent<DeckScript>() || grabbable.GetComponent<CardScript>()){
 							target_position.y += 0.6f;
 							Quaternion target_rotation = Quaternion.identity;
-							target_rotation = Quaternion.Euler(0,180,180);
+							if(grabbable.GetComponent<DeckScript>()){
+								target_rotation = Quaternion.Euler(0,180,180);
+							}
 							Quaternion offset = target_rotation * Quaternion.Inverse(held_rigidbody.rotation);
 							float angle;
 							Vector3 offset_vec3;

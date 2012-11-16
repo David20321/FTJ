@@ -103,12 +103,12 @@ public class DeckScript : MonoBehaviour {
 		}
 	}
 	
-	public GameObject TakeTopCard(){
+	public GameObject TakeCard(bool top){
 		if(cards_.Count == 0){
 			return null;
 		}
 		GameObject card;
-		if(top_card_){
+		if(top && top_card_){
 			card = top_card_;
 			top_card_ = null;
 			cards_.RemoveAt(0);
@@ -120,10 +120,10 @@ public class DeckScript : MonoBehaviour {
 		if(cards_.Count <= 1){
 			transform.FindChild("default").renderer.enabled = false;
 		}
+		RegenerateEndCards();
 		if(cards_.Count == 1){
 			bottom_card_.transform.position += transform.rotation * new Vector3(0,0.07f,0);
 		}
-		RegenerateEndCards();
 		CopyComponent(card_prefab.rigidbody, card);
 		card.collider.enabled = true;
 		card.transform.parent = null;
@@ -131,10 +131,18 @@ public class DeckScript : MonoBehaviour {
 		return card;
 	}
 	
+	public GameObject TakeBottomCard(){
+		return TakeCard(false);
+	}
+	
+	public GameObject TakeTopCard(){
+		return TakeCard(true);
+	}
+	
 	// Update is called once per frame
 	void Update () {
 		transform.FindChild("default").localScale = new Vector3(1,Mathf.Max(2,cards_.Count) * CARD_THICKNESS_MULT,1);	
-		rigidbody.mass = cards_.Count * DECK_MASS_PER_CARD;
+		rigidbody.mass = Mathf.Max(1,cards_.Count) * DECK_MASS_PER_CARD;
 		/*if(Input.GetMouseButtonDown(0)){
 			var card = TakeTopCard();
 			if(card){
