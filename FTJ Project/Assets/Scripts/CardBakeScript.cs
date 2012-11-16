@@ -19,9 +19,7 @@ public class CardBakeScript : MonoBehaviour {
 		rules_text.text = card_data_.rules;
 		var flavour_text = transform.FindChild("Flavour").GetComponent<TextMesh>();
 		flavour_text.text = card_data_.flavour;
-		//var card_back = transform.FindChild("Back").transform.FindChild("default");
-		//card_back.renderer.material = new Material(card_back.renderer.material);
-		//card_back.renderer.material.mainTexture = back_textures[card_data_.back];
+		
 		var card_contents = transform.FindChild("Contents").transform.FindChild("default");
 		card_contents.renderer.material = new Material(card_contents.renderer.material);
 		card_contents.renderer.material.mainTexture = content_textures[card_data_.image];
@@ -35,7 +33,6 @@ public class CardBakeScript : MonoBehaviour {
 		camera.targetTexture = render_texture; 
 		
 		int active_card_layer = LayerMask.NameToLayer("Active Card Render Texture");
-		int card_layer = LayerMask.NameToLayer("Card Render Texture");
 		transform.FindChild("Title").gameObject.layer = active_card_layer;
 		transform.FindChild("Type").gameObject.layer = active_card_layer;
 		transform.FindChild("Rules").gameObject.layer = active_card_layer;
@@ -44,6 +41,7 @@ public class CardBakeScript : MonoBehaviour {
 		transform.FindChild("AlphaBackdrop").FindChild("default").gameObject.layer = active_card_layer;
 		transform.FindChild("FrontBorder").FindChild("default").gameObject.layer = active_card_layer;
 		camera.Render();
+		int card_layer = LayerMask.NameToLayer("Card Render Texture");
 		transform.FindChild("Title").gameObject.layer = card_layer;
 		transform.FindChild("Type").gameObject.layer = card_layer;
 		transform.FindChild("Rules").gameObject.layer = card_layer;

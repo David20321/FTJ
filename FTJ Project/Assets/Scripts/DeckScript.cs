@@ -58,27 +58,31 @@ public class DeckScript : MonoBehaviour {
 			return null;
 		}
 		GameObject card;
+		int card_id = -1;
 		if(top && top_card_){
 			card = top_card_;
 			top_card_ = null;
+			card_id = cards_[0];
 			cards_.RemoveAt(0);
 		} else {
 			card = bottom_card_;
 			bottom_card_ = null;
+			card_id = cards_[cards_.Count-1];
 			cards_.RemoveAt(cards_.Count-1);
 		}
 		if(cards_.Count <= 1){
 			transform.FindChild("default").renderer.enabled = false;
 		}
 		RegenerateEndCards();
+		
+		var new_card = (GameObject)GameObject.Instantiate(card_prefab, card.transform.position, card.transform.rotation);
+		new_card.GetComponent<CardScript>().Prepare(card_id);
+		GameObject.Destroy(card);
 		if(cards_.Count == 1){
-			bottom_card_.transform.position += transform.rotation * new Vector3(0,0.07f,0);
+			transform.FindChild("default").collider.enabled = false;
+			TakeCard(false);
 		}
-		CopyComponent(card_prefab.rigidbody, card);
-		card.collider.enabled = true;
-		card.transform.parent = null;
-		card.transform.localScale = transform.localScale;
-		return card;
+		return new_card;
 	}
 	
 	public GameObject TakeBottomCard(){

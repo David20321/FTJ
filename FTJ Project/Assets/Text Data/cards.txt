@@ -348,4 +348,15 @@ event this turn",
 	  "Back" : 5
 	}
   ]
+  "Unused": [
+	{
+      "Title": "???",
+	  "Type": "???",
+	  "Rules": "???",
+	  "Flavour": "???"
+	  "Duplicates": 1
+	  "Image" : 0
+	  "Back" : 0
+	}
+  ]
 }

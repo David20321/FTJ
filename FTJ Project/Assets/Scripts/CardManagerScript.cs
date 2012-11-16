@@ -15,6 +15,11 @@ public class CardManagerScript : MonoBehaviour {
 		
 	// Use this for initialization
 	void Start () {
+		foreach(Texture texture in back_textures){
+			var mat = new Material(cutout);
+			mat.mainTexture = texture;
+			back_materials.Add(mat);
+		}
 		var card_bake_object = (GameObject)GameObject.Instantiate(card_bake_prefab);
 		int next_id = 0;
 		var dict = Json.Deserialize(deck_json.text) as Dictionary<string,object>;
@@ -59,14 +64,8 @@ public class CardManagerScript : MonoBehaviour {
 				}
 				card_bake_object.GetComponent<CardBakeScript>().SetCardData(card_data);
 				card_data.material = card_bake_object.GetComponent<CardBakeScript>().Bake();
-				cards_.Add(card_data);	
-				
+				cards_.Add(card_data);
 			}
-		}
-		foreach(Texture texture in back_textures){
-			var mat = new Material(cutout);
-			mat.mainTexture = texture;
-			back_materials.Add(mat);
 		}
 	}
 	

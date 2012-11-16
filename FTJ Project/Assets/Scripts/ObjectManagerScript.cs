@@ -79,9 +79,7 @@ public class ObjectManagerScript : MonoBehaviour {
 		} else {
 			card = deck.GetComponent<DeckScript>().TakeBottomCard();
 		}
-		if(card){
-			card.GetComponent<GrabbableScript>().held_by_player_ = player_id;
-		}
+		card.GetComponent<GrabbableScript>().held_by_player_ = player_id;
 	}
 	
 	public GameObject GetMyCursorObject() {
