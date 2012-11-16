@@ -124,18 +124,10 @@ public class ObjectManagerScript : MonoBehaviour {
 	public void UnRegisterGrabbableObject(GameObject obj) {
 		grabbable_objects.Remove(obj);
 	}
+	
 	[RPC]
 	void DestroyObject(NetworkViewID id){
 		GameObject.Destroy(NetworkView.Find(id).gameObject);
-	}
-	
-	void DestroyAll(){
-		foreach(GameObject grabbable in grabbable_objects){
-			GameObject.Destroy(grabbable);
-		}
-		if(board_object){
-			GameObject.Destroy(board_object);
-		}	
 	}
 	
 	[RPC]
@@ -246,5 +238,16 @@ public class ObjectManagerScript : MonoBehaviour {
 			return null;
 		}
 		return GameObject.Find("GlobalScriptObject").GetComponent<ObjectManagerScript>();
+	}
+	
+	public void NotifyCardHitDeck(GameObject card, GameObject deck){
+		Debug.Log("Card forward: "+card.transform.up);
+		Debug.Log("Deck forward: "+deck.transform.up);
+		bool facing_same_way = Vector3.Dot(card.transform.up, deck.transform.up) <= 0.0;
+		if(card.GetComponent<GrabbableScript>().held_by_player_ == -1 && facing_same_way){
+			networkView.RPC("DestroyObject",RPCMode.AllBuffered,card.networkView.viewID);
+			bool top = Vector3.Dot(card.transform.position - deck.transform.position, deck.transform.up) >= 0.0;
+			deck.GetComponent<DeckScript>().AddCard(top, card.GetComponent<CardScript>().card_id());
+		}
 	}
 }
