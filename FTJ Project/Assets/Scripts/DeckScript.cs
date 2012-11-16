@@ -24,7 +24,7 @@ public class DeckScript : MonoBehaviour {
 		if(!top_card_ && cards_.Count > 1){
 			var pos = transform.FindChild("bottom_card").transform.position;
 			var rot = transform.FindChild("bottom_card").transform.rotation;
-			pos += transform.rotation * new Vector3(0,(cards_.Count*0.012f+0.1f)*transform.localScale.y,0);
+			pos += transform.rotation * new Vector3(0,(cards_.Count*0.013f+0.1f)*transform.localScale.y,0);
 			top_card_ = CreateCard(cards_[0],pos,rot);
 		}		
 		if(!bottom_card_ && cards_.Count > 0){
@@ -79,7 +79,7 @@ public class DeckScript : MonoBehaviour {
 		new_card.GetComponent<CardScript>().Prepare(card_id);
 		GameObject.Destroy(card);
 		if(cards_.Count == 1){
-			transform.FindChild("default").collider.enabled = false;
+			collider.enabled = false;
 			TakeCard(false);
 		}
 		return new_card;
@@ -97,6 +97,11 @@ public class DeckScript : MonoBehaviour {
 	void Update () {
 		transform.FindChild("default").localScale = new Vector3(1,Mathf.Max(2,cards_.Count) * CARD_THICKNESS_MULT,1);	
 		rigidbody.mass = Mathf.Max(1,cards_.Count) * DECK_MASS_PER_CARD;
+		if(top_card_ && bottom_card_){
+			var the_collider = GetComponent<BoxCollider>();
+			the_collider.center = (top_card_.transform.localPosition + bottom_card_.transform.localPosition) * 0.5f;
+			the_collider.extents = new Vector3(the_collider.extents.x,Vector3.Distance(top_card_.transform.position, bottom_card_.transform.position)*0.5f+0.1f,the_collider.extents.z);
+		}
 		/*if(Input.GetMouseButtonDown(0)){
 			var card = TakeTopCard();
 			if(card){
