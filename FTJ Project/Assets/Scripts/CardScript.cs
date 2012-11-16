@@ -17,4 +17,10 @@ public class CardScript : MonoBehaviour {
 			PrepareLocal(card_id);
 		}
 	}
+	
+	void OnCollisionEnter(Collision collision){
+		if(collision.collider.GetComponent<DeckScript>()){
+			ConsoleScript.Log("Card hit deck");
+		}
+	}
 }

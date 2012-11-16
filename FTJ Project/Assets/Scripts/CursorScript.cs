@@ -96,7 +96,7 @@ public class CursorScript : MonoBehaviour {
 				RaycastHit[] raycast_hits;
 				raycast_hits = Physics.RaycastAll(ray);
 				System.Array.Sort(raycast_hits, new RaycastHitComparator());
-				bool hit_deck = false;
+				int hit_deck_id = -1;
 				foreach(RaycastHit hit in raycast_hits){ 
 					var hit_obj = hit.collider.gameObject;
 					if(hit_obj.layer != LayerMask.NameToLayer("Dice") && 
@@ -110,8 +110,8 @@ public class CursorScript : MonoBehaviour {
 						hit_obj = hit_obj.transform.parent.gameObject;
 						grabbable_script = hit_obj.GetComponent<GrabbableScript>();
 					}
-					if(hit_obj.GetComponent<DeckScript>() && (deck_held_id_ == -1 || grabbable_script.id_ == deck_held_id_)){
-						hit_deck = true;
+					if(hit_obj.GetComponent<DeckScript>()){
+						hit_deck_id = grabbable_script.id_;
 					}
 					if(grabbable_script.held_by_player_ == id_){
 						continue;
@@ -132,7 +132,7 @@ public class CursorScript : MonoBehaviour {
 					}					
 					Grab(grabbable_script.id_, id_);
 				}
-				if(!hit_deck && deck_held_time_ > 0.0f){
+				if(hit_deck_id != deck_held_id_ && deck_held_time_ > 0.0f){
 					if(!Network.isServer){
 						networkView.RPC("TellObjectManagerAboutCardPeel",RPCMode.Server,deck_held_id_,id_);
 					} else {
