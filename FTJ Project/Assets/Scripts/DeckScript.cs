@@ -128,7 +128,9 @@ public class DeckScript : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		transform.FindChild("default").localScale = new Vector3(1,Mathf.Max(2,num_cards_) * CARD_THICKNESS_MULT,1);	
-		rigidbody.mass = Mathf.Max(1,num_cards_) * DECK_MASS_PER_CARD;
+		if(GetComponent<GrabbableScript>().held_by_player_ == -1){
+			rigidbody.mass = Mathf.Max(1,num_cards_) * DECK_MASS_PER_CARD;
+		}
 		if(top_card_ && bottom_card_){
 			var the_collider = GetComponent<BoxCollider>();
 			the_collider.center = (top_card_.transform.localPosition + bottom_card_.transform.localPosition) * 0.5f;

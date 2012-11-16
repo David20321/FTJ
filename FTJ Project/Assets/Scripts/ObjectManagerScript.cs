@@ -12,6 +12,7 @@ public class ObjectManagerScript : MonoBehaviour {
 	const float HOLD_ANGULAR_DAMPENING = 0.4f;
 	const float MAX_DICE_VEL = 15.0f;
 	const float DICE_ANG_SPEED = 300.0f;
+	const float DECK_MERGE_THRESHOLD = 0.4f;
 	int free_id = 0;
 	bool card_face_up = false;
 	int card_rotated = 0;
@@ -76,6 +77,7 @@ public class ObjectManagerScript : MonoBehaviour {
 						card_face_up = (grabbable.transform.up.y < 0.0f);
 						card_rotated = GetRotateFromGrabbable(grabbable);
 					}
+					grabbable.rigidbody.mass = 0.2f;
 				}
 			}
 		}
@@ -128,12 +130,14 @@ public class ObjectManagerScript : MonoBehaviour {
 		foreach(GameObject grabbable in grabbable_objects){
 			var grabbable_script = grabbable.GetComponent<GrabbableScript>();
 			if(grabbable_script.held_by_player_ == player_id){
+				grabbable.rigidbody.velocity = new Vector3(grabbable.rigidbody.velocity.x, -5.0f, grabbable.rigidbody.velocity.z);
 				if(grabbable.rigidbody.velocity.magnitude > MAX_DICE_VEL){
 					grabbable.rigidbody.velocity = grabbable.rigidbody.velocity.normalized * MAX_DICE_VEL;
 				}
 				if(grabbable.GetComponent<DiceScript>()){
 					grabbable.rigidbody.angularVelocity = new Vector3(Random.Range(-1.0f,1.0f),Random.Range(-1.0f,1.0f),Random.Range(-1.0f,1.0f)) * DICE_ANG_SPEED;			
 				}
+				grabbable.rigidbody.mass = 1.0f;
 				grabbable_script.held_by_player_ = -1;
 			}
 		}
@@ -241,8 +245,9 @@ public class ObjectManagerScript : MonoBehaviour {
 					if(holder){
 						var held_rigidbody = grabbable.rigidbody;
 						var target_position = holder.transform.position;
+						target_position.y += 0.5f;
 						if(grabbable.GetComponent<DeckScript>() || grabbable.GetComponent<CardScript>()){
-							target_position.y += 1.0f;
+							target_position.y += 0.5f;
 							Quaternion target_rotation = Quaternion.identity;
 							if(grabbable.GetComponent<DeckScript>()){
 								target_rotation = Quaternion.AngleAxis(180,new Vector3(0,1,0)) * target_rotation;
@@ -264,7 +269,7 @@ public class ObjectManagerScript : MonoBehaviour {
 							}
 							if(angle != 0.0f){
 								offset_vec3 *= angle;
-								held_rigidbody.AddTorque(offset_vec3 * Time.deltaTime * ANGULAR_FORCE);
+								held_rigidbody.AddTorque(offset_vec3 * Time.deltaTime * ANGULAR_FORCE * held_rigidbody.mass);
 							}
 						}
 						held_rigidbody.AddForce((target_position - held_rigidbody.position) * Time.deltaTime * HOLD_FORCE * held_rigidbody.mass);
@@ -291,7 +296,14 @@ public class ObjectManagerScript : MonoBehaviour {
 			return;
 		}
 		bool facing_same_way = Vector3.Dot(card.transform.up, deck.transform.up) <= 0.0;
-		if(card.GetComponent<GrabbableScript>().held_by_player_ == -1 && facing_same_way){
+		var rel_pos = card.transform.position - deck.transform.position;
+		bool close_enough = false;
+		if(Mathf.Abs(Vector3.Dot(rel_pos, deck.transform.forward)) < DECK_MERGE_THRESHOLD && 
+		   Mathf.Abs(Vector3.Dot(rel_pos, deck.transform.right)) < DECK_MERGE_THRESHOLD)
+	    {
+			close_enough = true;
+		}
+		if(card.GetComponent<GrabbableScript>().held_by_player_ == -1 && facing_same_way && close_enough){
 			bool top = Vector3.Dot(card.transform.position - deck.transform.position, deck.transform.up) >= 0.0;
 			deck.GetComponent<DeckScript>().AddCard(top, card.GetComponent<CardScript>().card_id());
 			card.GetComponent<CardScript>().SetCardID(-1);
