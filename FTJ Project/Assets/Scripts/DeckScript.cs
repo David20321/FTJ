@@ -36,7 +36,7 @@ public class DeckScript : MonoBehaviour {
 	}
 	
 	GameObject CreateCardFacade(int card_id, Vector3 pos, Quaternion rot){
-		var card = (GameObject)Network.Instantiate(card_facade_prefab, pos, rot,0);
+		var card = (GameObject)GameObject.Instantiate(card_facade_prefab, pos, rot);
 		card.transform.parent = transform;
 		var card_script = card.GetComponent<CardScript>();
 		card_script.Prepare(card_id);
@@ -74,7 +74,7 @@ public class DeckScript : MonoBehaviour {
 		}
 		RegenerateEndCards();
 		
-		var new_card = (GameObject)GameObject.Instantiate(card_prefab, card.transform.position, card.transform.rotation);
+		var new_card = (GameObject)Network.Instantiate(card_prefab, card.transform.position, card.transform.rotation, 0);
 		new_card.GetComponent<CardScript>().Prepare(card_id);
 		GameObject.Destroy(card);
 		if(cards_.Count == 1){
