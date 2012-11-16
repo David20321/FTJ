@@ -56,8 +56,10 @@
      <Compile Include="Assets\Scripts\DeckScript.cs" />
      <Compile Include="Assets\Scripts\DiceScript.cs" />
      <Compile Include="Assets\Scripts\DrawEmptyScript.cs" />
+     <Compile Include="Assets\Scripts\DrawSpawnerScript.cs" />
      <Compile Include="Assets\Scripts\GrabbableScript.cs" />
      <Compile Include="Assets\Scripts\JSONTest.cs" />
+     <Compile Include="Assets\Scripts\MainCameraScript.cs" />
      <Compile Include="Assets\Scripts\MiniJSON.cs" />
      <Compile Include="Assets\Scripts\Net.cs" />
      <Compile Include="Assets\Scripts\NetEventScript.cs" />

@@ -1,17 +1,11 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\NetUIScript.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\BoardScript.cs">
     <Files>
-      <File FileName="Assets\Text Data\cards.txt" Line="281" Column="19" />
-      <File FileName="Assets\Scripts\CardManagerScript.cs" Line="24" Column="1" />
-      <File FileName="Assets\Scripts\CardBakeScript.cs" Line="21" Column="42" />
-      <File FileName="Assets\Scripts\DeckScript.cs" Line="76" Column="3" />
-      <File FileName="Assets\Scripts\ObjectManagerScript.cs" Line="32" Column="29" />
-      <File FileName="Assets\Scripts\CursorScript.cs" Line="66" Column="64" />
-      <File FileName="Assets\Scripts\GrabbableScript.cs" Line="16" Column="4" />
-      <File FileName="Assets\Scripts\CardScript.cs" Line="17" Column="26" />
-      <File FileName="Assets\Scripts\DiceScript.cs" Line="16" Column="66" />
-      <File FileName="Assets\Scripts\NetUIScript.cs" Line="12" Column="51" />
+      <File FileName="Assets\Scripts\MainCameraScript.cs" Line="14" Column="28" />
+      <File FileName="Assets\Scripts\CardManagerScript.cs" Line="84" Column="1" />
+      <File FileName="Assets\Text Data\cards.txt" Line="96" Column="17" />
+      <File FileName="Assets\Scripts\BoardScript.cs" Line="21" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

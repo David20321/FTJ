@@ -17,8 +17,11 @@ public class BoardScript : MonoBehaviour {
 			GameObject token_object = (GameObject)Network.Instantiate(token_prefabs[Random.Range(0,token_prefabs.Length)], child.position, Quaternion.identity, 0);
 			token_object.renderer.material.color = new Color(Random.Range(0.0f,1.0f),Random.Range(0.0f,1.0f),Random.Range(0.0f,1.0f));
 		}
-		Transform deck_spawn = transform.Find("deck_spawn");
-		GameObject deck_object = (GameObject)Network.Instantiate(deck_prefab, deck_spawn.transform.position, deck_spawn.transform.rotation, 0);
+		Transform deck_spawns = transform.Find("DeckSpawns");
+		foreach(Transform child in deck_spawns.transform){
+			GameObject deck_object = (GameObject)Network.Instantiate(deck_prefab, child.position, child.rotation, 0);
+			deck_object.GetComponent<DeckScript>().deck_name = child.name;
+		}	
 	}
 	
 	void Start () {
