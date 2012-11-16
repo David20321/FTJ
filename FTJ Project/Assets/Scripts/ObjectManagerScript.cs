@@ -277,6 +277,9 @@ public class ObjectManagerScript : MonoBehaviour {
 				}
 				grabbable.GetComponent<DiceScript>().ShakeSound();
 			}
+			if(grabbable.GetComponent<DeckScript>()){
+				grabbable.GetComponent<DeckScript>().Shuffle();
+			}
 		}
 		held_rigidbody.AddForce((target_position - held_rigidbody.position) * Time.deltaTime * HOLD_FORCE * held_rigidbody.mass);
 		held_rigidbody.velocity *= HOLD_LINEAR_DAMPENING;			

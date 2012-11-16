@@ -17,6 +17,42 @@ public class DeckScript : MonoBehaviour {
 	const float ORIGINAL_SCALE = 1.0f;
 	const float DECK_MASS_PER_CARD = 0.3f;
 	
+	public AudioClip[] shuffle_sound;
+	public AudioClip[] impact_sound;
+	float last_sound_time = 0.0f;
+	float last_shuffle_time = 0.0f;
+	const float PHYSICS_SOUND_DELAY = 0.1f;
+	const float SHUFFLE_DELAY = 0.6f;
+	
+	void PlayRandomSound(AudioClip[] clips, float volume){
+		audio.PlayOneShot(clips[Random.Range(0,clips.Length)], volume);
+	}	
+	
+	public void Shuffle(){
+		if(Time.time < last_shuffle_time + SHUFFLE_DELAY){
+			return;
+		}
+		last_shuffle_time = Time.time;
+		PlayRandomSound(shuffle_sound, 1.0f);
+		List<int> new_card_list = new List<int>();
+		while(cards_.Count > 0){
+			int rand_card = Random.Range(0,cards_.Count);
+			new_card_list.Add (cards_[rand_card]);
+			cards_.RemoveAt(rand_card);
+		}
+		cards_ = new_card_list;
+		RegenerateEndCardIDs();
+		RegenerateEndCards();
+	}
+	
+	void OnCollisionEnter(Collision info) {
+		if(info.relativeVelocity.magnitude > 1.0f && Time.time > last_sound_time + PHYSICS_SOUND_DELAY) { 
+			float volume = info.relativeVelocity.magnitude*0.1f;
+			PlayRandomSound(impact_sound, volume*0.3f);
+			last_sound_time = Time.time;
+		}	
+	}
+	
 	// Use this for initialization
 	void Start () {
 	}
