@@ -20,7 +20,7 @@ public class BoardScript : MonoBehaviour {
 		Transform deck_spawns = transform.Find("DeckSpawns");
 		foreach(Transform child in deck_spawns.transform){
 			GameObject deck_object = (GameObject)Network.Instantiate(deck_prefab, child.position, child.rotation, 0);
-			deck_object.GetComponent<DeckScript>().deck_name = child.name;
+			deck_object.GetComponent<DeckScript>().Fill(child.name);
 		}	
 	}
 	

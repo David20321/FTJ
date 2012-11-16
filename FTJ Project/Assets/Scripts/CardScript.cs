@@ -24,6 +24,9 @@ public class CardScript : MonoBehaviour {
 	public int card_id(){
 		return card_id_;
 	}
+	public void SetCardID(int id){
+		card_id_ = id;
+	}
 		
 	void OnCollisionEnter(Collision collision){
 		if(Network.isServer){

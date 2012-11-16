@@ -12,6 +12,8 @@ public class ObjectManagerScript : MonoBehaviour {
 	const float MAX_DICE_VEL = 15.0f;
 	const float DICE_ANG_SPEED = 300.0f;
 	int free_id = 0;
+	bool card_face_up = false;
+	int card_rotated = 0;
 	
 	public void RegisterBoardObject(GameObject obj){
 		board_object = obj;
@@ -19,6 +21,25 @@ public class ObjectManagerScript : MonoBehaviour {
 	
 	public void UnRegisterBoardObject(){
 		board_object = null;
+	}
+	
+	int GetRotateFromGrabbable(GameObject grabbable){
+		var forward = grabbable.transform.forward;
+		if(grabbable.GetComponent<CardScript>()){
+			forward *= -1.0f;
+		}
+		float ang = Mathf.Atan2(forward.z, -forward.x)*180.0f/Mathf.PI;
+		int rotate = -1;
+		if(ang >=-45.0f && ang < 45.0f){
+			rotate = 1;
+		} else if(ang >= 45.0f && ang < 135.0f){
+			rotate = 2;
+		} else if(ang >= -135.0f && ang < -45.0f){
+			rotate = 0;
+		} else {
+			rotate = 3;
+		}
+		return rotate;
 	}
 	
 	public void ClientGrab(int grabbed_id, int player_id){
@@ -46,6 +67,14 @@ public class ObjectManagerScript : MonoBehaviour {
 			    {
 					grabbable_script.held_by_player_ = player_id;
 					ConsoleScript.Log ("Object "+grabbed_id+" is now held by Player "+player_id);
+					if(grabbable.GetComponent<DeckScript>()){
+						card_face_up = (grabbable.transform.up.y > 0.0f);
+						card_rotated = GetRotateFromGrabbable(grabbable);
+					}
+					if(grabbable.GetComponent<CardScript>()){
+						card_face_up = (grabbable.transform.up.y < 0.0f);
+						card_rotated = GetRotateFromGrabbable(grabbable);
+					}
 				}
 			}
 		}
@@ -80,6 +109,8 @@ public class ObjectManagerScript : MonoBehaviour {
 			card = deck.GetComponent<DeckScript>().TakeBottomCard();
 		}
 		card.GetComponent<GrabbableScript>().held_by_player_ = player_id;
+		card_face_up = (card.transform.up.y < 0.0f);
+		card_rotated = GetRotateFromGrabbable(card);
 	}
 	
 	public GameObject GetMyCursorObject() {
@@ -183,6 +214,15 @@ public class ObjectManagerScript : MonoBehaviour {
 	
 	void Update () {
 		AssignTokenColors();
+		if(Input.GetKeyDown("f")){
+			card_face_up = !card_face_up;
+		}
+		if(Input.GetKeyDown("r")){
+			card_rotated = (card_rotated+1)%4;
+		}
+		if(Input.GetKeyDown("e")){
+			card_rotated = (card_rotated+3)%4;
+		}
 	}
 	
 	void FixedUpdate() {
@@ -204,8 +244,13 @@ public class ObjectManagerScript : MonoBehaviour {
 							target_position.y += 1.0f;
 							Quaternion target_rotation = Quaternion.identity;
 							if(grabbable.GetComponent<DeckScript>()){
-								target_rotation = Quaternion.Euler(0,180,180);
+								target_rotation = Quaternion.AngleAxis(180,new Vector3(0,1,0)) * target_rotation;
+								target_rotation = Quaternion.AngleAxis(180,new Vector3(0,0,1)) * target_rotation;
 							}
+							if(card_face_up){
+								target_rotation = Quaternion.AngleAxis(180,new Vector3(0,0,1))*target_rotation;
+							}
+							target_rotation = Quaternion.AngleAxis(card_rotated * 90, new Vector3(0,1,0)) * target_rotation;
 							Quaternion offset = target_rotation * Quaternion.Inverse(held_rigidbody.rotation);
 							float angle;
 							Vector3 offset_vec3;
@@ -241,13 +286,15 @@ public class ObjectManagerScript : MonoBehaviour {
 	}
 	
 	public void NotifyCardHitDeck(GameObject card, GameObject deck){
-		Debug.Log("Card forward: "+card.transform.up);
-		Debug.Log("Deck forward: "+deck.transform.up);
+		if(card.GetComponent<CardScript>().card_id() == -1){
+			return;
+		}
 		bool facing_same_way = Vector3.Dot(card.transform.up, deck.transform.up) <= 0.0;
 		if(card.GetComponent<GrabbableScript>().held_by_player_ == -1 && facing_same_way){
-			networkView.RPC("DestroyObject",RPCMode.AllBuffered,card.networkView.viewID);
 			bool top = Vector3.Dot(card.transform.position - deck.transform.position, deck.transform.up) >= 0.0;
 			deck.GetComponent<DeckScript>().AddCard(top, card.GetComponent<CardScript>().card_id());
+			card.GetComponent<CardScript>().SetCardID(-1);
+			networkView.RPC("DestroyObject",RPCMode.AllBuffered,card.networkView.viewID);
 		}
 	}
 }

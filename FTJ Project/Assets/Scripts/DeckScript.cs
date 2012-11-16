@@ -7,7 +7,6 @@ using MiniJSON;
 public class DeckScript : MonoBehaviour {
 	public GameObject card_prefab;
 	public GameObject card_facade_prefab;
-	public string deck_name;
 	List<int> cards_;
 	int top_card_id_;
 	int bottom_card_id_;
@@ -20,12 +19,13 @@ public class DeckScript : MonoBehaviour {
 	
 	// Use this for initialization
 	void Start () {
-		if(Network.isServer){
-			cards_ = new List<int>(CardManagerScript.Instance().GetDeckCards(deck_name));
-			num_cards_ = cards_.Count;
-			RegenerateEndCardIDs();
-			RegenerateEndCards();
-		}
+	}
+	
+	public void Fill(string deck_name){
+		cards_ = new List<int>(CardManagerScript.Instance().GetDeckCards(deck_name));
+		num_cards_ = cards_.Count;
+		RegenerateEndCardIDs();
+		RegenerateEndCards();
 	}
 	
 	void RegenerateEndCardIDs() {
