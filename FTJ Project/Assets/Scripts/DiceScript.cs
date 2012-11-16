@@ -16,6 +16,10 @@ public class DiceScript : MonoBehaviour {
 		audio.PlayOneShot(clips[Random.Range(0,clips.Length)], volume);
 	}		
 	
+	public void ShakeSound(){
+		PlayRandomSound(dice_impact_dice, DICE_DICE_SOUND_MULT*0.1f);
+	}
+	
 	void OnCollisionEnter(Collision info) {
 		if(info.relativeVelocity.magnitude > 1.0f && Time.time > last_sound_time + PHYSICS_SOUND_DELAY) { 
 			float volume = info.relativeVelocity.magnitude*0.1f;

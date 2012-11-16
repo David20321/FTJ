@@ -13,6 +13,7 @@ public class ObjectManagerScript : MonoBehaviour {
 	const float MAX_DICE_VEL = 15.0f;
 	const float DICE_ANG_SPEED = 300.0f;
 	const float DECK_MERGE_THRESHOLD = 0.4f;
+	const float SHAKE_THRESHOLD = 1.0f;
 	int free_id = 0;
 	bool card_face_up = false;
 	int card_rotated = 0;
@@ -272,9 +273,18 @@ public class ObjectManagerScript : MonoBehaviour {
 								held_rigidbody.AddTorque(offset_vec3 * Time.deltaTime * ANGULAR_FORCE * held_rigidbody.mass);
 							}
 						}
+						if(Vector3.Dot(target_position - held_rigidbody.position, held_rigidbody.velocity) < -SHAKE_THRESHOLD){
+							//ConsoleScript.Log("Shake");
+							if(grabbable.GetComponent<DiceScript>()){
+								for(int i=0; i<10; ++i){
+									held_rigidbody.rotation = Quaternion.AngleAxis(Random.Range(0.0f,360.0f),new Vector3(Random.Range(-1.0f,1.0f),Random.Range(-1.0f,1.0f),Random.Range(-1.0f,1.0f)).normalized) * held_rigidbody.rotation;
+								}
+								grabbable.GetComponent<DiceScript>().ShakeSound();
+							}
+						}
 						held_rigidbody.AddForce((target_position - held_rigidbody.position) * Time.deltaTime * HOLD_FORCE * held_rigidbody.mass);
 						held_rigidbody.velocity *= HOLD_LINEAR_DAMPENING;			
-						held_rigidbody.angularVelocity *= HOLD_ANGULAR_DAMPENING;			
+						held_rigidbody.angularVelocity *= HOLD_ANGULAR_DAMPENING;	
 						held_rigidbody.WakeUp();
 					} else {
 						ConsoleScript.Log("Could not find cursor for player: "+held_by_player);
