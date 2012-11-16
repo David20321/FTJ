@@ -20,10 +20,12 @@ public class DeckScript : MonoBehaviour {
 	
 	// Use this for initialization
 	void Start () {
-		cards_ = new List<int>(CardManagerScript.Instance().GetDeckCards(deck_name));
-		num_cards_ = cards_.Count;
-		RegenerateEndCardIDs();
-		RegenerateEndCards();
+		if(Network.isServer){
+			cards_ = new List<int>(CardManagerScript.Instance().GetDeckCards(deck_name));
+			num_cards_ = cards_.Count;
+			RegenerateEndCardIDs();
+			RegenerateEndCards();
+		}
 	}
 	
 	void RegenerateEndCardIDs() {
@@ -153,7 +155,6 @@ public class DeckScript : MonoBehaviour {
 			int num_cards = -1;
 			stream.Serialize(ref num_cards);
 			num_cards_ = num_cards;
-			RegenerateEndCardIDs();
 			RegenerateEndCards();
 		}
 	}	
