@@ -56,6 +56,22 @@ public class ObjectManagerScript : MonoBehaviour {
 		}
 	}
 	
+	
+	public void ClientCardPeel(int grabbed_id, int player_id){
+		GameObject deck = null;
+		foreach(GameObject grabbable in grabbable_objects){
+			if(grabbable.GetComponent<GrabbableScript>().id_ == grabbed_id &&
+			   grabbable.GetComponent<DeckScript>())
+		    {
+		   		deck = grabbable;
+		    }
+		}
+		if(deck){
+			var card = deck.GetComponent<DeckScript>().TakeTopCard();
+			card.GetComponent<GrabbableScript>().held_by_player_ = player_id;
+		}
+	}
+	
 	public GameObject GetMyCursorObject() {
 		foreach(var cursor in cursor_objects){
 			if(cursor.GetComponent<CursorScript>().id() == Net.GetMyID()){ 

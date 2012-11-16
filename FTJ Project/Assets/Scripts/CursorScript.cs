@@ -19,6 +19,9 @@ public class RaycastHitComparator : IComparer
 
 public class CursorScript : MonoBehaviour {
 	int id_ = -1;
+	float deck_held_time_ = 0.0f;
+	int deck_held_id_ = -1;
+	const float DECK_HOLD_THRESHOLD = 0.5f;
 	
 	public int id() {
 		return id_;
@@ -49,13 +52,26 @@ public class CursorScript : MonoBehaviour {
 	}
 		
 	[RPC]
-	public void TellObjectManagerAboutGrab(int grab_id, int player_id){
+	public static void TellObjectManagerAboutGrab(int grab_id, int player_id){
 		ObjectManagerScript.Instance().ClientGrab(grab_id, player_id);
 	}
 	
 	[RPC]
-	public void TellObjectManagerAboutMouseRelease(int player_id){
+	public static void TellObjectManagerAboutCardPeel(int grab_id, int player_id){
+		ObjectManagerScript.Instance().ClientCardPeel(grab_id, player_id);
+	}
+	
+	[RPC]
+	public static void TellObjectManagerAboutMouseRelease(int player_id){
 		ObjectManagerScript.Instance().ClientReleasedMouse(player_id);
+	}
+	
+	void Grab(int grab_id, int player_id){
+		if(!Network.isServer){
+			networkView.RPC("TellObjectManagerAboutGrab",RPCMode.Server,grab_id,player_id);
+		} else {
+			TellObjectManagerAboutGrab(grab_id, player_id);
+		}
 	}
 	
 	void Update () {
@@ -79,6 +95,7 @@ public class CursorScript : MonoBehaviour {
 				RaycastHit[] raycast_hits;
 				raycast_hits = Physics.RaycastAll(ray);
 				System.Array.Sort(raycast_hits, new RaycastHitComparator());
+				bool hit_deck = false;
 				foreach(RaycastHit hit in raycast_hits){ 
 					var hit_obj = hit.collider.gameObject;
 					if(hit_obj.layer != LayerMask.NameToLayer("Dice") && 
@@ -89,19 +106,38 @@ public class CursorScript : MonoBehaviour {
 					}
 					GrabbableScript grabbable_script = hit_obj.GetComponent<GrabbableScript>();
 					if(!grabbable_script){
-						grabbable_script = hit_obj.transform.parent.GetComponent<GrabbableScript>();
+						hit_obj = hit_obj.transform.parent.gameObject;
+						grabbable_script = hit_obj.GetComponent<GrabbableScript>();
+						if(hit_obj.GetComponent<DeckScript>() && grabbable_script.id_ == deck_held_id_){
+							hit_deck = true;
+						}
 					}
 					if(grabbable_script.held_by_player_ == id_){
 						continue;
 					}
-					if(hit_obj.GetComponent<TokenScript>() && !Input.GetMouseButtonDown(0)){
+					if(hit_obj.GetComponent<DeckScript>() && deck_held_time_ > 0.0f && grabbable_script.id_ == deck_held_id_){
+						deck_held_time_ += Time.deltaTime;
+						if(deck_held_time_ > DECK_HOLD_THRESHOLD){
+							Grab(grabbable_script.id_, id_);
+						}
+					}
+					if(!hit_obj.GetComponent<DiceScript>() && !Input.GetMouseButtonDown(0)){
 						continue;
 					}
+					if(hit_obj.GetComponent<DeckScript>()){
+						deck_held_time_ = Time.deltaTime;
+						deck_held_id_ = grabbable_script.id_;
+						continue;
+					}					
+					Grab(grabbable_script.id_, id_);
+				}
+				if(!hit_deck && deck_held_time_ > 0.0f){
 					if(!Network.isServer){
-						networkView.RPC("TellObjectManagerAboutGrab",RPCMode.Server,grabbable_script.id_,id_);
+						networkView.RPC("TellObjectManagerAboutCardPeel",RPCMode.Server,deck_held_id_,id_);
 					} else {
-						TellObjectManagerAboutGrab(grabbable_script.id_, id_);
+						TellObjectManagerAboutCardPeel(deck_held_id_,id_);
 					}
+					deck_held_time_ = 0.0f;
 				}
 			}
 			if(Input.GetMouseButtonUp(0)){
@@ -110,6 +146,7 @@ public class CursorScript : MonoBehaviour {
 				} else {
 					TellObjectManagerAboutMouseRelease(id_);
 				}
+				deck_held_time_ = 0.0f;
 			}
 			rigidbody.position = pos;
 			transform.position = pos;
