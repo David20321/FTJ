@@ -6,8 +6,9 @@ using MiniJSON;
 
 public class DeckScript : MonoBehaviour {
 	public GameObject card_prefab;
+	public GameObject card_facade_prefab;
 	public string deck_name;
-	List<int> cards_ = new List<int>();
+	List<int> cards_;
 	GameObject top_card_ = null;
 	GameObject bottom_card_ = null;
 	const float CARD_THICKNESS_MULT = 0.04f;
@@ -16,7 +17,7 @@ public class DeckScript : MonoBehaviour {
 	
 	// Use this for initialization
 	void Start () {
-		cards_ = CardManagerScript.Instance().GetDeckCards(deck_name);
+		cards_ = new List<int>(CardManagerScript.Instance().GetDeckCards(deck_name));
 		RegenerateEndCards();
 	}
 	
@@ -25,20 +26,18 @@ public class DeckScript : MonoBehaviour {
 			var pos = transform.FindChild("bottom_card").transform.position;
 			var rot = transform.FindChild("bottom_card").transform.rotation;
 			pos += transform.rotation * new Vector3(0,(cards_.Count*0.013f+0.1f)*transform.localScale.y,0);
-			top_card_ = CreateCard(cards_[0],pos,rot);
+			top_card_ = CreateCardFacade(cards_[0],pos,rot);
 		}		
 		if(!bottom_card_ && cards_.Count > 0){
 			var pos = transform.FindChild("bottom_card").transform.position;
 			var rot = transform.FindChild("bottom_card").transform.rotation;
-			bottom_card_ = CreateCard(cards_[cards_.Count-1],pos,rot);
+			bottom_card_ = CreateCardFacade(cards_[cards_.Count-1],pos,rot);
 		}
 	}
 	
-	GameObject CreateCard(int card_id, Vector3 pos, Quaternion rot){
-		var card = (GameObject)Network.Instantiate(card_prefab, pos, rot,0);
+	GameObject CreateCardFacade(int card_id, Vector3 pos, Quaternion rot){
+		var card = (GameObject)Network.Instantiate(card_facade_prefab, pos, rot,0);
 		card.transform.parent = transform;
-		GameObject.Destroy(card.rigidbody);
-		card.collider.enabled = false;
 		var card_script = card.GetComponent<CardScript>();
 		card_script.Prepare(card_id);
 		card.transform.localScale = new Vector3(1,1,1);
