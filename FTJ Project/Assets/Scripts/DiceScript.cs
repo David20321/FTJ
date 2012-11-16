@@ -5,6 +5,7 @@ public class DiceScript : MonoBehaviour {
 	public AudioClip[] dice_impact_wood;
 	public AudioClip[] dice_impact_board;
 	public AudioClip[] dice_impact_dice;
+	public AudioClip[] dice_pick_up;
 	float last_sound_time = 0.0f;
 	const float PHYSICS_SOUND_DELAY = 0.1f;
 	const float DICE_GLOBAL_SOUND_MULT = 0.3f;
@@ -17,7 +18,11 @@ public class DiceScript : MonoBehaviour {
 	}		
 	
 	public void ShakeSound(){
-		PlayRandomSound(dice_impact_dice, DICE_DICE_SOUND_MULT*0.1f);
+		PlayRandomSound(dice_impact_dice, DICE_DICE_SOUND_MULT*0.05f);
+	}
+	
+	public void PickUpSound() {
+		PlayRandomSound(dice_pick_up, 0.1f);
 	}
 	
 	void OnCollisionEnter(Collision info) {

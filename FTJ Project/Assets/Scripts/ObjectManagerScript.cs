@@ -71,6 +71,9 @@ public class ObjectManagerScript : MonoBehaviour {
 			    {
 					grabbable_script.held_by_player_ = player_id;
 					ConsoleScript.Log ("Object "+grabbed_id+" is now held by Player "+player_id);
+					if(grabbable.GetComponent<DiceScript>()){
+						grabbable.GetComponent<DiceScript>().PickUpSound();
+					}
 					if(grabbable.GetComponent<DeckScript>()){
 						card_face_up = (grabbable.transform.up.y > 0.0f);
 						card_rotated = GetRotateFromGrabbable(grabbable);

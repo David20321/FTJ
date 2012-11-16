@@ -33,7 +33,7 @@ public class DeckScript : MonoBehaviour {
 			return;
 		}
 		last_shuffle_time = Time.time;
-		PlayRandomSound(shuffle_sound, 1.0f);
+		PlayRandomSound(shuffle_sound, 0.5f);
 		List<int> new_card_list = new List<int>();
 		while(cards_.Count > 0){
 			int rand_card = Random.Range(0,cards_.Count);
