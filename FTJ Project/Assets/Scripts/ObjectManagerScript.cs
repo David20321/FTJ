@@ -6,9 +6,10 @@ public class ObjectManagerScript : MonoBehaviour {
 	List<GameObject> grabbable_objects = new List<GameObject>();	
 	List<GameObject> cursor_objects = new List<GameObject>();
 	GameObject board_object = null;
-	const float HOLD_FORCE = 10000.0f;
-	const float HOLD_LINEAR_DAMPENING = 0.8f;
-	const float HOLD_ANGULAR_DAMPENING = 0.9f;
+	const float HOLD_FORCE = 20000.0f;
+	const float ANGULAR_FORCE = 400.0f;
+	const float HOLD_LINEAR_DAMPENING = 0.4f;
+	const float HOLD_ANGULAR_DAMPENING = 0.4f;
 	const float MAX_DICE_VEL = 15.0f;
 	const float DICE_ANG_SPEED = 300.0f;
 	int free_id = 0;
@@ -263,7 +264,7 @@ public class ObjectManagerScript : MonoBehaviour {
 							}
 							if(angle != 0.0f){
 								offset_vec3 *= angle;
-								held_rigidbody.AddTorque(offset_vec3 * Time.deltaTime * 100.0f);
+								held_rigidbody.AddTorque(offset_vec3 * Time.deltaTime * ANGULAR_FORCE);
 							}
 						}
 						held_rigidbody.AddForce((target_position - held_rigidbody.position) * Time.deltaTime * HOLD_FORCE * held_rigidbody.mass);
