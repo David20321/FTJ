@@ -108,9 +108,9 @@ public class CursorScript : MonoBehaviour {
 					if(!grabbable_script){
 						hit_obj = hit_obj.transform.parent.gameObject;
 						grabbable_script = hit_obj.GetComponent<GrabbableScript>();
-						if(hit_obj.GetComponent<DeckScript>() && grabbable_script.id_ == deck_held_id_){
-							hit_deck = true;
-						}
+					}
+					if(hit_obj.GetComponent<DeckScript>() && (deck_held_id_ == -1 || grabbable_script.id_ == deck_held_id_)){
+						hit_deck = true;
 					}
 					if(grabbable_script.held_by_player_ == id_){
 						continue;
@@ -132,6 +132,7 @@ public class CursorScript : MonoBehaviour {
 					Grab(grabbable_script.id_, id_);
 				}
 				if(!hit_deck && deck_held_time_ > 0.0f){
+					ConsoleScript.Log ("Peeling card");
 					if(!Network.isServer){
 						networkView.RPC("TellObjectManagerAboutCardPeel",RPCMode.Server,deck_held_id_,id_);
 					} else {
