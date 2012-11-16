@@ -92,6 +92,7 @@ public class ObjectManagerScript : MonoBehaviour {
 	}
 	
 	public void ClientReleasedMouse(int player_id){
+		ConsoleScript.Log ("Released mouse");
 		foreach(GameObject grabbable in grabbable_objects){
 			var grabbable_script = grabbable.GetComponent<GrabbableScript>();
 			if(grabbable_script.held_by_player_ == player_id){

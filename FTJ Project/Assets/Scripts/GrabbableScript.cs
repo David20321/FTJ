@@ -5,12 +5,14 @@ public class GrabbableScript : MonoBehaviour {
 	public int id_;
 	public int held_by_player_;
 	
+	void Awake () {
+		if(Network.isServer){
+			held_by_player_ = -1;
+		}
+	}
 	void Start () {
 		if(ObjectManagerScript.Instance()){
 			ObjectManagerScript.Instance().RegisterGrabbableObject(gameObject);
-		}
-		if(Network.isServer){
-			held_by_player_ = -1;
 		}
 	}
 	

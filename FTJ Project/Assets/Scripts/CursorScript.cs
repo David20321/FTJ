@@ -132,7 +132,6 @@ public class CursorScript : MonoBehaviour {
 					Grab(grabbable_script.id_, id_);
 				}
 				if(!hit_deck && deck_held_time_ > 0.0f){
-					ConsoleScript.Log ("Peeling card");
 					if(!Network.isServer){
 						networkView.RPC("TellObjectManagerAboutCardPeel",RPCMode.Server,deck_held_id_,id_);
 					} else {
