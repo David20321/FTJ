@@ -17,6 +17,7 @@ public class ObjectManagerScript : MonoBehaviour {
 	int free_id = 0;
 	bool card_face_up = false;
 	int card_rotated = 0;
+	bool tapping = false;
 	
 	public void RegisterBoardObject(GameObject obj){
 		board_object = obj;
@@ -229,6 +230,58 @@ public class ObjectManagerScript : MonoBehaviour {
 		if(Input.GetKeyDown("e")){
 			card_rotated = (card_rotated+3)%4;
 		}
+		tapping = Input.GetKey ("t");
+	}
+	
+	void UpdatePhysicsState(GameObject grabbable, GameObject holder){
+		var held_rigidbody = grabbable.rigidbody;
+		var target_position = holder.transform.position;
+		if(!tapping){
+			target_position.y += 0.5f;
+		} else {
+			target_position.y -= 1.3f;
+		}
+		if(grabbable.GetComponent<DeckScript>() || grabbable.GetComponent<CardScript>()){
+			target_position.y += 0.5f;
+			Quaternion target_rotation = Quaternion.identity;
+			if(grabbable.GetComponent<DeckScript>() || grabbable.GetComponent<CardScript>()){
+				if(grabbable.GetComponent<DeckScript>()){
+					target_rotation = Quaternion.AngleAxis(180,new Vector3(0,1,0)) * target_rotation;
+					target_rotation = Quaternion.AngleAxis(180,new Vector3(0,0,1)) * target_rotation;
+				}
+				if(card_face_up){
+					target_rotation = Quaternion.AngleAxis(180,new Vector3(0,0,1))*target_rotation;
+				}
+				target_rotation = Quaternion.AngleAxis(card_rotated * 90, new Vector3(0,1,0)) * target_rotation;
+			}
+			Quaternion offset = target_rotation * Quaternion.Inverse(held_rigidbody.rotation);
+			float angle;
+			Vector3 offset_vec3;
+			offset.ToAngleAxis(out angle, out offset_vec3);
+			if(angle > 180){
+				angle -= 360;
+			}
+			if(angle < -180){
+				angle += 360;
+			}
+			if(angle != 0.0f){
+				offset_vec3 *= angle;
+				held_rigidbody.AddTorque(offset_vec3 * Time.deltaTime * ANGULAR_FORCE * held_rigidbody.mass);
+			}
+		}
+		if(!tapping && Vector3.Dot(target_position - held_rigidbody.position, held_rigidbody.velocity) < -SHAKE_THRESHOLD){
+			//ConsoleScript.Log("Shake");
+			if(grabbable.GetComponent<DiceScript>()){
+				for(int i=0; i<10; ++i){
+					held_rigidbody.rotation = Quaternion.AngleAxis(Random.Range(0.0f,360.0f),new Vector3(Random.Range(-1.0f,1.0f),Random.Range(-1.0f,1.0f),Random.Range(-1.0f,1.0f)).normalized) * held_rigidbody.rotation;
+				}
+				grabbable.GetComponent<DiceScript>().ShakeSound();
+			}
+		}
+		held_rigidbody.AddForce((target_position - held_rigidbody.position) * Time.deltaTime * HOLD_FORCE * held_rigidbody.mass);
+		held_rigidbody.velocity *= HOLD_LINEAR_DAMPENING;			
+		held_rigidbody.angularVelocity *= HOLD_ANGULAR_DAMPENING;	
+		held_rigidbody.WakeUp();
 	}
 	
 	void FixedUpdate() {
@@ -244,48 +297,7 @@ public class ObjectManagerScript : MonoBehaviour {
 						}
 					}
 					if(holder){
-						var held_rigidbody = grabbable.rigidbody;
-						var target_position = holder.transform.position;
-						target_position.y += 0.5f;
-						if(grabbable.GetComponent<DeckScript>() || grabbable.GetComponent<CardScript>()){
-							target_position.y += 0.5f;
-							Quaternion target_rotation = Quaternion.identity;
-							if(grabbable.GetComponent<DeckScript>()){
-								target_rotation = Quaternion.AngleAxis(180,new Vector3(0,1,0)) * target_rotation;
-								target_rotation = Quaternion.AngleAxis(180,new Vector3(0,0,1)) * target_rotation;
-							}
-							if(card_face_up){
-								target_rotation = Quaternion.AngleAxis(180,new Vector3(0,0,1))*target_rotation;
-							}
-							target_rotation = Quaternion.AngleAxis(card_rotated * 90, new Vector3(0,1,0)) * target_rotation;
-							Quaternion offset = target_rotation * Quaternion.Inverse(held_rigidbody.rotation);
-							float angle;
-							Vector3 offset_vec3;
-							offset.ToAngleAxis(out angle, out offset_vec3);
-							if(angle > 180){
-								angle -= 360;
-							}
-							if(angle < -180){
-								angle += 360;
-							}
-							if(angle != 0.0f){
-								offset_vec3 *= angle;
-								held_rigidbody.AddTorque(offset_vec3 * Time.deltaTime * ANGULAR_FORCE * held_rigidbody.mass);
-							}
-						}
-						if(Vector3.Dot(target_position - held_rigidbody.position, held_rigidbody.velocity) < -SHAKE_THRESHOLD){
-							//ConsoleScript.Log("Shake");
-							if(grabbable.GetComponent<DiceScript>()){
-								for(int i=0; i<10; ++i){
-									held_rigidbody.rotation = Quaternion.AngleAxis(Random.Range(0.0f,360.0f),new Vector3(Random.Range(-1.0f,1.0f),Random.Range(-1.0f,1.0f),Random.Range(-1.0f,1.0f)).normalized) * held_rigidbody.rotation;
-								}
-								grabbable.GetComponent<DiceScript>().ShakeSound();
-							}
-						}
-						held_rigidbody.AddForce((target_position - held_rigidbody.position) * Time.deltaTime * HOLD_FORCE * held_rigidbody.mass);
-						held_rigidbody.velocity *= HOLD_LINEAR_DAMPENING;			
-						held_rigidbody.angularVelocity *= HOLD_ANGULAR_DAMPENING;	
-						held_rigidbody.WakeUp();
+						UpdatePhysicsState(grabbable, holder);
 					} else {
 						ConsoleScript.Log("Could not find cursor for player: "+held_by_player);
 					}
