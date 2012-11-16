@@ -21,10 +21,11 @@ public class DiceScript : MonoBehaviour {
 			float volume = info.relativeVelocity.magnitude*0.1f;
 			int table_layer = LayerMask.NameToLayer("Table");
 			int board_layer = LayerMask.NameToLayer("Board");
+			int card_layer = LayerMask.NameToLayer("Cards");
 			int layer = info.collider.gameObject.layer;
 			if(layer == table_layer){
 				PlayRandomSound(dice_impact_wood, volume*DICE_WOOD_SOUND_MULT*DICE_GLOBAL_SOUND_MULT);
-			} else if(layer == board_layer){			
+			} else if(layer == board_layer || layer == card_layer){			
 				PlayRandomSound(dice_impact_board, volume*DICE_BOARD_SOUND_MULT*DICE_GLOBAL_SOUND_MULT);
 			} else {
 				PlayRandomSound(dice_impact_dice, volume*DICE_DICE_SOUND_MULT*DICE_GLOBAL_SOUND_MULT);
