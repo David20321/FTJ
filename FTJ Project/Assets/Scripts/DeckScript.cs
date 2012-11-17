@@ -33,12 +33,7 @@ public class DeckScript : MonoBehaviour {
 		PlayRandomSound(pick_up_sound, 0.1f);
 	}
 	
-	public void Shuffle(){
-		if(Time.time < last_shuffle_time + SHUFFLE_DELAY){
-			return;
-		}
-		last_shuffle_time = Time.time;
-		PlayRandomSound(shuffle_sound, 0.5f);
+	public void RandomizeCards(){
 		List<int> new_card_list = new List<int>();
 		while(cards_.Count > 0){
 			int rand_card = Random.Range(0,cards_.Count);
@@ -48,6 +43,15 @@ public class DeckScript : MonoBehaviour {
 		cards_ = new_card_list;
 		RegenerateEndCardIDs();
 		RegenerateEndCards();
+	}
+	
+	public void Shuffle(){
+		if(Time.time < last_shuffle_time + SHUFFLE_DELAY){
+			return;
+		}
+		last_shuffle_time = Time.time;
+		PlayRandomSound(shuffle_sound, 0.5f);
+		RandomizeCards();
 	}
 	
 	void OnCollisionEnter(Collision info) {
@@ -65,6 +69,7 @@ public class DeckScript : MonoBehaviour {
 	public void Fill(string deck_name){
 		cards_ = new List<int>(CardManagerScript.Instance().GetDeckCards(deck_name));
 		num_cards_ = cards_.Count;
+		RandomizeCards();
 		RegenerateEndCardIDs();
 		RegenerateEndCards();
 	}
