@@ -334,7 +334,8 @@ public class ObjectManagerScript : MonoBehaviour {
 		var rel_pos = card.transform.position - deck.transform.position;
 		bool close_enough = false;
 		if(Mathf.Abs(Vector3.Dot(rel_pos, deck.transform.forward)) < DECK_MERGE_THRESHOLD && 
-		   Mathf.Abs(Vector3.Dot(rel_pos, deck.transform.right)) < DECK_MERGE_THRESHOLD)
+		   Mathf.Abs(Vector3.Dot(rel_pos, deck.transform.right)) < DECK_MERGE_THRESHOLD &&
+		   Vector3.Dot(card.transform.forward, deck.transform.forward) < -0.5f)
 	    {
 			close_enough = true;
 		}
