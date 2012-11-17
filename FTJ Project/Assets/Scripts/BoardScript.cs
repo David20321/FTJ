@@ -19,6 +19,7 @@ public class BoardScript : MonoBehaviour {
 		foreach(Transform child in token_spawns.transform){
 			GameObject token_object = (GameObject)Network.Instantiate(token_prefab, child.position, Quaternion.identity, 0);
 			token_object.GetComponent<ParentTokenScript>().AssignMesh(count);
+			token_object.GetComponent<ParentTokenScript>().AssignColor(count);
 			++count;
 			//token_object.renderer.material.color = new Color(Random.Range(0.0f,1.0f),Random.Range(0.0f,1.0f),Random.Range(0.0f,1.0f));
 		}

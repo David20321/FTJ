@@ -1,6 +1,11 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench />
+  <MonoDevelop.Ide.Workbench ActiveDocument="..\..\..\..\Desktop\builtin_shaders\DefaultResources\Multiply.shader">
+    <Files>
+      <File FileName="Assets\Scripts\ColorPalette.cs" Line="5" Column="9" />
+      <File FileName="..\..\..\..\Desktop\builtin_shaders\DefaultResources\Multiply.shader" Line="62" Column="5" />
+    </Files>
+  </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>

@@ -10,7 +10,8 @@ public class BoardCreateScript : MonoBehaviour {
 	const float TILE_SIZE = 0.7f;
 	const int MAX_TITLE_WIDTH = 60;
 	const int MAX_RULES_WIDTH = 115;
-	const float SCALE = 1.8f;
+	const float SCALE = 1.8f*1.041f;
+	const float TILE_SCALE = 0.86f;
 	
 	// Use this for initialization
 	void Start () {
@@ -25,6 +26,7 @@ public class BoardCreateScript : MonoBehaviour {
 		grid_dim[1] = (int)(long)(obj_list[1]);
 		
 		Vector3 offset = new Vector3(grid_dim[1] * -0.5f + 0.5f, 0, grid_dim[0] * -0.5f + 0.5f) * TILE_SIZE; 
+		Vector3 second_offset = new Vector3(-0.023f*1.27f,-0.05f,0.5298f*1.969f);
 		
 		if(!dict.TryGetValue("Tiles", out retrieve_obj)){
 			Debug.Log ("Could not find 'Tiles' in board JSON");
@@ -37,7 +39,7 @@ public class BoardCreateScript : MonoBehaviour {
 			var coord = new long[2];
 			coord[0] = (long)coord_list[0];
 			coord[1] = (long)coord_list[1];
-			var tile_obj = (GameObject)Instantiate(tile_prefab, transform.position + transform.rotation * (offset + new Vector3((grid_dim[1]-coord[1])*TILE_SIZE,0,(grid_dim[0]-coord[0])*TILE_SIZE))*SCALE, transform.rotation);
+			var tile_obj = (GameObject)Instantiate(tile_prefab, transform.position + transform.rotation * (second_offset + (offset + new Vector3((grid_dim[1]-coord[1])*TILE_SIZE,0,(grid_dim[0]-coord[0])*TILE_SIZE))*SCALE), transform.rotation);
 			var color_list = (List<object>)tile["Color"];
 			var color = new Color(((float)(long)color_list[0])/255.0f,
 								  ((float)(long)color_list[1])/255.0f,
@@ -62,7 +64,7 @@ public class BoardCreateScript : MonoBehaviour {
 				}
 			}
 			tile_obj.GetComponent<TileScript>().Bake();
-			tile_obj.transform.localScale *= SCALE;
+			tile_obj.transform.localScale *= SCALE * TILE_SCALE;
 		}
 	}
 	

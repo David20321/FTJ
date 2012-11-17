@@ -14,12 +14,16 @@ public class ParentTokenScript : MonoBehaviour {
 		if(Network.isServer){
 			owner_id_ = -1;
 		}
-	}
-	
+	}	
 	
 	public void AssignMesh (int which) {
 		mesh_object = (GameObject)GameObject.Instantiate(mesh_prefabs[which], transform.position, transform.rotation);
 		mesh_object.transform.parent = transform;
+	}
+	
+	public void AssignColor (int which) {
+		mesh_object.renderer.material = new Material(mesh_object.renderer.material);
+		mesh_object.renderer.material.color = ColorPalette.GetColor(which);
 	}
 	
 	void OnSerializeNetworkView(BitStream stream, NetworkMessageInfo info){
