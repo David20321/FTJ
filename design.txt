@@ -1,7 +1,127 @@
 Basic idea:
-Accumulate gold to upgrade character
-Try not to die or carried gold is lost
-Bank and spend gold at town
-Use upgrades to progress to deeper levels
-Earn victory points by defeating monsters
-Game ends when all monsters are defeated
+*Accumulate gold to upgrade character
+*Use upgrades to progress to deeper levels
+*Try not to die or carried gold is lost
+*Bank and spend gold at town
+*Earn victory points by defeating monsters
+*Game ends when all monsters are defeated
+*Player with most victory points wins
+
+Permanent Upgrades:
+*More hit points
+*Higher probability to defeat enemies
+*Regain hp by defeating enemies
+*Duplicate other equipment
+*Evade battles
+*More movement control
+*Make another equipment unbreakable
+*Enchant a spell into a piece of equipment
+
+One-shot Upgrades:
+*Spells
+- escape battle
+- extra attack dice
+- return to town
+- teleport to certain space
+- restore hit points
+- win certain encounter (fight monster, random encounter, etc)
+
+Monsters:
+- steal equipment on loss
+- high gold reward
+- high victory point reward
+- can pay toll to avoid fighting
+- take one damage on victory
+- sends to lower level instead of dealing damage
+- give unknown equipment when defeated (from town deck)
+- easy to beat, but insta-kill if fail
+
+Locations:
+
+
+Cards:
+
+Wilderness:
+4 Giant spider menacing convoy
+- high victory point
+27 Stocky spearman on desert steps
+- high gold, can pay toll
+19 Wyvern rider
+- steals equipment
+7 Glowing geometric giant
+- must be defeated multiple times
+15 Spiky slug
+- can make you skip a turn
+5 Wizard with staff and magic
+- can teleport you to dungeon
+18 Glowing cthulhu head
+- easy to beat but can instakill
+
+Dungeon L1
+14 Lizard spearman looking out into night
+- high gold
+30 Ghoul eating body
+- steals a dead enemy back into deck
+24 Elf spearman
+- does 2 damage
+25 Slime
+- can destroy equipment
+12 Orc swordsman
+- can give random equipment
+6 Baghead and bisected baghead
+- only deals damage if defeated
+2 Swordsman with bird
+- can pay to win next battle for you
+
+Dungeon L2
+22 Creepy shadow gasmask man
+- can send you to hell
+20 Blue flame in cave
+- sacrifice equipment or take three damage to claim
+1 God ray cavern with monster
+- steals equipment
+17 Pale girl holding bloody severed orc head
+- does one damage to all players
+10 Skeletal fog silhouette
+- like fighting one of the other players
+23 Polluting city
+- acts like a town
+- or conquer for gold
+
+Dungeon L3
+11 Succubus
+- On loss, fight again next turn, or choose to die
+26 Naga mask dragon
+- On win, other players may each pay one life to make it a loss
+3 Dead body with roots
+- Steals valuable dead enemies
+9 Lava city
+- Damages everyone in hell
+- Take gold if you survive
+8 Knight ambushing dragon
+- Roll two sixes to defeat
+13 Glowing red runes on big stones
+- chance of shattering each of your equipment
+
+Town 
+0 Bloody sword
+- Reroll one attack die
+- Gain one health when defeating an enemy
+16 Dagger and candle
+- Reroll one attack die
+21 Bottle
+- If you die while holding, discard bottle and restore all health instead
+28 Sphere with eye
+- Orb of permanence, makes another equipment unbreakable
+29 Hooded masked character in shadows
+- Chance of evasion
+X Damage Scroll (needs theme)
+- Reroll attack dice
+X Town Portal Scroll
+- Return to town
+X Teleport Scroll
+- Move to any square within 6 spaces
+X Unformed Staff
+- Can be enchanted with a scroll to cast that spell
+X Shield
+- Risk of breaking to avoid a point of damage

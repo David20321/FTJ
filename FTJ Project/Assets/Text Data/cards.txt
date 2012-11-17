@@ -2,9 +2,9 @@
   "Wilderness": [
 	{
       "Title": "Curious Slug",
-	  "Type": "Slug Monster",
-	  "Rules": "Target: 2   Gold: 1    Points: 1
-On loss: move one space",
+	  "Type": "Fight - Slug Monster",
+	  "Rules": "Target: 3   Gold: 0    Points: 1
+On loss: take one damage",
 	  "Flavour": "\"there are all manner of
 strange and unique
 creatures\" (Beggars 11.2)"
@@ -14,11 +14,10 @@ creatures\" (Beggars 11.2)"
 	}
 	{
       "Title": "Lost Wanderer",
-	  "Type": "Undead Monster",
-	  "Rules": "Target: 1   Gold: 1    Points: 1
-On win: roll a die. On 1
-do not move, and fight this
-monster again next turn",
+	  "Type": "Fight - Undead Monster",
+	  "Rules": "Target: 4   Gold: 0    Points: 2
+On loss: take 1 damage 
+and fight this monster again",
 	  "Flavour": "\"Those that once lived that
 don’t realize they are dead\"
 (Beggars 11.6)"
@@ -28,10 +27,11 @@ don’t realize they are dead\"
 	}
 	{
       "Title": "Determined Explorer",
-	  "Type": "Human Warrior",
-	  "Rules": "Target: 2   Gold: 0    Points: 1
-On win: Move 2 spaces",
-	  "Flavour": "\"humanity has so many
+	  "Type": "Fight - Human Warrior",
+	  "Rules": "Target: 5   Gold: 0    Points: 0
+On win: draw a town card
+On loss: take one damage",
+	  "Flavour": "\"Humanity has so many
 heros\" (Beggars 14.1)"
 	  "Duplicates": 1
 	  "Image" : 2
