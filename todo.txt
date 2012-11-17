@@ -19,30 +19,30 @@ Add sounds
 + cards
 +Draw cards
 +Tokens knock on board while moving
-+--- rclick?
+++++ rclick?
+Card manipulation:
++ draw card from deck
++++ click on deck and drag away quickly
++ flip card/deck over
++++ rclick?
++ add card to deck
++++ drag card onto deck and release at low speed
++ create deck
++++ three or more cards in collision with similar orientation
++ pick up deck
++++ click on deck and hold in place for a while
++ shuffle deck
++++ shake?
++ rotate card/deck on view axis
++++ ???
++ put top card on bottom
++++ mousewheel?
 
 Interface:
 Add colored play areas for each player at bottom of screen
 Chat
 Borders for dice?
-
-Card manipulation:
-- draw card from deck
---- click on deck and drag away quickly
-- flip card/deck over
---- rclick?
-- add card to deck
---- drag card onto deck and release at low speed
-- create deck
---- three or more cards in collision with similar orientation
-- pick up deck
---- click on deck and hold in place for a while
-- shuffle deck
---- shake?
-- rotate card/deck on view axis
---- ???
-- put top card on bottom
---- mousewheel?
+Add coins
 
 Graphics:
 UI display (windows and borders?)

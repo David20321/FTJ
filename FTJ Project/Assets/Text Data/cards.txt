@@ -339,9 +339,9 @@ scale war\" (Beggars 13.1)"
       "Title": "Serene Way",
 	  "Type": "Minor God",
 	  "Rules": "On 1 or 2: skip a turnOn 5 or 6: draw four, pick one",
-	  "Flavour": "\"Driven mad through exposure
-to their selfish gods\" 
-(Beggars 11.7)"
+	  "Flavour": "\"Driven mad through 
+exposure to their selfish
+gods\" (Beggars 11.7)"
 	  "Duplicates": 1
 	  "Image" : 26
 	  "Back" : 2

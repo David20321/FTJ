@@ -6,6 +6,8 @@ public class BoardScript : MonoBehaviour {
 	public GameObject[] dice_prefabs;
 	public GameObject[] token_prefabs;
 	public GameObject deck_prefab;		
+	public GameObject silver_coin_prefab;	
+	public GameObject gold_coin_prefab;		
 	
 	public void SpawnDice() {
 		Transform dice_spawns = transform.Find("DiceSpawns");
@@ -16,6 +18,14 @@ public class BoardScript : MonoBehaviour {
 		foreach(Transform child in token_spawns.transform){
 			GameObject token_object = (GameObject)Network.Instantiate(token_prefabs[Random.Range(0,token_prefabs.Length)], child.position, Quaternion.identity, 0);
 			token_object.renderer.material.color = new Color(Random.Range(0.0f,1.0f),Random.Range(0.0f,1.0f),Random.Range(0.0f,1.0f));
+		}
+		Transform silver_coin_spawns = transform.Find("SilverCoinSpawns");
+		foreach(Transform child in silver_coin_spawns.transform){
+			Network.Instantiate(silver_coin_prefab, child.position, Quaternion.identity, 0);
+		}
+		Transform gold_coin_spawns = transform.Find("GoldCoinSpawns");
+		foreach(Transform child in gold_coin_spawns.transform){
+			Network.Instantiate(gold_coin_prefab, child.position, Quaternion.identity, 0);
 		}
 		Transform deck_spawns = transform.Find("DeckSpawns");
 		foreach(Transform child in deck_spawns.transform){

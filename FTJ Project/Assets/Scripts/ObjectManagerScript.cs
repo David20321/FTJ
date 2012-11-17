@@ -68,7 +68,8 @@ public class ObjectManagerScript : MonoBehaviour {
 				if((grabbable.GetComponent<DiceScript>() && !holding_anything_but_dice) ||
 				   (grabbable.GetComponent<TokenScript>() && !holding_anything)||
 				   (grabbable.GetComponent<DeckScript>() && !holding_anything) ||
-			       (grabbable.GetComponent<CardScript>() && !holding_anything))
+			       (grabbable.GetComponent<CardScript>() && !holding_anything)||
+			       (grabbable.GetComponent<CoinScript>() && !holding_anything))
 			    {
 					grabbable_script.held_by_player_ = player_id;
 					ConsoleScript.Log ("Object "+grabbed_id+" is now held by Player "+player_id);
@@ -335,7 +336,7 @@ public class ObjectManagerScript : MonoBehaviour {
 		bool close_enough = false;
 		if(Mathf.Abs(Vector3.Dot(rel_pos, deck.transform.forward)) < DECK_MERGE_THRESHOLD && 
 		   Mathf.Abs(Vector3.Dot(rel_pos, deck.transform.right)) < DECK_MERGE_THRESHOLD &&
-		   Vector3.Dot(card.transform.forward, deck.transform.forward) < -0.5f)
+		   Mathf.Abs(Vector3.Dot(card.transform.forward, deck.transform.forward)) > 0.5f)
 	    {
 			close_enough = true;
 		}
@@ -359,7 +360,7 @@ public class ObjectManagerScript : MonoBehaviour {
 		   Mathf.Abs(Vector3.Dot(rel_pos, card_b.transform.right)) < DECK_MERGE_THRESHOLD &&
 		   Mathf.Abs(Vector3.Dot(rel_pos, card_a.transform.forward)) < DECK_MERGE_THRESHOLD && 
 		   Mathf.Abs(Vector3.Dot(rel_pos, card_a.transform.right)) < DECK_MERGE_THRESHOLD &&
-		   Vector3.Dot(card_a.transform.forward, card_b.transform.forward) > 0.5f)
+		   Mathf.Abs(Vector3.Dot(card_a.transform.forward, card_b.transform.forward)) > 0.5f)
 	    {
 			close_enough = true;
 		}

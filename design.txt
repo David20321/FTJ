@@ -1,0 +1,7 @@
+Basic idea:
+Accumulate gold to upgrade character
+Try not to die or carried gold is lost
+Bank and spend gold at town
+Use upgrades to progress to deeper levels
+Earn victory points by defeating monsters
+Game ends when all monsters are defeated

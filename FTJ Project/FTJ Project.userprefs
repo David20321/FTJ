@@ -1,14 +1,6 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\DrawSpawnerScript.cs">
-    <Files>
-      <File FileName="Assets\Scripts\MainCameraScript.cs" Line="14" Column="28" />
-      <File FileName="Assets\Scripts\CardManagerScript.cs" Line="1" Column="1" />
-      <File FileName="Assets\Text Data\cards.txt" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\BoardScript.cs" Line="21" Column="1" />
-      <File FileName="Assets\Scripts\DrawSpawnerScript.cs" Line="8" Column="17" />
-    </Files>
-  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.Workbench />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>

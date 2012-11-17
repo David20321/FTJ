@@ -51,6 +51,7 @@
      <Compile Include="Assets\Scripts\CardEditScript.cs" />
      <Compile Include="Assets\Scripts\CardManagerScript.cs" />
      <Compile Include="Assets\Scripts\CardScript.cs" />
+     <Compile Include="Assets\Scripts\CoinScript.cs" />
      <Compile Include="Assets\Scripts\ConsoleScript.cs" />
      <Compile Include="Assets\Scripts\CursorScript.cs" />
      <Compile Include="Assets\Scripts\DeckScript.cs" />
