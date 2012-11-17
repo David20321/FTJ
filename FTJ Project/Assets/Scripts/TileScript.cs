@@ -2,9 +2,9 @@ using UnityEngine;
 using System.Collections;
 
 public class TileScript : MonoBehaviour {
-	public Material pure_white;
+	public Material multiply;
 	
-	public void Bake() {
+	public Material Bake() {
 		var camera_obj = transform.FindChild("Camera").gameObject;
 		var camera = camera_obj.GetComponent<Camera>();
 		var render_texture = new RenderTexture(256,256,24,RenderTextureFormat.Default,RenderTextureReadWrite.Default);
@@ -19,14 +19,14 @@ public class TileScript : MonoBehaviour {
 		var tile_mesh = transform.FindChild("Tile_base").FindChild("default");
 		var material = new Material(tile_mesh.renderer.material);
 		material.mainTexture = render_texture;
-		tile_mesh.renderer.material = pure_white;
 		
 		camera.Render();
-		GameObject.Destroy(camera_obj);
-		GameObject.Destroy(transform.FindChild("Title").gameObject);
-		GameObject.Destroy(transform.FindChild("Rules").gameObject);
+		transform.FindChild("Title").gameObject.layer = LayerMask.NameToLayer("Card Render Texture");
+		transform.FindChild("Rules").gameObject.layer = LayerMask.NameToLayer("Card Render Texture");
 		
-		tile_mesh.renderer.material = material;
+		var return_material = new Material(multiply);
+		return_material.mainTexture = render_texture;
+		return return_material;
 	}
 	
 	// Use this for initialization

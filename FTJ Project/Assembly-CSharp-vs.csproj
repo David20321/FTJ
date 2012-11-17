@@ -71,6 +71,7 @@
      <Compile Include="Assets\Scripts\ParentTokenScript.cs" />
      <Compile Include="Assets\Scripts\PlayerListScript.cs" />
      <Compile Include="Assets\Scripts\ShadowCamScript.cs" />
+     <Compile Include="Assets\Scripts\TileManagerScript.cs" />
      <Compile Include="Assets\Scripts\TileScript.cs" />
      <Compile Include="Assets\Scripts\TokenScript.cs" />
      <Compile Include="Assets\Scripts\ZoomCameraScript.cs" />
