@@ -7,6 +7,7 @@ public class TokenScript : MonoBehaviour {
 	public AudioClip[] pick_up_sound;
 	float last_sound_time = 0.0f;
 	const float PHYSICS_SOUND_DELAY = 0.1f;
+	public GameObject[] mesh_prefabs;
 	
 	void Start () {
 		if(Network.isServer){

@@ -1,16 +1,6 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Text Data\cards.txt">
-    <Files>
-      <File FileName="Assets\Scripts\CursorScript.cs" Line="122" Column="12" />
-      <File FileName="Assets\Scripts\ObjectManagerScript.cs" Line="339" Column="56" />
-      <File FileName="Assets\Scripts\CardScript.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\CoinScript.cs" Line="4" Column="24" />
-      <File FileName="Assets\Scripts\TokenScript.cs" Line="10" Column="2" />
-      <File FileName="Assets\Text Data\cards.txt" Line="160" Column="29" />
-      <File FileName="Assets\Scripts\BoardScript.cs" Line="10" Column="24" />
-    </Files>
-  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.Workbench />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>

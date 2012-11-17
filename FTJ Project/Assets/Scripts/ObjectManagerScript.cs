@@ -30,7 +30,7 @@ public class ObjectManagerScript : MonoBehaviour {
 	
 	int GetRotateFromGrabbable(GameObject grabbable){
 		var forward = grabbable.transform.forward;
-		if(grabbable.GetComponent<CardScript>()){
+		if(!grabbable.GetComponent<DeckScript>()){
 			forward *= -1.0f;
 		}
 		float ang = Mathf.Atan2(forward.z, -forward.x)*180.0f/Mathf.PI;
@@ -67,6 +67,7 @@ public class ObjectManagerScript : MonoBehaviour {
 			if(grabbable_script.id_ == grabbed_id){
 				if((grabbable.GetComponent<DiceScript>() && !holding_anything_but_dice) ||
 				   (grabbable.GetComponent<TokenScript>() && !holding_anything)||
+				   (grabbable.GetComponent<ParentTokenScript>() && !holding_anything)||
 				   (grabbable.GetComponent<DeckScript>() && !holding_anything) ||
 			       (grabbable.GetComponent<CardScript>() && !holding_anything)||
 			       (grabbable.GetComponent<CoinScript>() && !holding_anything))
@@ -88,6 +89,10 @@ public class ObjectManagerScript : MonoBehaviour {
 					}
 					if(grabbable.GetComponent<TokenScript>()){
 						grabbable.GetComponent<TokenScript>().PickUpSound();
+					}
+					if(grabbable.GetComponent<ParentTokenScript>()){
+						grabbable.GetComponent<ParentTokenScript>().PickUpSound();
+						card_rotated = GetRotateFromGrabbable(grabbable);
 					}
 					grabbable.rigidbody.mass = 0.2f;
 				}
@@ -252,7 +257,7 @@ public class ObjectManagerScript : MonoBehaviour {
 		} else {
 			target_position.y -= 1.3f;
 		}
-		if(grabbable.GetComponent<DeckScript>() || grabbable.GetComponent<CardScript>()){
+		if(grabbable.GetComponent<DeckScript>() || grabbable.GetComponent<CardScript>() || grabbable.GetComponent<ParentTokenScript>()){
 			target_position.y += 0.5f;
 			Quaternion target_rotation = Quaternion.identity;
 			if(grabbable.GetComponent<DeckScript>() || grabbable.GetComponent<CardScript>()){
@@ -263,6 +268,9 @@ public class ObjectManagerScript : MonoBehaviour {
 				if(card_face_up){
 					target_rotation = Quaternion.AngleAxis(180,new Vector3(0,0,1))*target_rotation;
 				}
+				target_rotation = Quaternion.AngleAxis(card_rotated * 90, new Vector3(0,1,0)) * target_rotation;
+			}
+			if(grabbable.GetComponent<ParentTokenScript>()){
 				target_rotation = Quaternion.AngleAxis(card_rotated * 90, new Vector3(0,1,0)) * target_rotation;
 			}
 			Quaternion offset = target_rotation * Quaternion.Inverse(held_rigidbody.rotation);
@@ -277,7 +285,11 @@ public class ObjectManagerScript : MonoBehaviour {
 			}
 			if(angle != 0.0f){
 				offset_vec3 *= angle;
-				held_rigidbody.AddTorque(offset_vec3 * Time.deltaTime * ANGULAR_FORCE * held_rigidbody.mass);
+				float mult = 1.0f;
+				if(grabbable.GetComponent<ParentTokenScript>()){
+					mult = 0.1f;
+				}
+				held_rigidbody.AddTorque(offset_vec3 * Time.deltaTime * ANGULAR_FORCE * mult * held_rigidbody.mass);
 			}
 		}
 		if(!tapping && Vector3.Dot(target_position - held_rigidbody.position, held_rigidbody.velocity) < -SHAKE_THRESHOLD){

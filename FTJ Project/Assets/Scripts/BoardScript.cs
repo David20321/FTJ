@@ -3,8 +3,8 @@ using System.Collections;
 using System.Collections.Generic;
 
 public class BoardScript : MonoBehaviour {
-	public GameObject[] dice_prefabs;
-	public GameObject[] token_prefabs;
+	public GameObject dice_prefab;
+	public GameObject token_prefab;
 	public GameObject deck_prefab;		
 	public GameObject silver_coin_prefab;	
 	public GameObject gold_coin_prefab;		
@@ -12,12 +12,15 @@ public class BoardScript : MonoBehaviour {
 	public void SpawnDice() {
 		Transform dice_spawns = transform.Find("DiceSpawns");
 		foreach(Transform child in dice_spawns.transform){
-			GameObject dice_object = (GameObject)Network.Instantiate(dice_prefabs[Random.Range(0,dice_prefabs.Length)], child.position, Quaternion.identity, 0);
+			GameObject dice_object = (GameObject)Network.Instantiate(dice_prefab, child.position, Quaternion.identity, 0);
 		}
 		Transform token_spawns = transform.Find("TokenSpawns");
+		var count = 0;
 		foreach(Transform child in token_spawns.transform){
-			GameObject token_object = (GameObject)Network.Instantiate(token_prefabs[Random.Range(0,token_prefabs.Length)], child.position, Quaternion.identity, 0);
-			token_object.renderer.material.color = new Color(Random.Range(0.0f,1.0f),Random.Range(0.0f,1.0f),Random.Range(0.0f,1.0f));
+			GameObject token_object = (GameObject)Network.Instantiate(token_prefab, child.position, Quaternion.identity, 0);
+			token_object.GetComponent<ParentTokenScript>().AssignMesh(count);
+			++count;
+			//token_object.renderer.material.color = new Color(Random.Range(0.0f,1.0f),Random.Range(0.0f,1.0f),Random.Range(0.0f,1.0f));
 		}
 		Transform silver_coin_spawns = transform.Find("SilverCoinSpawns");
 		foreach(Transform child in silver_coin_spawns.transform){
