@@ -180,6 +180,9 @@ public class DeckScript : MonoBehaviour {
 		if(num_cards_ <= 1){
 			transform.FindChild("default").renderer.enabled = false;
 			collider.enabled = false;
+		} else {
+			transform.FindChild("default").renderer.enabled = true;
+			collider.enabled = true;
 		}
 		/*if(Input.GetMouseButtonDown(0)){
 			var card = TakeTopCard();
