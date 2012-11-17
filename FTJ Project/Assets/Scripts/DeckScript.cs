@@ -7,7 +7,7 @@ using MiniJSON;
 public class DeckScript : MonoBehaviour {
 	public GameObject card_prefab;
 	public GameObject card_facade_prefab;
-	List<int> cards_;
+	List<int> cards_ = new List<int>();
 	int top_card_id_;
 	int bottom_card_id_;
 	int num_cards_;

@@ -51,6 +51,9 @@ public class CardScript : MonoBehaviour {
 			if(info.collider.GetComponent<DeckScript>()){
 				ObjectManagerScript.Instance().NotifyCardHitDeck(gameObject, info.collider.gameObject);
 			}
+			if(info.collider.GetComponent<CardScript>()){
+				ObjectManagerScript.Instance().NotifyCardHitCard(gameObject, info.collider.gameObject);
+			}
 		}
 	}
 }

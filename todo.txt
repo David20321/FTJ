@@ -13,18 +13,18 @@
 +Procedurally display board and cards
 +Card JSON descriptions
 +Zoom to see better
+Add sounds
++ dice
++ tokens
++ cards
++Draw cards
++Tokens knock on board while moving
++--- rclick?
 
 Interface:
 Add colored play areas for each player at bottom of screen
-Draw cards
 Chat
-Add sounds
-+ dice
-- tokens
-- cards
 Borders for dice?
-Tokens knock on board while moving
---- rclick?
 
 Card manipulation:
 - draw card from deck

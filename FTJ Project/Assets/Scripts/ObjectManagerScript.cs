@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 
 public class ObjectManagerScript : MonoBehaviour {	
+	public GameObject deck_prefab;
 	List<GameObject> grabbable_objects = new List<GameObject>();	
 	List<GameObject> cursor_objects = new List<GameObject>();
 	GameObject board_object = null;
@@ -342,6 +343,34 @@ public class ObjectManagerScript : MonoBehaviour {
 			deck.GetComponent<DeckScript>().AddCard(top, card.GetComponent<CardScript>().card_id());
 			card.GetComponent<CardScript>().SetCardID(-1);
 			networkView.RPC("DestroyObject",RPCMode.AllBuffered,card.networkView.viewID);
+		}
+	}
+	
+	public void NotifyCardHitCard(GameObject card_a, GameObject card_b){
+		if(card_a.GetComponent<CardScript>().card_id() == -1 ||
+		   card_b.GetComponent<CardScript>().card_id() == -1){
+			return;
+		}
+		bool facing_same_way = Vector3.Dot(card_a.transform.up, card_b.transform.up) > 0.0;
+		var rel_pos = card_a.transform.position - card_b.transform.position;
+		bool close_enough = false;
+		if(Mathf.Abs(Vector3.Dot(rel_pos, card_b.transform.forward)) < DECK_MERGE_THRESHOLD && 
+		   Mathf.Abs(Vector3.Dot(rel_pos, card_b.transform.right)) < DECK_MERGE_THRESHOLD &&
+		   Mathf.Abs(Vector3.Dot(rel_pos, card_a.transform.forward)) < DECK_MERGE_THRESHOLD && 
+		   Mathf.Abs(Vector3.Dot(rel_pos, card_a.transform.right)) < DECK_MERGE_THRESHOLD)
+	    {
+			close_enough = true;
+		}
+		if(card_a.GetComponent<GrabbableScript>().held_by_player_ == -1 && card_b.GetComponent<GrabbableScript>().held_by_player_ == -1 && facing_same_way && close_enough){
+			bool top = Vector3.Dot(card_a.transform.position - card_b.transform.position, card_a.transform.up) >= 0.0;
+			var deck = (GameObject)Network.Instantiate(deck_prefab, (card_a.transform.position + card_b.transform.position)*0.5f, Quaternion.Slerp(card_a.transform.rotation,card_b.transform.rotation,0.5f),0); 
+			deck.transform.rotation = Quaternion.AngleAxis(180,deck.transform.right)*deck.transform.rotation;
+			deck.GetComponent<DeckScript>().AddCard(top, card_a.GetComponent<CardScript>().card_id());
+			deck.GetComponent<DeckScript>().AddCard(top, card_b.GetComponent<CardScript>().card_id());
+			card_a.GetComponent<CardScript>().SetCardID(-1);
+			networkView.RPC("DestroyObject",RPCMode.AllBuffered,card_a.networkView.viewID);
+			card_b.GetComponent<CardScript>().SetCardID(-1);
+			networkView.RPC("DestroyObject",RPCMode.AllBuffered,card_b.networkView.viewID);
 		}
 	}
 }
