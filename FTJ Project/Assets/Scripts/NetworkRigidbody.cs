@@ -81,6 +81,16 @@ public class NetworkRigidbody : MonoBehaviour {
 	// By having interpolationBackTime the average ping, you will usually use interpolation.
 	// And only if no more data arrives we will use extra polation
 	void Update () {
+		if(networkView.isMine){
+			return;
+		}
+		rigidbody.isKinematic = true;
+		rigidbody.position = m_BufferedState[0].pos;
+		rigidbody.rotation = m_BufferedState[0].rot;
+		/*if(!networkView.isMine){
+			rigidbody.useGravity = false;
+		}
+		
 		// This is the target playback time of the rigid body
 		double interpolationTime = Network.time - m_InterpolationBackTime;
 		
@@ -135,6 +145,6 @@ public class NetworkRigidbody : MonoBehaviour {
 					rigidbody.angularVelocity = latest.angularVelocity;
 				}
 			}
-		}
+		}*/
 	}
 }

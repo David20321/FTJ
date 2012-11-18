@@ -16,9 +16,6 @@ public class ObjectManagerScript : MonoBehaviour {
 	const float DECK_MERGE_THRESHOLD = 0.4f;
 	const float SHAKE_THRESHOLD = 1.0f;
 	int free_id = 0;
-	bool card_face_up = false;
-	int card_rotated = 0;
-	bool tapping = false;
 	
 	public void RegisterBoardObject(GameObject obj){
 		board_object = obj;
@@ -61,6 +58,12 @@ public class ObjectManagerScript : MonoBehaviour {
 				}
 			}
 		}
+		CursorScript cursor_script = null;
+		foreach(GameObject cursor in cursor_objects){
+			if(cursor.GetComponent<CursorScript>().id() == player_id){
+				cursor_script = cursor.GetComponent<CursorScript>();
+			}
+		}
 		// See if client can grab object given already-grabbed objects
 		foreach(GameObject grabbable in grabbable_objects){
 			GrabbableScript grabbable_script = grabbable.GetComponent<GrabbableScript>();
@@ -78,13 +81,13 @@ public class ObjectManagerScript : MonoBehaviour {
 						grabbable.GetComponent<DiceScript>().PickUpSound();
 					}
 					if(grabbable.GetComponent<DeckScript>()){
-						card_face_up = (grabbable.transform.up.y > 0.0f);
-						card_rotated = GetRotateFromGrabbable(grabbable);
+						cursor_script.SetCardFaceUp((grabbable.transform.up.y > 0.0f));
+						cursor_script.SetCardRotated(GetRotateFromGrabbable(grabbable));
 						grabbable.GetComponent<DeckScript>().PickUpSound();
 					}
 					if(grabbable.GetComponent<CardScript>()){
-						card_face_up = (grabbable.transform.up.y < 0.0f);
-						card_rotated = GetRotateFromGrabbable(grabbable);
+						cursor_script.SetCardFaceUp((grabbable.transform.up.y < 0.0f));
+						cursor_script.SetCardRotated(GetRotateFromGrabbable(grabbable));
 						grabbable.GetComponent<CardScript>().PickUpSound();
 					}
 					if(grabbable.GetComponent<TokenScript>()){
@@ -92,7 +95,7 @@ public class ObjectManagerScript : MonoBehaviour {
 					}
 					if(grabbable.GetComponent<ParentTokenScript>()){
 						grabbable.GetComponent<ParentTokenScript>().PickUpSound();
-						card_rotated = GetRotateFromGrabbable(grabbable);
+						cursor_script.SetCardRotated(GetRotateFromGrabbable(grabbable));
 					}
 					grabbable.rigidbody.mass = 0.2f;
 				}
@@ -129,8 +132,14 @@ public class ObjectManagerScript : MonoBehaviour {
 			card = deck.GetComponent<DeckScript>().TakeCard(false);
 		}
 		card.GetComponent<GrabbableScript>().held_by_player_ = player_id;
-		card_face_up = (card.transform.up.y < 0.0f);
-		card_rotated = GetRotateFromGrabbable(card);
+		CursorScript cursor_script = null;
+		foreach(GameObject cursor in cursor_objects){
+			if(cursor.GetComponent<CursorScript>().id() == player_id){
+				cursor_script = cursor.GetComponent<CursorScript>();
+			}
+		}
+		cursor_script.SetCardFaceUp((card.transform.up.y < 0.0f));
+		cursor_script.SetCardRotated(GetRotateFromGrabbable(card));
 		card.GetComponent<CardScript>().PickUpSound();
 	}
 	
@@ -236,23 +245,13 @@ public class ObjectManagerScript : MonoBehaviour {
 	}
 	
 	void Update () {
-		//AssignTokenColors();
-		if(Input.GetKeyDown("f")){
-			card_face_up = !card_face_up;
-		}
-		if(Input.GetKeyDown("r")){
-			card_rotated = (card_rotated+1)%4;
-		}
-		if(Input.GetKeyDown("e")){
-			card_rotated = (card_rotated+3)%4;
-		}
-		tapping = Input.GetKey ("t");
 	}
 	
 	void UpdatePhysicsState(GameObject grabbable, GameObject holder){
 		var held_rigidbody = grabbable.rigidbody;
 		var target_position = holder.transform.position;
-		if(!tapping){
+		var cursor_script = holder.GetComponent<CursorScript>();
+		if(!cursor_script.tapping()){
 			target_position.y += 0.5f;
 		} else {
 			target_position.y -= 1.3f;
@@ -265,13 +264,13 @@ public class ObjectManagerScript : MonoBehaviour {
 					target_rotation = Quaternion.AngleAxis(180,new Vector3(0,1,0)) * target_rotation;
 					target_rotation = Quaternion.AngleAxis(180,new Vector3(0,0,1)) * target_rotation;
 				}
-				if(card_face_up){
+				if(cursor_script.card_face_up()){
 					target_rotation = Quaternion.AngleAxis(180,new Vector3(0,0,1))*target_rotation;
 				}
-				target_rotation = Quaternion.AngleAxis(card_rotated * 90, new Vector3(0,1,0)) * target_rotation;
+				target_rotation = Quaternion.AngleAxis(cursor_script.card_rotated() * 90, new Vector3(0,1,0)) * target_rotation;
 			}
 			if(grabbable.GetComponent<ParentTokenScript>()){
-				target_rotation = Quaternion.AngleAxis(card_rotated * 90, new Vector3(0,1,0)) * target_rotation;
+				target_rotation = Quaternion.AngleAxis(cursor_script.card_rotated() * 90, new Vector3(0,1,0)) * target_rotation;
 			}
 			Quaternion offset = target_rotation * Quaternion.Inverse(held_rigidbody.rotation);
 			float angle;
@@ -292,7 +291,7 @@ public class ObjectManagerScript : MonoBehaviour {
 				held_rigidbody.AddTorque(offset_vec3 * Time.deltaTime * ANGULAR_FORCE * mult * held_rigidbody.mass);
 			}
 		}
-		if(!tapping && Vector3.Dot(target_position - held_rigidbody.position, held_rigidbody.velocity) < -SHAKE_THRESHOLD){
+		if(!cursor_script.tapping() && Vector3.Dot(target_position - held_rigidbody.position, held_rigidbody.velocity) < -SHAKE_THRESHOLD){
 			//ConsoleScript.Log("Shake");
 			if(grabbable.GetComponent<DiceScript>()){
 				for(int i=0; i<10; ++i){

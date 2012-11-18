@@ -22,6 +22,9 @@ public class CursorScript : MonoBehaviour {
 	float deck_held_time_ = 0.0f;
 	int deck_held_id_ = -1;
 	const float DECK_HOLD_THRESHOLD = 0.5f;
+	bool card_face_up_ = false;
+	int card_rotated_ = 0;
+	bool tapping_ = false;
 	
 	public int id() {
 		return id_;
@@ -52,6 +55,38 @@ public class CursorScript : MonoBehaviour {
 	}
 		
 	[RPC]
+	public void SetCardFaceUp(bool card_face_up){
+		if(Network.isServer && !networkView.isMine){
+			ConsoleScript.Log ("Telling client that card_face_up is "+card_face_up);
+			networkView.RPC ("SetCardFaceUp",RPCMode.Others, card_face_up);
+		} else {
+			ConsoleScript.Log ("Server said that card_face_up is "+card_face_up);
+			card_face_up_ = card_face_up;
+		}
+	}
+	
+	[RPC]
+	public void SetCardRotated(int card_rotated){
+		if(Network.isServer && !networkView.isMine){
+			networkView.RPC ("SetCardRotated",RPCMode.Others, card_rotated);
+		} else {
+			card_rotated_ = card_rotated;
+		}
+	}
+	
+	public bool tapping() {
+		return tapping_;
+	}
+	
+	public int card_rotated() {
+		return card_rotated_;
+	}
+	
+	public bool card_face_up() {
+		return card_face_up_;
+	}
+	
+	[RPC]
 	public void TellObjectManagerAboutGrab(int grab_id, int player_id){
 		ConsoleScript.Log ("Telling object manager that player "+player_id+" clicked on "+grab_id);
 		ObjectManagerScript.Instance().ClientGrab(grab_id, player_id);
@@ -76,6 +111,16 @@ public class CursorScript : MonoBehaviour {
 	}
 	
 	void Update () {
+		if(Input.GetKeyDown("f")){
+			card_face_up_ = !card_face_up_;
+		}
+		if(Input.GetKeyDown("r")){
+			card_rotated_ = (card_rotated_+1)%4;
+		}
+		if(Input.GetKeyDown("e")){
+			card_rotated_ = (card_rotated_+3)%4;
+		}
+		tapping_ = Input.GetKey ("t");
 		var player_list = PlayerListScript.Instance().GetPlayerInfoList();
 		if(player_list.ContainsKey(id_)){
 			SetColor(player_list[id_].color_);
@@ -162,6 +207,12 @@ public class CursorScript : MonoBehaviour {
 		{
 			int id = id_;
 			stream.Serialize(ref id);
+			bool tapping = tapping_;
+			stream.Serialize(ref tapping);
+			bool card_face_up = card_face_up_;
+			stream.Serialize(ref card_face_up);
+			int card_rotated = card_rotated_;
+			stream.Serialize(ref card_rotated);
 		}
 		// Read data from remote client
 		else
@@ -169,6 +220,15 @@ public class CursorScript : MonoBehaviour {
 			int id = id_;
 			stream.Serialize(ref id);
 			id_ = id;
+			bool tapping = tapping_;
+			stream.Serialize(ref tapping);
+			tapping_ = tapping;
+			bool card_face_up = card_face_up_;
+			stream.Serialize(ref card_face_up);
+			card_face_up_ = card_face_up;
+			int card_rotated = card_rotated_;
+			stream.Serialize(ref card_rotated);
+			card_rotated_ = card_rotated;
 		}
 	}
 }
