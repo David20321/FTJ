@@ -29,7 +29,11 @@ public class DeckScript : MonoBehaviour {
 		audio.PlayOneShot(clips[Random.Range(0,clips.Length)], volume);
 	}	
 	
+	[RPC]
 	public void PickUpSound() {
+		if(Network.isServer){
+			networkView.RPC("PickUpSound",RPCMode.Others);
+		}
 		PlayRandomSound(pick_up_sound, 0.1f);
 	}
 	
@@ -49,19 +53,35 @@ public class DeckScript : MonoBehaviour {
 		RegenerateEndCards();
 	}
 	
+	[RPC]
+	void ShuffleSound(){
+		if(Network.isServer){
+			networkView.RPC("ShuffleSound",RPCMode.Others);
+		}
+		PlayRandomSound(shuffle_sound, 0.5f);		
+	}
+	
 	public void Shuffle(){
 		if(Time.time < last_shuffle_time + SHUFFLE_DELAY){
 			return;
 		}
 		last_shuffle_time = Time.time;
-		PlayRandomSound(shuffle_sound, 0.5f);
+		ShuffleSound();
 		RandomizeCards();
+	}
+	
+	[RPC]
+	void ImpactSound(float volume){
+		if(Network.isServer){
+			networkView.RPC("ImpactSound",RPCMode.Others,volume);
+		}
+		PlayRandomSound(impact_sound, volume*0.3f);		
 	}
 	
 	void OnCollisionEnter(Collision info) {
 		if(info.relativeVelocity.magnitude > 1.0f && Time.time > last_sound_time + PHYSICS_SOUND_DELAY) { 
 			float volume = info.relativeVelocity.magnitude*0.1f;
-			PlayRandomSound(impact_sound, volume*0.3f);
+			ImpactSound(volume);
 			last_sound_time = Time.time;
 		}	
 		if(Network.isServer){

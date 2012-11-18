@@ -26,7 +26,11 @@ public class CardScript : MonoBehaviour {
 		}
 	}
 	
+	[RPC]
 	public void PickUpSound() {
+		if(Network.isServer){
+			networkView.RPC("PickUpSound",RPCMode.Others);
+		}
 		PlayRandomSound(pick_up_sound, 0.1f);
 	}
 	
@@ -41,10 +45,18 @@ public class CardScript : MonoBehaviour {
 		audio.PlayOneShot(clips[Random.Range(0,clips.Length)], volume);
 	}		
 	
+	[RPC]
+	void ImpactSound(float volume){
+		if(Network.isServer){
+			networkView.RPC("ImpactSound",RPCMode.Others,volume);
+		}
+		PlayRandomSound(impact_sound, volume*0.2f);		
+	}
+	
 	void OnCollisionEnter(Collision info){
 		if(info.relativeVelocity.magnitude > 1.0f && Time.time > last_sound_time + PHYSICS_SOUND_DELAY) { 
 			float volume = info.relativeVelocity.magnitude*0.1f;
-			PlayRandomSound(impact_sound, volume*0.2f);
+			ImpactSound(volume);
 			last_sound_time = Time.time;
 		}
 		if(Network.isServer){

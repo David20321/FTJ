@@ -26,7 +26,11 @@ public class TokenScript : MonoBehaviour {
 		}
 	}
 	
+	[RPC]
 	public void PickUpSound() {
+		if(Network.isServer){
+			networkView.RPC("PickUpSound",RPCMode.Others);
+		}
 		PlayRandomSound(pick_up_sound, 0.1f);
 	}
 	
@@ -34,10 +38,18 @@ public class TokenScript : MonoBehaviour {
 		audio.PlayOneShot(clips[Random.Range(0,clips.Length)], volume);
 	}		
 	
+	[RPC]
+	void ImpactSound(float volume){
+		if(Network.isServer){
+			networkView.RPC("ImpactSound",RPCMode.Others,volume);
+		}
+		PlayRandomSound(token_impact, volume*0.3f);		
+	}
+	
 	void OnCollisionEnter(Collision info) {
 		if(info.relativeVelocity.magnitude > 1.0f && Time.time > last_sound_time + PHYSICS_SOUND_DELAY) { 
 			float volume = info.relativeVelocity.magnitude*0.1f;
-			PlayRandomSound(token_impact, volume*0.3f);
+			ImpactSound(volume);
 			last_sound_time = Time.time;
 		}	
 	}

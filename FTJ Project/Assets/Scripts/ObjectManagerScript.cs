@@ -67,6 +67,9 @@ public class ObjectManagerScript : MonoBehaviour {
 		foreach(GameObject grabbable in grabbable_objects){
 			GrabbableScript grabbable_script = grabbable.GetComponent<GrabbableScript>();
 			if(grabbable_script.id_ == grabbed_id){
+				if(grabbable_script.held_by_player_ == player_id){
+					return;
+				}
 				if((grabbable.GetComponent<DiceScript>() && !holding_anything_but_dice) ||
 				   (grabbable.GetComponent<TokenScript>() && !holding_anything)||
 				   (grabbable.GetComponent<ParentTokenScript>() && !holding_anything)||
