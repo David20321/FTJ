@@ -393,13 +393,14 @@ created on a whim\"
   
  "Gear": [
 	{
-      "Title": "Reliable Sword",
+      "Title": "Brittle Dagger",
 	  "Type": "Equipment",
-	  "Price": 3
-	  "Rules": "Roll one extra die in combat",
+	  "Price": 1
+	  "Rules": "You may reroll one attack die;
+discard if that roll is 1, 2 or 3",
 	  "Flavour": "\"Everything got a lot
 more dangerous\" (Beggars 1.2)"
-	  "Duplicates": 1
+	  "Duplicates": 3
 	  "Image" : 16
 	  "Back" : 5
 	}{
@@ -411,14 +412,15 @@ gain 2 health",
 	  "Flavour": "\"Everywhere it splashed 
 sprang up new growth\" 
 (Killers 2.2)"
-	  "Duplicates": 1
+	  "Duplicates": 2
 	  "Image" : 21
 	  "Back" : 5
 	}{
  	 "Title": "Thirsty Sword",
 	  "Type": "Equipment",
-	  "Price" : 4
-	  "Rules": "Reroll one attack die
+	  "Price" : 5
+	  "Rules": "You may reroll one attack die;
+discard if that roll is 1
 On win: gain 1 health",
 	  "Flavour": "\"Darker gods have also
 created swords for their
@@ -431,9 +433,9 @@ vassals\" (Relics 4.7)"
  	 "Title": "Wary Helmet",
 	  "Type": "Equipment",
 	  "Price" : 4
-	  "Rules": "Do not take damage
-On 1d6 4+ discard Wary
-Helmet",
+	  "Rules": "You may use Wary Helmet to 
+prevent damage from a battle 
+Roll to see if it breaks (1,2,3)",
 	  "Flavour": "\"Some still hold a portion
 of the living will of the 
 god\" (Relics 6.4)"
@@ -442,11 +444,10 @@ god\" (Relics 6.4)"
 	  "Back" : 5
 	}
 	{
-      "Title": "Keen Sphere",
-	  "Type": "Equipment Upgrade",
-	  "Price" : 2
-	  "Rules": "Target equipment card cannot 
-be destroyed",
+      "Title": "Reassuring Sphere",
+	  "Type": "Equipment",
+	  "Price" : 3
+	  "Rules": "You may use Reassuring Sphere to prevent another item from breaking. Roll to see if Sphere breaks (1,2)",
 	  "Flavour": "\"More terrifying for humans
 than the prospect of large
 scale war\" (Beggars 13.1)"
@@ -455,14 +456,15 @@ scale war\" (Beggars 13.1)"
 	  "Back" : 5
 	}
 {
- 	 "Title": "Secure Sword",
+ 	 "Title": "Unflinching Sword",
 	  "Type": "Equipment",
-	  "Price" : 3
-	  "Rules": "Add 1 to combat rolls",
+	  "Price" : 9
+	  "Rules": "Add 1 to all combat rolls
+You may reroll two attack dice",
 	  "Flavour": "\"There are countless artifacts
 in existence, and more being
 made\" (Relics 6.1)"
-	  "Duplicates": 1
+	  "Duplicates": 2
 	  "Image" : 33
 	  "Back" : 5
 	}
@@ -470,22 +472,74 @@ made\" (Relics 6.1)"
  	 "Title": "Receptive Gem",
 	  "Type": "Equipment",
 	  "Price" : 4
-	  "Rules": "Can be enchanted with a
-scroll to cast that spell",
+	  "Rules": "Use receptive gem to cast a 
+spell without discarding it 
+Roll to see if it breaks(1,2)",
 	  "Flavour": "\"Her blood crystallizes to form
 the gems\" (Relics 3.6)"
 	  "Duplicates": 1
 	  "Image" : 34
 	  "Back" : 5
 	}{
-      "Title": "Pathetic Mask",
+	  "Price" : 2
+      "Title": "Shy Mask",
 	  "Type": "Equipment",
-	  "Rules": "Roll greater than 3 to avoid a
-battle",
+	  "Rules": "You may use Shy Mask to
+avoid a battle. Roll to see if it is 
+lost (1,2,3)",
 	  "Flavour": "\"The red wizard was from
 the desert\" (Beggars 7.4)"
 	  "Duplicates": 1
 	  "Image" : 29
+	  "Back" : 5
+	}{
+	  "Price" : 3
+      "Title": "Scroll of Town Portal",
+	  "Type": "Equipment",
+	  "Rules": "Discard to return to town",
+	  "Flavour": ""
+	  "Duplicates": 1
+	  "Image" : 38
+	  "Back" : 5
+	}{
+	  "Price" : 4
+      "Title": "Scroll of Teleport",
+	  "Type": "Equipment",
+	  "Rules": "Discard to move up to six 
+spaces forwards or backwards",
+	  "Flavour": ""
+	  "Duplicates": 1
+	  "Image" : 39
+	  "Back" : 5
+	}{
+	  "Price" : 3
+      "Title": "Scroll of Smiting",
+	  "Type": "Equipment",
+	  "Rules": "Discard to roll a 6 in combat",
+	  "Flavour": ""
+	  "Duplicates": 1
+	  "Image" : 37
+	  "Back" : 5
+	}{
+	  "Price" : 8
+      "Title": "Ravenous Staff",
+	  "Type": "Equipment",
+	  "Rules": "Take one damage to cast a 
+spell without discarding it",
+	  "Flavour": ""
+	  "Duplicates": 1
+	  "Image" : 36
+	  "Back" : 5
+	}{
+	  "Price" : 4
+      "Title": "Nervous Boots",
+	  "Type": "Equipment",
+	  "Rules": "You may use Nervous Boots 
+to escape a lost battle. Roll 
+to see if they are lost(1,2)",
+	  "Flavour": ""
+	  "Duplicates": 1
+	  "Image" : 35
 	  "Back" : 5
 	}
   ]
