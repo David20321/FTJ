@@ -27,8 +27,8 @@ public class ParentTokenScript : MonoBehaviour {
 	
 	[RPC]
 	public void AssignColor (int which) {
-		mesh_object.renderer.material = new Material(mesh_object.renderer.material);
-		mesh_object.renderer.material.color = ColorPalette.GetColor(which);
+		//mesh_object.renderer.material = new Material(mesh_object.renderer.material);
+		//mesh_object.renderer.material.color = ColorPalette.GetColor(which);
 		if(Network.isServer){
 			networkView.RPC("AssignColor",RPCMode.OthersBuffered,which);
 		}

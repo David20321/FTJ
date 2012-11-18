@@ -45,7 +45,7 @@ public class NetUIScript : MonoBehaviour {
 			Transform token_spawns = transform.Find("TokenSpawns");
 			foreach(Transform token_spawn in play_area_obj.transform.FindChild("token_spawns")){
 				GameObject token_object = (GameObject)Network.Instantiate(token_prefab, token_spawn.position, Quaternion.identity, 0);
-				token_object.GetComponent<TokenScript>().SetBloodColor();
+				//token_object.GetComponent<TokenScript>().SetBloodColor();
 			}
 		}
 		
