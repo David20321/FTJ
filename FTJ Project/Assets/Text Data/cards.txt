@@ -38,7 +38,7 @@ avoid this fight",
 to explain it\" (Rest 3.6)"
 	  "Duplicates": 1
 	  "Image" : 27
-	  "Back" : 1
+	  "Back" : 4
 	}{
       "Title": "Hostile Rider",
 	  "Type": "Flying Wyvern",
@@ -54,7 +54,7 @@ defense humans have\"
 (Beggars 9.1)"
 	  "Duplicates": 1
 	  "Image" : 19
-	  "Back" : 1
+	  "Back" : 4
 	}{
       "Title": "Cold Golem",
 	  "Type": "Iron Monster",
@@ -67,7 +67,7 @@ fight Cold Golem again.",
 crystal irises\" (Beggars 5.3)"
 	  "Duplicates": 1
 	  "Image" : 7
-	  "Back" : 1
+	  "Back" : 4
 	}{
      "Title": "Incensed Wizard",
 	  "Type": "Human Wizard",
@@ -94,7 +94,7 @@ control incredible power\"
 (Beggars 13.2)"
 	  "Duplicates": 1
 	  "Image" : 18
-	  "Back" : 2
+	  "Back" : 4
 	}
    ]
 
@@ -141,7 +141,7 @@ are the inscrutable elves\"
 (Beggars 12.2)"
 	  "Duplicates": 1
 	  "Image" : 24
-	  "Back" : 1
+	  "Back" : 0
 	}{
       "Title": "Clever Slime",
 	  "Type": "Slime Monster",
@@ -197,17 +197,6 @@ attack die in your next battle",
 heros\" (Beggars 14.1)"
 	  "Duplicates": 1
 	  "Image" : 2
-	  "Back" : 4
-	}{
-      "Title": "Relaxed Wizard",
-	  "Type": "Human Wizard",
-	  "Rules": "Target: 4   Gold: 2    Points: 3
-On loss: move to the Dungeon
-Entrance",
-	  "Flavour": "\"The red wizard was from
-the desert\" (Beggars 7.4)"
-	  "Duplicates": 1
-	  "Image" : 29
 	  "Back" : 0
 	}
   ]
@@ -224,7 +213,7 @@ to try to go back together is
 natural\" (Killers 1.9)"
 	  "Duplicates": 1
 	  "Image" : 22
-	  "Back" : 2
+	  "Back" : 1
 	}{
       "Title": "Spirited Shrine",
 	  "Target": "0"
@@ -238,7 +227,7 @@ world still comes from
 that corpse\" (Beggars 5.1)"
 	  "Duplicates": 1
 	  "Image" : 20
-	  "Back" : 0
+	  "Back" : 1
 	}{
       "Title": "Pleased Troll",
 	  "Target": "6",
@@ -252,7 +241,7 @@ choice)",
 on and procreate\" 
 (Beggars 11.11)"
 	  "Image" : 1
-	  "Back" : 0
+	  "Back" : 1
 	}{
       "Title": "Engrossed Priestess",
 	  "Type": "Human Priestess",
@@ -266,7 +255,7 @@ the powers they could
 control\" (Spirits 1.4)"
 	  "Duplicates": 1
 	  "Image" : 17
-	  "Back" : 0
+	  "Back" : 1
 	}{
       "Title": "Lost Wanderer",
 	  "Type": "Undead Monster",
@@ -281,7 +270,7 @@ don’t realize they are dead\"
 (Beggars 11.6)"
 	  "Duplicates": 1
 	  "Image" : 10
-	  "Back" : 4
+	  "Back" : 1
 	}{
 	  "Target": "0",
 	  "Gold": "0",
@@ -295,7 +284,7 @@ to be critical to humanity’s
 survival\" (Beggars 8.1)"
 	  "Duplicates": 1
 	  "Image" : 23
-	  "Back" : 4
+	  "Back" : 1
 	}{
       "Title": "Lonely Birdman",
 	  "Type": "Flying Warrior",
@@ -328,7 +317,7 @@ Deprived Succubus again",
 (Lovers 2.10)"
 	  "Duplicates": 1
 	  "Image" : 11
-	  "Back" : 1
+	  "Back" : 2
 	}{
       "Title": "Serene Way",
 	  "Type": "Minor God",
@@ -355,7 +344,7 @@ gods\" (Beggars 11.7)"
  (Lovers 2.11)"
 	  "Duplicates": 1
 	  "Image" : 8
-	  "Back" : 0
+	  "Back" : 2
 	}{
       "Title": "Furious Runes",
 	  "Type": "Location",
@@ -369,7 +358,7 @@ places long forgotten\"
 (Beggars 11.3)"
 	  "Duplicates": 1
 	  "Image" : 13
-	  "Back" : 0
+	  "Back" : 2
 	}{
 	 "Title": "Quaking Magma",
 	  "Type": "Event",
@@ -397,7 +386,7 @@ created on a whim\"
 (Beggars 11.4)"
 	  "Duplicates": 1
 	  "Image" : 3
-	  "Back" : 4
+	  "Back" : 2
 	}
   ]
   
@@ -463,7 +452,7 @@ than the prospect of large
 scale war\" (Beggars 13.1)"
 	  "Duplicates": 1
 	  "Image" : 28
-	  "Back" : 2
+	  "Back" : 5
 	}
 {
  	 "Title": "Secure Sword",
@@ -487,6 +476,16 @@ scroll to cast that spell",
 the gems\" (Relics 3.6)"
 	  "Duplicates": 1
 	  "Image" : 34
+	  "Back" : 5
+	}{
+      "Title": "Pathetic Mask",
+	  "Type": "Equipment",
+	  "Rules": "Roll greater than 3 to avoid a
+battle",
+	  "Flavour": "\"The red wizard was from
+the desert\" (Beggars 7.4)"
+	  "Duplicates": 1
+	  "Image" : 29
 	  "Back" : 5
 	}
   ]

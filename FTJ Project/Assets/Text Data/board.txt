@@ -64,7 +64,7 @@
     }{
   	  "Pos":[1,3],
   	  "Title":"Trap door",
-  	  "Rules":"Fall down to the\nStacks, take one damage",
+  	  "Rules":"Fall down to the Stacks,\n take one damage",
   	  "Color":[101,101,101]
     }{
   	  "Pos":[1,2],

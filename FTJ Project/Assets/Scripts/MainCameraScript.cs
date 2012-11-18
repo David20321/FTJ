@@ -10,7 +10,7 @@ public class MainCameraScript : MonoBehaviour {
 	float zoom_amount;
 	const float ZOOM_INERTIA = 0.0001f;
 	const float ZOOM_SPEED = 10.0f;
-	const float ZOOM_FOV = 0.4f;
+	const float ZOOM_FOV = 0.3f;
 	const float PAN_SPEED = 10.0f;
 	
 	// Use this for initialization
