@@ -37,7 +37,24 @@ Monsters:
 - easy to beat, but insta-kill if fail
 
 Locations:
-
+Good:
+- lots of choices of cards
+- get gold
+- get equipment
+- harm other players
+- get another turn
+- heal
+- get gold from limbo?
+- move somewhere good
+- switch locations with other player?
+Bad:
+- few choices of cards
+- opponents choose card
+- lose a turn
+- pay toll
+- take damage
+- move somewhere bad or random
+- damage equipment
 
 Cards:
 
@@ -125,3 +142,7 @@ X Unformed Staff
 - Can be enchanted with a scroll to cast that spell
 X Shield
 - Risk of breaking to avoid a point of damage
+
+
+
+Board tiles:
