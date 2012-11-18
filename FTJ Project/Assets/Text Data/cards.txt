@@ -2,200 +2,203 @@
   "Wilderness": [
 	{
       "Title": "Curious Slug",
-	  "Type": "Fight - Slug Monster",
-	  "Rules": "Target: 3   Gold: 0    Points: 1
-On loss: take one damage",
-	  "Flavour": "\"there are all manner of
+	  "Type": "Slug Monster",
+	  "Target": "3",
+	  "Gold": "0",
+	  "Points": "1",
+	  "Rules": "On loss: skip next turn",
+	  "Flavour": "\"There are all manner of
 strange and unique
 creatures\" (Beggars 11.2)"
 	  "Duplicates": 1
 	  "Image" : 15
 	  "Back" : 4
-	}
-	{
-      "Title": "Lost Wanderer",
-	  "Type": "Fight - Undead Monster",
-	  "Rules": "Target: 4   Gold: 0    Points: 2
-On loss: take 1 damage 
-and fight this monster again",
-	  "Flavour": "\"Those that once lived that
-don’t realize they are dead\"
-(Beggars 11.6)"
-	  "Duplicates": 1
-	  "Image" : 10
-	  "Back" : 4
-	}
-	{
-      "Title": "Determined Explorer",
-	  "Type": "Fight - Human Warrior",
-	  "Rules": "Target: 5   Gold: 0    Points: 0
-On win: draw a town card
-On loss: take one damage",
-	  "Flavour": "\"Humanity has so many
-heros\" (Beggars 14.1)"
-	  "Duplicates": 1
-	  "Image" : 2
-	  "Back" : 4
-	}
-     {
-      "Title": "Woeful Dryad",
-	  "Type": "Undead Tree Monster",
-	  "Rules": "Target: 3   Gold: 1    Points: 3
-On loss: Choose a card from
-your victory pile and discard it",
-	  "Flavour": "\"and everywhere it splashed
-sprange up new growth\"
-(Killers 2.2)"
-	  "Duplicates": 1
-	  "Image" : 3
-	  "Back" : 4
-	}
-	{  
+	}{  
       "Title": "Eager Guardian",
 	  "Type": "Arachnid Monster",
-	  "Rules": "Target: 2   Gold: 1    Points: 1
-On win: gain Silk Rope
-Discard Silk Rope to add 2 to
-your move roll this turn",
+	  "Target": "4",
+	  "Gold": "0",
+	  "Points": "2",
+	  "Rules": "",
 	  "Flavour": "\"Humanity faces many common
 threats to its existence\"
  (Beggars 11.1)"
 	  "Duplicates": 1
 	  "Image" : 4
 	  "Back" : 4
-	}
-	{
+	}{
+      "Title": "Anxious Bandit",
+	  "Type": "Human Warrior",
+	  "Target": "5"
+	  "Gold": "3"
+	  "Points": "0"
+	  "Rules": "You may pay one gold to
+avoid this fight",
+	  "Flavour": "\"It would take too long
+to explain it\" (Rest 3.6)"
+	  "Duplicates": 1
+	  "Image" : 27
+	  "Back" : 1
+	}{
+      "Title": "Hostile Rider",
+	  "Type": "Flying Wyvern",
+	  "Target": "5"
+	  "Gold": "2"
+	  "Points": "2"
+	  "Rules": "On loss: Instead of dealing
+damage, Hostile Rider steals
+a piece of equipment (your 
+choice)",
+	  "Flavour": "\"Wizards are not the only
+defense humans have\" 
+(Beggars 9.1)"
+	  "Duplicates": 1
+	  "Image" : 19
+	  "Back" : 1
+	}{
+      "Title": "Cold Golem",
+	  "Type": "Iron Monster",
+	  "Target": "4"
+	  "Gold": "2"
+	  "Points": "4"
+	  "Rules": "On win: roll a die. If below a 4, 
+fight Cold Golem again.",
+	  "Flavour": "\"A tiny chip of his blue
+crystal irises\" (Beggars 5.3)"
+	  "Duplicates": 1
+	  "Image" : 7
+	  "Back" : 1
+	}{
      "Title": "Incensed Wizard",
 	  "Type": "Human Wizard",
-	  "Rules": "Target: 4   Gold: 1    Points: 3
-On win: gain Storm Gem
-Discard Storm Gem to add 2 to
-your magic test this turn",
+	  "Target": "4"
+	  "Gold": "1"
+	  "Points": "1"
+	  "Rules": "On loss: teleport to the Hedge
+Maze",
 	  "Flavour": "\"Wizards were able to, at
 great loss of life, activate a
 divine artifact\" (Beggars 8.2)"
 	  "Duplicates": 1
 	  "Image" : 5
 	  "Back" : 4
-	}
-	{
-      "Title": "Secure Stronghold",
-	  "Type": "Castle",
-	  "Rules": "Location acts
-as Town for this turn",
-	  "Flavour": "\"Institutions have proven
-to be critical to humanity’s
-survival\" (Beggars 8.1)"
+	}{
+      "Title": "Lonely Flight",
+	  "Type": "Minor God",
+	  "Target": "3"
+	  "Gold": "0"
+	  "Points": "2"
+	  "Rules": "On loss: take three damage",
+	  "Flavour": "\"These small gods still
+control incredible power\"
+(Beggars 13.2)"
 	  "Duplicates": 1
-	  "Image" : 23
-	  "Back" : 4
+	  "Image" : 18
+	  "Back" : 2
 	}
-
    ]
 
+   
   "Dungeon Lvl 1": [
-   {
-      "Title": "Pleased Troll",
-	  "Type": "Nocturnal Monster",
-	  "Rules": "Target: 4   Gold: 3    Points: 3
-On loss: pay 3 gold",
-	  "Flavour": "\"Mindlessly they live
-on and procreate\" 
-(Beggars 11.11)"
-	  "Image" : 1
-	  "Back" : 0
-	}
-	{
-      "Title": "Dominated Baghead",
-	  "Type": "Human Monster",
-	  "Rules": "Target: 4   Gold: 0    Points: 3
-On loss: choose one gear card
-you own and place it on the
-Altar",
-	  "Flavour": "\"They are only allowed
-to remove the bag to eat\"
-(Beggars 9.5)"
-	  "Duplicates": 1
-	  "Image" : 6
-	  "Back" : 0
-	}
-	{
-      "Title": "Alarmed Knight",
-	  "Type": "Human Warrior",
-	  "Rules": "Target: 4   Gold: 2    Points: 2",
-	  "Flavour": "\"Oh no. What is that?\"
- (Lovers 2.11)"
-	  "Duplicates": 1
-	  "Image" : 8
-	  "Back" : 0
-	}
-	{
-      "Title": "Nonchalant Guard",
-	  "Type": "Orc Monster",
-	  "Rules": "Target: 3   Gold: 2    Points: 2
-On loss: put 1 gold on the
-Altar",
-	  "Flavour": "\"They whorship savage,
-powerful gods\"
-(Beggars 12.6)"
-	  "Duplicates": 1
-	  "Image" : 12
-	  "Back" : 0
-	}
-	{
-      "Title": "Preoccupied Serpent",
-	  "Type": "Aquatic Monster",
-	  "Rules": "Target: 4   Gold: 1    Points: 2
-On win: discard one gear card
-and draw one gear card",
-	  "Flavour": "\"Guardians of the dark
-places long forgotten\"
-(Beggars 11.3)"
-	  "Duplicates": 1
-	  "Image" : 13
-	  "Back" : 0
-	}
 	{
       "Title": "Certain Adventurer",
 	  "Type": "Lizard Monster",
-	  "Rules": "Target: 3   Gold: 3    Points: 2
-On loss: put one gear card on
-the Altar",
+	  "Target": "5"
+	  "Gold": "4"
+	  "Points": "0"
+	  "Rules": "",
 	  "Flavour": "\"There are also many
 sentient races besides
 humans\" (Beggars 12.1)"
 	  "Duplicates": 1
 	  "Image" : 14
 	  "Back" : 0
-	}
-	{
-      "Title": "Engrossed Priestess",
-	  "Type": "Human Priestess",
-	  "Rules": "Target: 4   Gold: 2    Points: 4
-On loss: put two gear cards 
-on the Altar. Gain 2 gold",
-	  "Flavour": "\"your people have taken
-the powers they could 
-control\" (Spirits 1.4)"
+	}{
+      "Title": "Satisfied Ghoul",
+	  "Type": "Human Monster",
+	  "Target": "5"
+	  "Gold": "1"
+	  "Points": "3"
+	  "Rules": "On loss: instead of dealing 
+damage, Satisfied Ghoul steals 
+one of your defeated enemies",
+	  "Flavour": "\"Death slept a deep, 
+dreamless sleep\" 
+(Lovers 2.1)"
 	  "Duplicates": 1
-	  "Image" : 17
+	  "Image" : 30
 	  "Back" : 0
-	}
-	{
+	}{
+      "Title": "Concerned Swordsman",
+	  "Type": "Elf Warrior",
+	  "Target": "5"
+	  "Gold": "2"
+	  "Points": "2"
+	  "Rules": "On loss: take two damage",
+	  "Flavour": "\"Those that are
+ successful
+are the inscrutable elves\"
+(Beggars 12.2)"
+	  "Duplicates": 1
+	  "Image" : 24
+	  "Back" : 1
+	}{
       "Title": "Clever Slime",
 	  "Type": "Slime Monster",
-	  "Rules": "Target: 3   Gold: 4    Points: 1
-On win: retreive a gear card
-from the discard pile",
-
-	  "Flavour": "\"gelatinous monsters
+	  "Target": "5"
+	  "Gold": "2"
+	  "Points": "4"
+	  "Rules": "On loss: discard one of your 
+equipment cards (your choice)"
+	  "Flavour": "\"Gelatinous monsters
 whose touch will dissolve
 flesh\" (Beggars 11.5)"
 	  "Duplicates": 1
 	  "Image" : 25
 	  "Back" : 0
-	}
-	{
+	}{
+      "Title": "Nonchalant Guard",
+	  "Type": "Orc Monster",
+	  "Target": "6"
+	  "Gold": "3"
+	  "Points": "1"
+	  "Rules": "On win: draw a card from the
+town deck",
+	  "Flavour": "\"They worship savage,
+powerful gods\"
+(Beggars 12.6)"
+	  "Duplicates": 1
+	  "Image" : 12
+	  "Back" : 0
+	}{
+      "Title": "Dominated Baghead",
+	  "Type": "Human Monster",
+	  "Target": "4"
+	  "Gold": "2"
+	  "Points": "2"
+	  "Rules": "On win: take one damage
+On loss: take no damage",
+	  "Flavour": "\"They are only allowed
+to remove the bag to eat\"
+(Beggars 9.5)"
+	  "Duplicates": 1
+	  "Image" : 6
+	  "Back" : 0
+	}{
+      "Title": "Determined Explorer",
+	  "Type": "Human Warrior",
+	  "Target": "6"
+	  "Gold": "5"
+	  "Points": "0"
+	  "Rules": "You may pay two gold to avoid 
+this battle, and get an extra 
+attack die in your next battle",
+	  "Flavour": "\"Humanity has so many
+heros\" (Beggars 14.1)"
+	  "Duplicates": 1
+	  "Image" : 2
+	  "Back" : 4
+	}{
       "Title": "Relaxed Wizard",
 	  "Type": "Human Wizard",
 	  "Rules": "Target: 4   Gold: 2    Points: 3
@@ -207,127 +210,254 @@ the desert\" (Beggars 7.4)"
 	  "Image" : 29
 	  "Back" : 0
 	}
+  ]
+ "Dungeon Lvl 2": [
 	{
-      "Title": "Satisfied Ghoul",
-	  "Type": "Human Monster",
-	  "Rules": "Target: 3   Gold: 0    Points: 1
-On loss: move to the Cemetery",
-	  "Flavour": "\"Death slept a deep, 
-dreamless sleep\" 
-(Lovers 2.1)"
+      "Title": "Sympathetic Shadow",
+	  "Type": "Minor God",
+	  "Target": "6"
+	  "Gold": "2"
+	  "Points": "4"
+	  "Rules": "On loss: move to Darkness",
+	  "Flavour": "\"We are one person. For us
+to try to go back together is
+natural\" (Killers 1.9)"
 	  "Duplicates": 1
-	  "Image" : 30
-	  "Back" : 0
-	}
-	{
+	  "Image" : 22
+	  "Back" : 2
+	}{
       "Title": "Spirited Shrine",
+	  "Target": "0"
+	  "Gold": "0"
+	  "Points": "6"
 	  "Type": "Location",
-	  "Rules": "Choose one gear
-card from the Altar",
+	  "Rules": "Sacrifice an equipment OR
+take three damage",
 	  "Flavour": "\"All true magic in this
 world still comes from
 that corpse\" (Beggars 5.1)"
 	  "Duplicates": 1
 	  "Image" : 20
 	  "Back" : 0
+	}{
+      "Title": "Pleased Troll",
+	  "Target": "6",
+	  "Gold": "3",
+	  "Points": "3",
+	  "Type": "Nocturnal Monster",
+	  "Rules": "On loss: Pleased Troll steals a 
+piece of equipment (your 
+choice)",
+	  "Flavour": "\"Mindlessly they live
+on and procreate\" 
+(Beggars 11.11)"
+	  "Image" : 1
+	  "Back" : 0
+	}{
+      "Title": "Engrossed Priestess",
+	  "Type": "Human Priestess",
+	  "Target": "5",
+	  "Gold": "2",
+	  "Points": "4",
+	  "Rules": "On win: every player takes 
+one damage",
+	  "Flavour": "\"Your people have taken
+the powers they could 
+control\" (Spirits 1.4)"
+	  "Duplicates": 1
+	  "Image" : 17
+	  "Back" : 0
+	}{
+      "Title": "Lost Wanderer",
+	  "Type": "Undead Monster",
+	  "Target": "0",
+	  "Gold": "0",
+	  "Points": "6",
+	  "Rules": "Choose another player to 
+battle: the winner gets this
+card",
+	  "Flavour": "\"Those that once lived that
+don’t realize they are dead\"
+(Beggars 11.6)"
+	  "Duplicates": 1
+	  "Image" : 10
+	  "Back" : 4
+	}{
+	  "Target": "0",
+	  "Gold": "0",
+	  "Points": "0",
+      "Title": "Secure Stronghold",
+	  "Type": "Castle",
+	  "Rules": "Location acts
+as Town for this turn",
+	  "Flavour": "\"Institutions have proven
+to be critical to humanity’s
+survival\" (Beggars 8.1)"
+	  "Duplicates": 1
+	  "Image" : 23
+	  "Back" : 4
+	}{
+      "Title": "Lonely Birdman",
+	  "Type": "Flying Warrior",
+	  "Target": "5",
+	  "Gold": "3",
+	  "Points": "3",
+	  "Rules": "On win: On 1d6 5+ Lonely
+Birdman is returned to the
+deck",
+	  "Flavour": "\"Virtually eradicating the
+birdmen\" (Beggars 8.2)"
+	  "Duplicates": 1
+	  "Image" : 31
+	  "Back" : 1
 	}
   ]
- "Dungeon Lvl 2": [
-	{
-      "Title": "Anxious Wizard",
-	  "Type": "Human Wizard",
-	  "Rules": "Target: 5   Gold: 4    Points: 4
-On win: move to the Cemetery",
-	  "Flavour": "\"it would take too long
-to explain it\" (Rest 3.6)"
-	  "Duplicates": 1
-	  "Image" : 27
-	  "Back" : 1
-	}
-	{
-      "Title": "Cold Golem",
-	  "Type": "Iron Monster",
-	  "Rules": "Target: 6   Gold: 0    Points: 2
-On win: roll a die. gain
-amount of gold",
-	  "Flavour": "\"a tiny chip of his blue
-crystal irises\" (Beggars 5.3)"
-	  "Duplicates": 1
-	  "Image" : 7
-	  "Back" : 1
-	}
+  
+  
+ "Dungeon Lvl 3": [
 	{
       "Title": "Deprived Succubus",
 	  "Type": "Demonic Monster",
-	  "Rules": "Target: 5   Gold: 5    Points: 3
-On win: move another player's
-token 2 spaces and resolve
-any events",
+	  "Target": "6",
+	  "Gold": "0",
+	  "Points": "6",
+	  "Rules": "On loss: take no damage, but
+spend next turn fighting 
+Deprived Succubus again",
 	  "Flavour": "\"I will call her Lust\"
 (Lovers 2.10)"
 	  "Duplicates": 1
 	  "Image" : 11
 	  "Back" : 1
-	}
-	{
-      "Title": "Hostile Rider",
-	  "Type": "Flying Wyvern",
-	  "Rules": "Target: 6   Gold: 3    Points: 5
-On win: gain Wyvern. Discard
-Wyvern to add 3 to your
-attack or move this turn",
-	  "Flavour": "\"Wizards are not the only
-defense humans have\" 
-(Beggars 9.1)"
+	}{
+      "Title": "Serene Way",
+	  "Type": "Minor God",
+	  "Target": "5",
+	  "Gold": "0",
+	  "Points": "8",
+	  "Rules": "On win: any player may take
+one damage to put Serene 
+Way back in the deck",
+	  "Flavour": "\"Driven mad through 
+exposure to their selfish
+gods\" (Beggars 11.7)"
 	  "Duplicates": 1
-	  "Image" : 19
-	  "Back" : 1
-	}
-	{
-      "Title": "Concerned Swordsman",
-	  "Type": "Elf Warrior",
-	  "Rules": "Target: 5   Gold: 2    Points: 4
-On win: roll. On odds, skip
-next turn",
-	  "Flavour": "\"Among those that are
-successful are the inscrutable
-elves\" (12.1)"
+	  "Image" : 26
+	  "Back" : 2
+	}{
+      "Title": "Alarmed Knight",
+	  "Type": "Human Warrior",
+	  "Target": "6",
+	  "Gold": "0",
+	  "Points": "6",
+	  "Rules": "On loss: take four damage",
+	  "Flavour": "\"Oh no. What is that?\"
+ (Lovers 2.11)"
 	  "Duplicates": 1
-	  "Image" : 24
-	  "Back" : 1
-	}
-	{
- 	 "Title": "Restless Tower",
-	  "Type": "Castle",
-	  "Rules": "Automatically win
-your next combat",
-	  "Flavour": "\"Perhaps in a billion years
-from now you are reading
-this\" (Spirits 1.2)"
+	  "Image" : 8
+	  "Back" : 0
+	}{
+      "Title": "Furious Runes",
+	  "Type": "Location",
+	  "Target": "0",
+	  "Gold": "0",
+	  "Points": "5",
+	  "Rules": "Roll a die for each equipped
+item, discard if below 4",
+	  "Flavour": "\"Guardians of the dark
+places long forgotten\"
+(Beggars 11.3)"
 	  "Duplicates": 1
-	  "Image" : 0
-	  "Back" : 1
+	  "Image" : 13
+	  "Back" : 0
+	}{
+	 "Title": "Quaking Magma",
+	  "Type": "Event",
+	  "Target": "0",
+	  "Gold": "0",
+	  "Points": "3",
+	  "Rules": "Each player takes two damage",
+	  "Flavour": "\"Have they have steered a
+ course to the stars and
+ beyond?\" (Spirits 1.6)"
+	  "Duplicates": 1
+	  "Image" : 9
+	  "Back" : 2
+	}{
+      "Title": "Woeful Dryad",
+	  "Type": "Undead Tree Monster",
+	  "Target": "6",
+	  "Gold": "0",
+	  "Points": "6",
+	  "Rules": "On loss: Woeful Dryad steals
+a card from your victory pile 
+(opponent's choice)",
+	  "Flavour": "\"Discarded living experiments
+created on a whim\"
+(Beggars 11.4)"
+	  "Duplicates": 1
+	  "Image" : 3
+	  "Back" : 4
 	}
   ]
- "Dungeon Lvl 3": [
+  
+  
+ "Gear": [
 	{
-	
-      "Title": "Lonely Flight",
-	  "Type": "Minor God",
-	  "Rules": "Target: 10   Gold: 2    Points: 12
-On loss: all gear goes to 
-the Altar. Return to town",
-	  "Flavour": "\"These small gods still
-control incredible power\"
-(Beggars 13.2)"
+      "Title": "Reliable Sword",
+	  "Type": "Equipment",
+	  "Price": 3
+	  "Rules": "Roll one extra die in combat",
+	  "Flavour": "\"Everything got a lot
+more dangerous\" (Beggars 1.2)"
 	  "Duplicates": 1
-	  "Image" : 18
-	  "Back" : 2
+	  "Image" : 16
+	  "Back" : 5
+	}{
+      "Title": "Warm Potion",
+	  "Type": "Equipment",
+	  "Price" : 2
+	  "Rules": "Discard Warm Potion to
+gain 2 health",
+	  "Flavour": "\"Everywhere it splashed 
+sprang up new growth\" 
+(Killers 2.2)"
+	  "Duplicates": 1
+	  "Image" : 21
+	  "Back" : 5
+	}{
+ 	 "Title": "Thirsty Sword",
+	  "Type": "Equipment",
+	  "Price" : 4
+	  "Rules": "Reroll one attack die
+On win: gain 1 health",
+	  "Flavour": "\"Darker gods have also
+created swords for their
+vassals\" (Relics 4.7)"
+	  "Duplicates": 1
+	  "Image" : 0
+	  "Back" : 5
+	}
+{
+ 	 "Title": "Wary Helmet",
+	  "Type": "Equipment",
+	  "Price" : 4
+	  "Rules": "Do not take damage
+On 1d6 4+ discard Wary
+Helmet",
+	  "Flavour": "\"Some still hold a portion
+of the living will of the 
+god\" (Relics 6.4)"
+	  "Duplicates": 1
+	  "Image" : 32
+	  "Back" : 5
 	}
 	{
       "Title": "Keen Sphere",
-	  "Type": "Minor God",
-	  "Rules": "On 1 or 2: skip a turnOn 5 or 6: draw four, pick one",
+	  "Type": "Equipment Upgrade",
+	  "Price" : 2
+	  "Rules": "Target equipment card cannot 
+be destroyed",
 	  "Flavour": "\"More terrifying for humans
 than the prospect of large
 scale war\" (Beggars 13.1)"
@@ -335,67 +465,28 @@ scale war\" (Beggars 13.1)"
 	  "Image" : 28
 	  "Back" : 2
 	}
-	{
-      "Title": "Serene Way",
-	  "Type": "Minor God",
-	  "Rules": "On 1 or 2: skip a turnOn 5 or 6: draw four, pick one",
-	  "Flavour": "\"Driven mad through 
-exposure to their selfish
-gods\" (Beggars 11.7)"
-	  "Duplicates": 1
-	  "Image" : 26
-	  "Back" : 2
-	}
-	{
-      "Title": "Sympathetic Shadow",
-	  "Type": "Minor God",
-	  "Rules": "On 1 or 2: skip a turnOn 5 or 6: draw four, pick one",
-	  "Flavour": "\"We are one person. For us
-to try to go back together is
-natural\" (Killers 1.9)"
-	  "Duplicates": 1
-	  "Image" : 22
-	  "Back" : 2
-	}
-	{
-	 "Title": "Quaking Bastion",
-	  "Type": "Castle",
-	  "Rules": "Draw 3 gear
-cards. Select 1. Discard
-the other 2",
-	  "Flavour": "\"Have they have steered a
- course to the stars and
- beyond?\" (Spirits 1.6)"
-	  "Duplicates": 1
-	  "Image" : 9
-	  "Back" : 2
-	}
-	
-  ]
- "Gear": [
-   
-	{
-      "Title": "Reliable Sword",
+{
+ 	 "Title": "Secure Sword",
 	  "Type": "Equipment",
-	  "Rules": "Roll one extra
- dice in combat",
-	  "Flavour": "\"Everything got a lot
-more dangerous\" (Beggars 1.2)"
+	  "Price" : 3
+	  "Rules": "Add 1 to combat rolls",
+	  "Flavour": "\"There are countless artifacts
+in existence, and more being
+made\" (Relics 6.1)"
 	  "Duplicates": 1
-	  "Image" : 16
+	  "Image" : 33
 	  "Back" : 5
 	}
-	{
-      "Title": "Warm Potion",
+{
+ 	 "Title": "Receptive Gem",
 	  "Type": "Equipment",
-	  "Rules": "Discard Warm
-Potion to ignore any loss
-event this turn",
-	  "Flavour": "\"everywhere it splashed 
-sprang up new growth\" 
-(Killers 2.2)"
+	  "Price" : 4
+	  "Rules": "Can be enchanted with a
+scroll to cast that spell",
+	  "Flavour": "\"Her blood crystallizes to form
+the gems\" (Relics 3.6)"
 	  "Duplicates": 1
-	  "Image" : 21
+	  "Image" : 34
 	  "Back" : 5
 	}
   ]
