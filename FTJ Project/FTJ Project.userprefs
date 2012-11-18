@@ -1,22 +1,25 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\GrabbableScript.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="..\..\..\..\Desktop\builtin_shaders\DefaultResources\Alpha-Bumped.shader">
     <Files>
+      <File FileName="Assets\Standard Assets\Projectors\Sources\Shaders\Projector Multiply DrawOrder.shader" Line="19" Column="11" />
+      <File FileName="Assets\Scripts\BoardScript.cs" Line="1" Column="1" />
       <File FileName="Assets\Text Data\board.txt" Line="1" Column="1" />
       <File FileName="Assets\Scripts\MainCameraScript.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts\CardManagerScript.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts\CardBakeScript.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts\CardData.cs" Line="1" Column="1" />
       <File FileName="Assets\Text Data\cards.txt" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\ObjectManagerScript.cs" Line="55" Column="39" />
-      <File FileName="Assets\Scripts\CursorScript.cs" Line="62" Column="34" />
-      <File FileName="Assets\Scripts\DeckScript.cs" Line="136" Column="39" />
+      <File FileName="Assets\Scripts\ObjectManagerScript.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\CursorScript.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\DeckScript.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts\CardScript.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\BoardScript.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts\ParentTokenScript.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\NetUIScript.cs" Line="502" Column="1" />
-      <File FileName="Assets\Scripts\PlayAreaScript.cs" Line="7" Column="39" />
-      <File FileName="Assets\Scripts\GrabbableScript.cs" Line="26" Column="3" />
+      <File FileName="Assets\Scripts\NetUIScript.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\PlayAreaScript.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\GrabbableScript.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\NetworkRigidbody.cs" Line="1" Column="1" />
+      <File FileName="..\..\..\..\Desktop\builtin_shaders\DefaultResources\Alpha-Bumped.shader" Line="9" Column="29" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
