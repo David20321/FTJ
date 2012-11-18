@@ -12,7 +12,19 @@ public class CardBakeScript : MonoBehaviour {
 	
 	public Material Bake() {
 		var title_text = transform.FindChild("Title").GetComponent<TextMesh>();
-		title_text.text = card_data_.title + " " + card_data_.target;
+		title_text.text = card_data_.title;
+		if(card_data_.target > 0){
+			title_text.text += " T:"+card_data_.target;
+		}
+		if(card_data_.gold > 0){
+			title_text.text += " G:"+card_data_.gold;
+		}
+		if(card_data_.points > 0){
+			title_text.text += " VP:"+card_data_.points;
+		}
+		if(card_data_.price > 0){
+			title_text.text += " P:"+card_data_.price;
+		}
 		var type_text = transform.FindChild("Type").GetComponent<TextMesh>();
 		type_text.text = card_data_.type;
 		var rules_text = transform.FindChild("Rules").GetComponent<TextMesh>();

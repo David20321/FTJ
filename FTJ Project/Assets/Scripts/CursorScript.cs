@@ -121,6 +121,7 @@ public class CursorScript : MonoBehaviour {
 						if(deck_held_time_ > DECK_HOLD_THRESHOLD){
 							Grab(grabbable_script.id_, id_);
 						}
+						break;
 					}
 					if(!hit_obj.GetComponent<DiceScript>() && !Input.GetMouseButtonDown(0)){
 						continue;
@@ -128,7 +129,7 @@ public class CursorScript : MonoBehaviour {
 					if(hit_obj.GetComponent<DeckScript>()){
 						deck_held_time_ = Time.deltaTime;
 						deck_held_id_ = grabbable_script.id_;
-						continue;
+						break;
 					}					
 					Grab(grabbable_script.id_, id_);
 				}
