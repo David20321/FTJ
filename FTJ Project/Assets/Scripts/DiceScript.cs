@@ -23,7 +23,6 @@ public class DiceScript : MonoBehaviour {
 			networkView.RPC("ShakeSound",RPCMode.Others);
 		}
 		PlayRandomSound(dice_impact_dice, DICE_DICE_SOUND_MULT*0.05f);
-		ConsoleScript.Log ("Playing shake sound");
 	}
 	
 	[RPC]
@@ -32,7 +31,6 @@ public class DiceScript : MonoBehaviour {
 			networkView.RPC("PickUpSound",RPCMode.Others);
 		}
 		PlayRandomSound(dice_pick_up, 0.1f);
-		ConsoleScript.Log ("Playing pick up sound");
 	}
 	
 	[RPC]
@@ -57,7 +55,6 @@ public class DiceScript : MonoBehaviour {
 			float volume = info.relativeVelocity.magnitude*0.1f;
 			int layer = info.collider.gameObject.layer;
 			PlayImpactSound(layer,volume);
-			ConsoleScript.Log ("Playing impact sound");
 			last_sound_time = Time.time;
 		}	
 	}
