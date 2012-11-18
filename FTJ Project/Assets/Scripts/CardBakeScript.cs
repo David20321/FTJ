@@ -12,7 +12,7 @@ public class CardBakeScript : MonoBehaviour {
 	
 	public Material Bake() {
 		var title_text = transform.FindChild("Title").GetComponent<TextMesh>();
-		title_text.text = card_data_.title;
+		title_text.text = card_data_.title + " " + card_data_.target;
 		var type_text = transform.FindChild("Type").GetComponent<TextMesh>();
 		type_text.text = card_data_.type;
 		var rules_text = transform.FindChild("Rules").GetComponent<TextMesh>();

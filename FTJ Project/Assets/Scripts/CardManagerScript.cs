@@ -47,6 +47,22 @@ public class CardManagerScript : MonoBehaviour {
 				if(card_dict.ContainsKey("Flavour")){
 					card_data.flavour = (string)card_dict["Flavour"];
 				}
+				card_data.target = 0;
+				if(card_dict.ContainsKey("Target")){
+					card_data.target = (int)(long)card_dict["Target"];
+				}
+				card_data.gold = 0;
+				if(card_dict.ContainsKey("Gold")){
+					card_data.gold = (int)(long)card_dict["Gold"];
+				}
+				card_data.points = 0;
+				if(card_dict.ContainsKey("Points")){
+					card_data.points = (int)(long)card_dict["Points"];
+				}
+				card_data.price = 0;
+				if(card_dict.ContainsKey("Price")){
+					card_data.price = (int)(long)card_dict["Price"];
+				}
 				card_data.image = 0;
 				if(card_dict.ContainsKey("Image")){
 					card_data.image = (int)(long)card_dict["Image"];

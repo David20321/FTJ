@@ -3,9 +3,9 @@
 	{
       "Title": "Curious Slug",
 	  "Type": "Slug Monster",
-	  "Target": "3",
-	  "Gold": "0",
-	  "Points": "1",
+	  "Target": 3,
+	  "Gold": 0,
+	  "Points": 1,
 	  "Rules": "On loss: skip next turn",
 	  "Flavour": "\"There are all manner of
 strange and unique
@@ -16,9 +16,9 @@ creatures\" (Beggars 11.2)"
 	}{  
       "Title": "Eager Guardian",
 	  "Type": "Arachnid Monster",
-	  "Target": "4",
-	  "Gold": "0",
-	  "Points": "2",
+	  "Target": 4,
+	  "Gold": 0,
+	  "Points": 2,
 	  "Rules": "",
 	  "Flavour": "\"Humanity faces many common
 threats to its existence\"
@@ -29,9 +29,9 @@ threats to its existence\"
 	}{
       "Title": "Anxious Bandit",
 	  "Type": "Human Warrior",
-	  "Target": "5"
-	  "Gold": "3"
-	  "Points": "0"
+	  "Target": 5
+	  "Gold": 3
+	  "Points": 0
 	  "Rules": "You may pay one gold to
 avoid this fight",
 	  "Flavour": "\"It would take too long
@@ -42,9 +42,9 @@ to explain it\" (Rest 3.6)"
 	}{
       "Title": "Hostile Rider",
 	  "Type": "Flying Wyvern",
-	  "Target": "5"
-	  "Gold": "2"
-	  "Points": "2"
+	  "Target": 5
+	  "Gold": 2
+	  "Points": 2
 	  "Rules": "On loss: Instead of dealing
 damage, Hostile Rider steals
 a piece of equipment (your 
@@ -58,9 +58,9 @@ defense humans have\"
 	}{
       "Title": "Cold Golem",
 	  "Type": "Iron Monster",
-	  "Target": "4"
-	  "Gold": "2"
-	  "Points": "4"
+	  "Target": 4
+	  "Gold": 2
+	  "Points": 4
 	  "Rules": "On win: roll a die. If below a 4, 
 fight Cold Golem again.",
 	  "Flavour": "\"A tiny chip of his blue
@@ -71,9 +71,9 @@ crystal irises\" (Beggars 5.3)"
 	}{
      "Title": "Incensed Wizard",
 	  "Type": "Human Wizard",
-	  "Target": "4"
-	  "Gold": "1"
-	  "Points": "1"
+	  "Target": 4
+	  "Gold": 1
+	  "Points": 1
 	  "Rules": "On loss: teleport to the Hedge
 Maze",
 	  "Flavour": "\"Wizards were able to, at
@@ -85,9 +85,9 @@ divine artifact\" (Beggars 8.2)"
 	}{
       "Title": "Lonely Flight",
 	  "Type": "Minor God",
-	  "Target": "3"
-	  "Gold": "0"
-	  "Points": "2"
+	  "Target": 3
+	  "Gold": 0
+	  "Points": 2
 	  "Rules": "On loss: take three damage",
 	  "Flavour": "\"These small gods still
 control incredible power\"
@@ -103,9 +103,9 @@ control incredible power\"
 	{
       "Title": "Certain Adventurer",
 	  "Type": "Lizard Monster",
-	  "Target": "5"
-	  "Gold": "4"
-	  "Points": "0"
+	  "Target": 5
+	  "Gold": 4
+	  "Points": 0
 	  "Rules": "",
 	  "Flavour": "\"There are also many
 sentient races besides
@@ -116,9 +116,9 @@ humans\" (Beggars 12.1)"
 	}{
       "Title": "Satisfied Ghoul",
 	  "Type": "Human Monster",
-	  "Target": "5"
-	  "Gold": "1"
-	  "Points": "3"
+	  "Target": 5
+	  "Gold": 1
+	  "Points": 3
 	  "Rules": "On loss: instead of dealing 
 damage, Satisfied Ghoul steals 
 one of your defeated enemies",
@@ -131,9 +131,9 @@ dreamless sleep\"
 	}{
       "Title": "Concerned Swordsman",
 	  "Type": "Elf Warrior",
-	  "Target": "5"
-	  "Gold": "2"
-	  "Points": "2"
+	  "Target": 5
+	  "Gold": 2
+	  "Points": 2
 	  "Rules": "On loss: take two damage",
 	  "Flavour": "\"Those that are
  successful
@@ -145,9 +145,9 @@ are the inscrutable elves\"
 	}{
       "Title": "Clever Slime",
 	  "Type": "Slime Monster",
-	  "Target": "5"
-	  "Gold": "2"
-	  "Points": "4"
+	  "Target": 5
+	  "Gold": 2
+	  "Points": 4
 	  "Rules": "On loss: discard one of your 
 equipment cards (your choice)"
 	  "Flavour": "\"Gelatinous monsters
@@ -159,9 +159,9 @@ flesh\" (Beggars 11.5)"
 	}{
       "Title": "Nonchalant Guard",
 	  "Type": "Orc Monster",
-	  "Target": "6"
-	  "Gold": "3"
-	  "Points": "1"
+	  "Target": 6
+	  "Gold": 3
+	  "Points": 1
 	  "Rules": "On win: draw a card from the
 town deck",
 	  "Flavour": "\"They worship savage,
@@ -173,9 +173,9 @@ powerful gods\"
 	}{
       "Title": "Dominated Baghead",
 	  "Type": "Human Monster",
-	  "Target": "4"
-	  "Gold": "2"
-	  "Points": "2"
+	  "Target": 4
+	  "Gold": 2
+	  "Points": 2
 	  "Rules": "On win: take one damage
 On loss: take no damage",
 	  "Flavour": "\"They are only allowed
@@ -187,9 +187,9 @@ to remove the bag to eat\"
 	}{
       "Title": "Determined Explorer",
 	  "Type": "Human Warrior",
-	  "Target": "6"
-	  "Gold": "5"
-	  "Points": "0"
+	  "Target": 6
+	  "Gold": 5
+	  "Points": 0
 	  "Rules": "You may pay two gold to avoid 
 this battle, and get an extra 
 attack die in your next battle",
@@ -204,9 +204,9 @@ heros\" (Beggars 14.1)"
 	{
       "Title": "Sympathetic Shadow",
 	  "Type": "Minor God",
-	  "Target": "6"
-	  "Gold": "2"
-	  "Points": "4"
+	  "Target": 6
+	  "Gold": 2
+	  "Points": 4
 	  "Rules": "On loss: move to Darkness",
 	  "Flavour": "\"We are one person. For us
 to try to go back together is
@@ -216,9 +216,9 @@ natural\" (Killers 1.9)"
 	  "Back" : 1
 	}{
       "Title": "Spirited Shrine",
-	  "Target": "0"
-	  "Gold": "0"
-	  "Points": "6"
+	  "Target": 0
+	  "Gold": 0
+	  "Points": 6
 	  "Type": "Location",
 	  "Rules": "Sacrifice an equipment OR
 take three damage",
@@ -230,9 +230,9 @@ that corpse\" (Beggars 5.1)"
 	  "Back" : 1
 	}{
       "Title": "Pleased Troll",
-	  "Target": "6",
-	  "Gold": "3",
-	  "Points": "3",
+	  "Target": 6,
+	  "Gold": 3,
+	  "Points": 3,
 	  "Type": "Nocturnal Monster",
 	  "Rules": "On loss: Pleased Troll steals a 
 piece of equipment (your 
@@ -245,9 +245,9 @@ on and procreate\"
 	}{
       "Title": "Engrossed Priestess",
 	  "Type": "Human Priestess",
-	  "Target": "5",
-	  "Gold": "2",
-	  "Points": "4",
+	  "Target": 5,
+	  "Gold": 2,
+	  "Points": 4,
 	  "Rules": "On win: every player takes 
 one damage",
 	  "Flavour": "\"Your people have taken
@@ -259,9 +259,9 @@ control\" (Spirits 1.4)"
 	}{
       "Title": "Lost Wanderer",
 	  "Type": "Undead Monster",
-	  "Target": "0",
-	  "Gold": "0",
-	  "Points": "6",
+	  "Target": 0,
+	  "Gold": 0,
+	  "Points": 6,
 	  "Rules": "Choose another player to 
 battle: the winner gets this
 card",
@@ -272,9 +272,9 @@ don’t realize they are dead\"
 	  "Image" : 10
 	  "Back" : 1
 	}{
-	  "Target": "0",
-	  "Gold": "0",
-	  "Points": "0",
+	  "Target": 0,
+	  "Gold": 0,
+	  "Points": 0,
       "Title": "Secure Stronghold",
 	  "Type": "Castle",
 	  "Rules": "Location acts
@@ -288,9 +288,9 @@ survival\" (Beggars 8.1)"
 	}{
       "Title": "Lonely Birdman",
 	  "Type": "Flying Warrior",
-	  "Target": "5",
-	  "Gold": "3",
-	  "Points": "3",
+	  "Target": 5,
+	  "Gold": 3,
+	  "Points": 3,
 	  "Rules": "On win: On 1d6 5+ Lonely
 Birdman is returned to the
 deck",
@@ -307,9 +307,9 @@ birdmen\" (Beggars 8.2)"
 	{
       "Title": "Deprived Succubus",
 	  "Type": "Demonic Monster",
-	  "Target": "6",
-	  "Gold": "0",
-	  "Points": "6",
+	  "Target": 6,
+	  "Gold": 0,
+	  "Points": 6,
 	  "Rules": "On loss: take no damage, but
 spend next turn fighting 
 Deprived Succubus again",
@@ -321,9 +321,9 @@ Deprived Succubus again",
 	}{
       "Title": "Serene Way",
 	  "Type": "Minor God",
-	  "Target": "5",
-	  "Gold": "0",
-	  "Points": "8",
+	  "Target": 5,
+	  "Gold": 0,
+	  "Points": 8,
 	  "Rules": "On win: any player may take
 one damage to put Serene 
 Way back in the deck",
@@ -336,9 +336,9 @@ gods\" (Beggars 11.7)"
 	}{
       "Title": "Alarmed Knight",
 	  "Type": "Human Warrior",
-	  "Target": "6",
-	  "Gold": "0",
-	  "Points": "6",
+	  "Target": 6,
+	  "Gold": 0,
+	  "Points": 6,
 	  "Rules": "On loss: take four damage",
 	  "Flavour": "\"Oh no. What is that?\"
  (Lovers 2.11)"
@@ -348,9 +348,9 @@ gods\" (Beggars 11.7)"
 	}{
       "Title": "Furious Runes",
 	  "Type": "Location",
-	  "Target": "0",
-	  "Gold": "0",
-	  "Points": "5",
+	  "Target": 0,
+	  "Gold": 0,
+	  "Points": 5,
 	  "Rules": "Roll a die for each equipped
 item, discard if below 4",
 	  "Flavour": "\"Guardians of the dark
@@ -362,9 +362,9 @@ places long forgotten\"
 	}{
 	 "Title": "Quaking Magma",
 	  "Type": "Event",
-	  "Target": "0",
-	  "Gold": "0",
-	  "Points": "3",
+	  "Target": 0,
+	  "Gold": 0,
+	  "Points": 3,
 	  "Rules": "Each player takes two damage",
 	  "Flavour": "\"Have they have steered a
  course to the stars and
@@ -375,9 +375,9 @@ places long forgotten\"
 	}{
       "Title": "Woeful Dryad",
 	  "Type": "Undead Tree Monster",
-	  "Target": "6",
-	  "Gold": "0",
-	  "Points": "6",
+	  "Target": 6,
+	  "Gold": 0,
+	  "Points": 6,
 	  "Rules": "On loss: Woeful Dryad steals
 a card from your victory pile 
 (opponent's choice)",
