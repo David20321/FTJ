@@ -33,6 +33,10 @@ public class DeckScript : MonoBehaviour {
 		PlayRandomSound(pick_up_sound, 0.1f);
 	}
 	
+	public List<int> GetCards(){
+		return cards_;
+	}
+	
 	public void RandomizeCards(){
 		List<int> new_card_list = new List<int>();
 		while(cards_.Count > 0){
@@ -60,6 +64,11 @@ public class DeckScript : MonoBehaviour {
 			PlayRandomSound(impact_sound, volume*0.3f);
 			last_sound_time = Time.time;
 		}	
+		if(Network.isServer){
+			if(info.collider.GetComponent<DeckScript>()){
+				ObjectManagerScript.Instance().NotifyDeckHitDeck(gameObject, info.collider.gameObject);
+			}
+		}
 	}
 	
 	// Use this for initialization

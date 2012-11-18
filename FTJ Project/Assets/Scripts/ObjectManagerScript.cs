@@ -360,6 +360,43 @@ public class ObjectManagerScript : MonoBehaviour {
 		}
 	}
 	
+	
+	public void NotifyDeckHitDeck(GameObject deck_a, GameObject deck_b){
+		if(deck_b.GetComponent<DeckScript>().GetCards().Count == 0 ||
+		   deck_a.GetComponent<DeckScript>().GetCards().Count == 0)
+	    {
+		 	return;  
+		}
+		ConsoleScript.Log ("Deck hit deck");
+		bool facing_same_way = Vector3.Dot(deck_a.transform.up, deck_b.transform.up) > 0.0;
+		ConsoleScript.Log ("Facing same way: "+facing_same_way);
+		var rel_pos = deck_a.transform.position - deck_b.transform.position;
+		bool close_enough = false;
+		if(Mathf.Abs(Vector3.Dot(rel_pos, deck_a.transform.forward)) < DECK_MERGE_THRESHOLD && 
+		   Mathf.Abs(Vector3.Dot(rel_pos, deck_a.transform.right)) < DECK_MERGE_THRESHOLD &&
+		   Mathf.Abs(Vector3.Dot(rel_pos, deck_b.transform.forward)) < DECK_MERGE_THRESHOLD && 
+		   Mathf.Abs(Vector3.Dot(rel_pos, deck_b.transform.right)) < DECK_MERGE_THRESHOLD &&
+		   Mathf.Abs(Vector3.Dot(deck_a.transform.forward, deck_b.transform.forward)) > 0.5f)
+	    {
+			close_enough = true;
+		}
+		if(deck_a.GetComponent<GrabbableScript>().held_by_player_ == -1 && deck_b.GetComponent<GrabbableScript>().held_by_player_ == -1 && facing_same_way && close_enough){
+			bool top = Vector3.Dot(deck_a.transform.position - deck_b.transform.position, deck_a.transform.up) <= 0.0;
+			var cards = deck_b.GetComponent<DeckScript>().GetCards();
+			if(!top){
+				foreach(var card in cards){
+					deck_a.GetComponent<DeckScript>().AddCard(top, card);
+				}
+			} else {
+				for(int i=cards.Count-1; i>=0; --i){
+					deck_a.GetComponent<DeckScript>().AddCard(top, cards[i]);
+				}
+			}
+			cards.Clear();
+			networkView.RPC("DestroyObject",RPCMode.AllBuffered,deck_b.networkView.viewID);
+		}
+	}
+	
 	public void NotifyCardHitCard(GameObject card_a, GameObject card_b){
 		if(card_a.GetComponent<CardScript>().card_id() == -1 ||
 		   card_b.GetComponent<CardScript>().card_id() == -1){
@@ -378,7 +415,7 @@ public class ObjectManagerScript : MonoBehaviour {
 		}
 		if(card_a.GetComponent<GrabbableScript>().held_by_player_ == -1 && card_b.GetComponent<GrabbableScript>().held_by_player_ == -1 && facing_same_way && close_enough){
 			bool top = Vector3.Dot(card_a.transform.position - card_b.transform.position, card_a.transform.up) >= 0.0;
-			var deck = (GameObject)Network.Instantiate(deck_prefab, (card_a.transform.position + card_b.transform.position)*0.5f, Quaternion.Slerp(card_a.transform.rotation,card_b.transform.rotation,0.5f),0); 
+			var deck = (GameObject)Network.Instantiate(deck_prefab, (card_a.transform.position + card_b.transform.position)*0.5f, card_a.transform.rotation,0); 
 			deck.transform.rotation = Quaternion.AngleAxis(180,deck.transform.right)*deck.transform.rotation;
 			deck.GetComponent<DeckScript>().AddCard(top, card_a.GetComponent<CardScript>().card_id());
 			deck.GetComponent<DeckScript>().AddCard(top, card_b.GetComponent<CardScript>().card_id());
