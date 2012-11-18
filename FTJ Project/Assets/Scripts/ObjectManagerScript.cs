@@ -124,9 +124,9 @@ public class ObjectManagerScript : MonoBehaviour {
 		// the deck is facing
 		GameObject card = null;
 		if((deck.rigidbody.rotation * new Vector3(0,1,0)).y >= 0.0f){
-			card = deck.GetComponent<DeckScript>().TakeTopCard();
+			card = deck.GetComponent<DeckScript>().TakeCard(true);
 		} else {
-			card = deck.GetComponent<DeckScript>().TakeBottomCard();
+			card = deck.GetComponent<DeckScript>().TakeCard(false);
 		}
 		card.GetComponent<GrabbableScript>().held_by_player_ = player_id;
 		card_face_up = (card.transform.up.y < 0.0f);
@@ -340,7 +340,9 @@ public class ObjectManagerScript : MonoBehaviour {
 	}
 	
 	public void NotifyCardHitDeck(GameObject card, GameObject deck){
-		if(card.GetComponent<CardScript>().card_id() == -1){
+		if(card.GetComponent<CardScript>().card_id() == -1 ||
+		   deck.GetComponent<DeckScript>().GetCards().Count < 1)
+	    {
 			return;
 		}
 		bool facing_same_way = Vector3.Dot(card.transform.up, deck.transform.up) <= 0.0;
@@ -367,9 +369,7 @@ public class ObjectManagerScript : MonoBehaviour {
 	    {
 		 	return;  
 		}
-		ConsoleScript.Log ("Deck hit deck");
 		bool facing_same_way = Vector3.Dot(deck_a.transform.up, deck_b.transform.up) > 0.0;
-		ConsoleScript.Log ("Facing same way: "+facing_same_way);
 		var rel_pos = deck_a.transform.position - deck_b.transform.position;
 		bool close_enough = false;
 		if(Mathf.Abs(Vector3.Dot(rel_pos, deck_a.transform.forward)) < DECK_MERGE_THRESHOLD && 

@@ -134,9 +134,11 @@ public class DeckScript : MonoBehaviour {
 	}
 	
 	public GameObject TakeCard(bool top){
+		ConsoleScript.Log ("Take card A");
 		if(num_cards_ == 0){
 			return null;
 		}
+		ConsoleScript.Log ("Take card B");
 		GameObject card;
 		int card_id = -1;
 		if(top && top_card_){
@@ -172,14 +174,6 @@ public class DeckScript : MonoBehaviour {
 		RegenerateEndCards();
 	}
 	
-	public GameObject TakeBottomCard(){
-		return TakeCard(false);
-	}
-	
-	public GameObject TakeTopCard(){
-		return TakeCard(true);
-	}
-	
 	// Update is called once per frame
 	void Update () {
 		transform.FindChild("default").localScale = new Vector3(1,Mathf.Max(2,num_cards_) * CARD_THICKNESS_MULT,1);	
@@ -198,13 +192,6 @@ public class DeckScript : MonoBehaviour {
 			transform.FindChild("default").renderer.enabled = true;
 			collider.enabled = true;
 		}
-		/*if(Input.GetMouseButtonDown(0)){
-			var card = TakeTopCard();
-			if(card){
-				card.rigidbody.AddForce(new Vector3(0,1000,0));
-				//GameObject.Destroy(card);
-			}
-		}*/
 	}
 	
 	
