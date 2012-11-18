@@ -15,6 +15,8 @@ public class NetUIScript : MonoBehaviour {
 	const int MAX_CONNECTIONS = MAX_PLAYERS-1;
 	public GameObject cursor_prefab;
 	public GameObject board_prefab;
+	public GameObject play_area_prefab;
+	public GameObject token_prefab;
 	
 	string queued_join_game_name_ = "";
 	string game_name_ = "???";
@@ -35,6 +37,24 @@ public class NetUIScript : MonoBehaviour {
 		ConsoleScript.Log("Telling server that player "+player_id+" is named: "+player_name_);
 		TellServerPlayerName(player_name_);
 		Network.Instantiate(board_prefab, GameObject.Find("board_spawn").transform.position, GameObject.Find("board_spawn").transform.rotation,0);
+		int count = 0;
+		foreach(Transform player_spawn in GameObject.Find("play_areas").transform){
+			GameObject play_area_obj = (GameObject)Network.Instantiate(play_area_prefab, player_spawn.transform.position, player_spawn.transform.rotation,0);
+			var color = ColorPalette.GetColor(count);
+			float avg_color = (color.r+color.g+color.b)/3.0f;
+			float desaturation = 0.7f;
+			color = new Color(Mathf.Lerp(color.r, avg_color, desaturation),
+							  Mathf.Lerp(color.g, avg_color, desaturation),
+							  Mathf.Lerp(color.b, avg_color, desaturation));
+			play_area_obj.renderer.material.color = color;
+			++count;
+			Transform token_spawns = transform.Find("TokenSpawns");
+			foreach(Transform token_spawn in play_area_obj.transform.FindChild("token_spawns")){
+				GameObject token_object = (GameObject)Network.Instantiate(token_prefab, token_spawn.position, Quaternion.identity, 0);
+				token_object.renderer.material.color = new Color(0.7f,0.2f,0.2f);
+			}
+		}
+		
 		Network.Instantiate(cursor_prefab, new Vector3(0,0,0), Quaternion.identity, 0);
 	}
 	

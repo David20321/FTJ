@@ -236,7 +236,7 @@ public class ObjectManagerScript : MonoBehaviour {
 	}
 	
 	void Update () {
-		AssignTokenColors();
+		//AssignTokenColors();
 		if(Input.GetKeyDown("f")){
 			card_face_up = !card_face_up;
 		}

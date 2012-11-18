@@ -3,7 +3,7 @@ using System.Collections;
 
 public class GrabbableScript : MonoBehaviour {
 	public int id_;
-	public int held_by_player_;
+	public int held_by_player_ = -1;
 	
 	void Awake () {
 		if(Network.isServer){

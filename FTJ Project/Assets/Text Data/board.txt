@@ -48,7 +48,7 @@
   	  "Color":[101,101,101]
     }{
   	  "Pos":[1,6],
-  	  "Title":"Dark Stairway",
+  	  "Title":"Dark Stairs",
   	  "Rules":"Draw one",
   	  "Color":[101,101,101]
     }{
@@ -98,7 +98,7 @@
   	  "Color":[101,101,101]
     }{
   	  "Pos":[6,1],
-  	  "Title":"Secret Passage",
+  	  "Title":"Hidden Door",
   	  "Rules":"Take another turn!",
   	  "Color":[101,101,101]
     }{
@@ -108,7 +108,7 @@
   	  "Color":[101,101,101]
     }{
   	  "Pos":[8,1],
-  	  "Title":"Bright Stairway",
+  	  "Title":"Bright Stairs",
   	  "Rules":"Draw two, pick one",
   	  "Color":[101,101,101]
     }{
@@ -183,7 +183,7 @@
   	  "Color":[69,60,60],
     }{
   	  "Pos":[3,5],
-  	  "Title":"Puppet Strings",
+  	  "Title":"Marionette",
   	  "Rules":"Until your next turn,\nmove for other players",
   	  "Color":[69,60,60],
     }{
