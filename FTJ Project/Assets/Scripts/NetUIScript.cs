@@ -19,6 +19,8 @@ public class NetUIScript : MonoBehaviour {
 	public GameObject board_prefab;
 	public GameObject play_area_prefab;
 	public GameObject token_prefab;
+	int first_state_ui_update = 0;
+	List<GameObject> play_areas = new List<GameObject>();
 	
 	string queued_join_game_name_ = "";
 	string game_name_ = "???";
@@ -29,6 +31,15 @@ public class NetUIScript : MonoBehaviour {
 	void Start() {
 		RequestPageURLForAutoJoin();
 		//TryToCreateGame(true);
+	}
+	
+	void SpawnHealthTokens() {
+		foreach(GameObject play_area in play_areas){
+			Transform token_spawns = play_area.transform.Find("TokenSpawns");
+			foreach(Transform token_spawn in play_area.transform.FindChild("token_spawns")){
+				GameObject token_object = (GameObject)Network.Instantiate(token_prefab, token_spawn.position, Quaternion.identity, 0);
+			}
+		}
 	}
 	
 	void NetEventServerInitialized(){
@@ -43,13 +54,10 @@ public class NetUIScript : MonoBehaviour {
 		foreach(Transform player_spawn in GameObject.Find("play_areas").transform){
 			GameObject play_area_obj = (GameObject)Network.Instantiate(play_area_prefab, player_spawn.transform.position, player_spawn.transform.rotation,0);
 			play_area_obj.GetComponent<PlayAreaScript>().SetColor(count);
+			play_areas.Add (play_area_obj);
 			++count;
-			Transform token_spawns = transform.Find("TokenSpawns");
-			foreach(Transform token_spawn in play_area_obj.transform.FindChild("token_spawns")){
-				GameObject token_object = (GameObject)Network.Instantiate(token_prefab, token_spawn.position, Quaternion.identity, 0);
-				//token_object.GetComponent<TokenScript>().SetBloodColor();
-			}
 		}
+		SpawnHealthTokens();
 		
 		Network.Instantiate(cursor_prefab, new Vector3(0,0,0), Quaternion.identity, 0);
 	}
@@ -254,6 +262,7 @@ public class NetUIScript : MonoBehaviour {
 	}
     
 	void SetState(State state) {
+		first_state_ui_update = 0;
 		switch(state){
 			case State.JOIN:
 				MasterServer.RequestHostList(GAME_IDENTIFIER);
@@ -308,6 +317,7 @@ public class NetUIScript : MonoBehaviour {
 				DrawMasterServerFailGUI();
 				break;
 		}
+		++first_state_ui_update;
 	}
 	
 	void DrawGameGUI() {
@@ -319,6 +329,7 @@ public class NetUIScript : MonoBehaviour {
 		GUILayout.BeginHorizontal();
 		if(GUILayout.Button("Recover Dice")){
 			ObjectManagerScript.Instance().RecoverDice();
+			SpawnHealthTokens();
 		}
 		GUILayout.EndHorizontal();
 		GUILayout.BeginHorizontal();
@@ -364,6 +375,7 @@ public class NetUIScript : MonoBehaviour {
 	void DrawCreateGUI() {
 		GUILayout.BeginHorizontal();
 		GUILayout.Label("Game name: ");
+		GUI.SetNextControlName("GameNameField");
 		game_name_ = GUILayout.TextField(game_name_, GUILayout.MinWidth(MIN_TEXT_FIELD_WIDTH));
 		GUILayout.EndHorizontal();
 		GUILayout.BeginHorizontal();
@@ -372,6 +384,7 @@ public class NetUIScript : MonoBehaviour {
 		GUILayout.EndHorizontal();
 		GUILayout.BeginHorizontal();
 		GUILayout.Label("Player name: ");
+		GUI.SetNextControlName("PlayerNameField");
 		player_name_ = GUILayout.TextField(player_name_, GUILayout.MinWidth(MIN_TEXT_FIELD_WIDTH));
 		GUILayout.EndHorizontal();
 		GUILayout.BeginHorizontal();
@@ -382,6 +395,11 @@ public class NetUIScript : MonoBehaviour {
 			SetState(State.MAIN_MENU);
 		}
 		GUILayout.EndHorizontal();
+		if(first_state_ui_update == 1){
+			GUI.FocusControl("GameNameField");
+			GUI.FocusControl("PlayerNameField");
+			GUI.FocusControl("GameNameField");
+		}
 	}
 	
 	void DrawCreatingGUI() {
@@ -458,9 +476,11 @@ public class NetUIScript : MonoBehaviour {
 
 	void DrawJoinPasswordGUI() {
 		GUILayout.BeginHorizontal();
+		GUI.SetNextControlName("RandomLabel");
 		GUILayout.Label(game_name_ + " requires a password:");
 		GUILayout.EndHorizontal();
 		GUILayout.BeginHorizontal();
+		GUI.SetNextControlName("PasswordField");
 		password_ = GUILayout.TextField(password_, GUILayout.MinWidth(MIN_TEXT_FIELD_WIDTH));
 		GUILayout.EndHorizontal();
 		GUILayout.BeginHorizontal();
@@ -473,6 +493,10 @@ public class NetUIScript : MonoBehaviour {
 			SetState(State.JOIN);
 		}
 		GUILayout.EndHorizontal();
+		if(first_state_ui_update == 1){
+			GUI.FocusControl("RandomLabel");
+			GUI.FocusControl("PasswordField");
+		}
 	}
 	
 	void DrawMasterServerFailGUI() {
@@ -496,9 +520,11 @@ public class NetUIScript : MonoBehaviour {
 	
 	void DrawJoinSuccessGUI() {
 		GUILayout.BeginHorizontal();
+		GUI.SetNextControlName("ALabel");
 		GUILayout.Label("Successfully joined game: "+game_name_);
 		GUILayout.EndHorizontal();
 		GUILayout.BeginHorizontal();
+		GUI.SetNextControlName("NameField");
 		GUILayout.Label("Player name: ");
 		player_name_ = GUILayout.TextField(player_name_, GUILayout.MinWidth(MIN_TEXT_FIELD_WIDTH));
 		GUILayout.EndHorizontal();
@@ -508,6 +534,10 @@ public class NetUIScript : MonoBehaviour {
 			SetState(State.NONE);
 		}
 		GUILayout.EndHorizontal();
+		if(first_state_ui_update == 1){
+			GUI.FocusControl("ALabel");
+			GUI.FocusControl("NameField");
+		}
 	}
 	
 	NetworkConnectionError CreateGame(bool local) {
