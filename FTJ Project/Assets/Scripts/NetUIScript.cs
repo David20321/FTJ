@@ -40,18 +40,12 @@ public class NetUIScript : MonoBehaviour {
 		int count = 0;
 		foreach(Transform player_spawn in GameObject.Find("play_areas").transform){
 			GameObject play_area_obj = (GameObject)Network.Instantiate(play_area_prefab, player_spawn.transform.position, player_spawn.transform.rotation,0);
-			var color = ColorPalette.GetColor(count);
-			float avg_color = (color.r+color.g+color.b)/3.0f;
-			float desaturation = 0.7f;
-			color = new Color(Mathf.Lerp(color.r, avg_color, desaturation),
-							  Mathf.Lerp(color.g, avg_color, desaturation),
-							  Mathf.Lerp(color.b, avg_color, desaturation));
-			play_area_obj.renderer.material.color = color;
+			play_area_obj.GetComponent<PlayAreaScript>().SetColor(count);
 			++count;
 			Transform token_spawns = transform.Find("TokenSpawns");
 			foreach(Transform token_spawn in play_area_obj.transform.FindChild("token_spawns")){
 				GameObject token_object = (GameObject)Network.Instantiate(token_prefab, token_spawn.position, Quaternion.identity, 0);
-				token_object.renderer.material.color = new Color(0.7f,0.2f,0.2f);
+				token_object.GetComponent<TokenScript>().SetBloodColor();
 			}
 		}
 		

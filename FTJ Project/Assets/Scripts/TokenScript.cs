@@ -41,4 +41,12 @@ public class TokenScript : MonoBehaviour {
 			last_sound_time = Time.time;
 		}	
 	}
+	
+	[RPC]
+	public void SetBloodColor() {
+		renderer.material.color = new Color(0.7f,0.2f,0.2f);
+		if(Network.isServer){
+			networkView.RPC("SetBloodColor",RPCMode.OthersBuffered);
+		}
+	}
 }

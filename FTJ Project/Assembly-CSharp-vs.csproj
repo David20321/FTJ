@@ -69,6 +69,7 @@
      <Compile Include="Assets\Scripts\NetworkRigidbody.cs" />
      <Compile Include="Assets\Scripts\ObjectManagerScript.cs" />
      <Compile Include="Assets\Scripts\ParentTokenScript.cs" />
+     <Compile Include="Assets\Scripts\PlayAreaScript.cs" />
      <Compile Include="Assets\Scripts\PlayerListScript.cs" />
      <Compile Include="Assets\Scripts\ShadowCamScript.cs" />
      <Compile Include="Assets\Scripts\TileManagerScript.cs" />
