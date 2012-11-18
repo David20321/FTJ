@@ -45,7 +45,6 @@ public class ObjectManagerScript : MonoBehaviour {
 	}
 	
 	public void ClientGrab(int grabbed_id, int player_id){
-		ConsoleScript.Log("Player "+player_id+" clicked on grabbable "+grabbed_id);
 		// Check if client is already holding dice or tokens
 		bool holding_anything = false;
 		bool holding_anything_but_dice = false;
@@ -76,9 +75,11 @@ public class ObjectManagerScript : MonoBehaviour {
 			       (grabbable.GetComponent<CoinScript>() && !holding_anything))
 			    {
 					grabbable_script.held_by_player_ = player_id;
-					ConsoleScript.Log ("Object "+grabbed_id+" is now held by Player "+player_id);
 					if(grabbable.GetComponent<DiceScript>()){
 						grabbable.GetComponent<DiceScript>().PickUpSound();
+					}
+					if(grabbable.GetComponent<CoinScript>()){
+						grabbable.GetComponent<CoinScript>().PickUpSound();
 					}
 					if(grabbable.GetComponent<DeckScript>()){
 						cursor_script.SetCardFaceUp((grabbable.transform.up.y > 0.0f));
@@ -153,7 +154,6 @@ public class ObjectManagerScript : MonoBehaviour {
 	}
 	
 	public void ClientReleasedMouse(int player_id){
-		ConsoleScript.Log ("Released mouse");
 		foreach(GameObject grabbable in grabbable_objects){
 			var grabbable_script = grabbable.GetComponent<GrabbableScript>();
 			if(grabbable_script.held_by_player_ == player_id){

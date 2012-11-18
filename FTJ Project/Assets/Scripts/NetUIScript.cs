@@ -34,7 +34,6 @@ public class NetUIScript : MonoBehaviour {
 		}
 		ConsoleScript.Log("Server initialized");
 		int player_id = int.Parse(Network.player.ToString());
-		ConsoleScript.Log("Telling server that player "+player_id+" is named: "+player_name_);
 		TellServerPlayerName(player_name_);
 		Network.Instantiate(board_prefab, GameObject.Find("board_spawn").transform.position, GameObject.Find("board_spawn").transform.rotation,0);
 		int count = 0;

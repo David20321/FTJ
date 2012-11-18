@@ -57,10 +57,8 @@ public class CursorScript : MonoBehaviour {
 	[RPC]
 	public void SetCardFaceUp(bool card_face_up){
 		if(Network.isServer && !networkView.isMine){
-			ConsoleScript.Log ("Telling client that card_face_up is "+card_face_up);
 			networkView.RPC ("SetCardFaceUp",RPCMode.Others, card_face_up);
 		} else {
-			ConsoleScript.Log ("Server said that card_face_up is "+card_face_up);
 			card_face_up_ = card_face_up;
 		}
 	}
@@ -88,7 +86,6 @@ public class CursorScript : MonoBehaviour {
 	
 	[RPC]
 	public void TellObjectManagerAboutGrab(int grab_id, int player_id){
-		ConsoleScript.Log ("Telling object manager that player "+player_id+" clicked on "+grab_id);
 		ObjectManagerScript.Instance().ClientGrab(grab_id, player_id);
 	}
 	
