@@ -11,14 +11,18 @@ public class GrabbableScript : MonoBehaviour {
 		}
 	}
 	void Start () {
-		if(ObjectManagerScript.Instance()){
-			ObjectManagerScript.Instance().RegisterGrabbableObject(gameObject);
+		if(Network.isServer){
+			if(ObjectManagerScript.Instance()){
+				ObjectManagerScript.Instance().RegisterGrabbableObject(gameObject);
+			}
 		}
 	}
 	
 	void OnDestroy() {
-		if(ObjectManagerScript.Instance()){
-			ObjectManagerScript.Instance().UnRegisterGrabbableObject(gameObject);
+		if(Network.isServer){
+			if(ObjectManagerScript.Instance()){
+				ObjectManagerScript.Instance().UnRegisterGrabbableObject(gameObject);
+			}
 		}
 	}
 	

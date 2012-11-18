@@ -134,11 +134,9 @@ public class DeckScript : MonoBehaviour {
 	}
 	
 	public GameObject TakeCard(bool top){
-		ConsoleScript.Log ("Take card A");
 		if(num_cards_ == 0){
 			return null;
 		}
-		ConsoleScript.Log ("Take card B");
 		GameObject card;
 		int card_id = -1;
 		if(top && top_card_){
