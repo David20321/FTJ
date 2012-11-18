@@ -37,13 +37,20 @@ Card manipulation:
 +++ ???
 + put top card on bottom
 +++ mousewheel?
++Add colored play areas for each player at bottom of screen
++Borders for dice?
++Add coins
+
+Fix health token reset
+Set up master server and facilitator
 
 Interface:
-Add colored play areas for each player at bottom of screen
 Chat
-Borders for dice?
-Add coins
+Password 
+Exit back to menu from game
 
 Graphics:
 UI display (windows and borders?)
 Splash screen
+
+

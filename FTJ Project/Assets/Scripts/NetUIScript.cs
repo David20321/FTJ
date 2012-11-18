@@ -5,7 +5,7 @@ using System.Collections.Generic;
 public class NetUIScript : MonoBehaviour {
 	// What screen is the player looking at
 	enum State {NONE, MAIN_MENU, CREATE, CREATING, CREATE_FAIL, 
-				JOIN, MASTER_SERVER_FAIL, JOINING, JOINING_GAME_BY_NAME, JOIN_FAIL, JOIN_SUCCESS}
+				JOIN, MASTER_SERVER_FAIL, JOINING, JOINING_GAME_BY_NAME, JOIN_FAIL, JOIN_PASSWORD, JOIN_SUCCESS}
 	State state_ = State.MAIN_MENU;
 	const string DEFAULT_GAME_NAME = "Unnamed Game";
 	const string DEFAULT_PLAYER_NAME = "Unknown Player";
@@ -13,6 +13,8 @@ public class NetUIScript : MonoBehaviour {
 	const int DEFAULT_PORT = 25000;
 	const int MAX_PLAYERS = 4;
 	const int MAX_CONNECTIONS = MAX_PLAYERS-1;
+	const int MIN_TEXT_FIELD_WIDTH = 200;
+	HostData last_tried_server_ = null;
 	public GameObject cursor_prefab;
 	public GameObject board_prefab;
 	public GameObject play_area_prefab;
@@ -22,6 +24,7 @@ public class NetUIScript : MonoBehaviour {
 	string game_name_ = "???";
 	string player_name_ = "???";
 	string display_err_ = "???"; 
+	string password_ = "";
 	
 	void Start() {
 		RequestPageURLForAutoJoin();
@@ -70,16 +73,21 @@ public class NetUIScript : MonoBehaviour {
 	
 	void NetEventFailedToConnect(NetEvent net_event){		
 		if(state_ == State.JOINING){
-			display_err_ = ""+net_event.error();
-			SetState(State.JOIN_FAIL);
+			if(net_event.error() == NetworkConnectionError.InvalidPassword){
+				SetState(State.JOIN_PASSWORD);
+			} else {
+				display_err_ = ""+net_event.error();
+				SetState(State.JOIN_FAIL);
+			}
 		}
 		ConsoleScript.Log("Failed to connect: "+net_event.error());
 	}
 	
-	void ConnectToServer(HostData server){
+	void ConnectToServer(HostData server, string password){
+		last_tried_server_ = server;
 		game_name_ = server.gameName;
 		SetState(State.JOINING);
-		NetworkConnectionError err = Network.Connect(server);
+		NetworkConnectionError err = Network.Connect(server, password);
 		if(err != NetworkConnectionError.NoError){
 			display_err_ = ""+err;
 			SetState(State.JOIN_FAIL);
@@ -90,7 +98,7 @@ public class NetUIScript : MonoBehaviour {
 		HostData[] servers = MasterServer.PollHostList();
 		foreach(HostData server in servers){
 			if(val == server.gameName){
-				ConnectToServer(server);
+				ConnectToServer(server, "");
 				return;
 			}
 		}
@@ -249,6 +257,7 @@ public class NetUIScript : MonoBehaviour {
 		switch(state){
 			case State.JOIN:
 				MasterServer.RequestHostList(GAME_IDENTIFIER);
+				password_ = "";
 				break;
 			case State.JOIN_SUCCESS:
 				player_name_ = DEFAULT_PLAYER_NAME;
@@ -256,6 +265,7 @@ public class NetUIScript : MonoBehaviour {
 			case State.CREATE:
 				game_name_ = DEFAULT_GAME_NAME;
 				player_name_ = DEFAULT_PLAYER_NAME;
+				password_ = "";
 				break;
 		}
 		state_ = state;
@@ -287,6 +297,9 @@ public class NetUIScript : MonoBehaviour {
 				break;
 			case State.JOIN_FAIL:
 				DrawJoinFailGUI();
+				break;
+			case State.JOIN_PASSWORD:
+				DrawJoinPasswordGUI();
 				break;
 			case State.JOIN_SUCCESS:
 				DrawJoinSuccessGUI();
@@ -351,11 +364,15 @@ public class NetUIScript : MonoBehaviour {
 	void DrawCreateGUI() {
 		GUILayout.BeginHorizontal();
 		GUILayout.Label("Game name: ");
-		game_name_ = GUILayout.TextField(game_name_);
+		game_name_ = GUILayout.TextField(game_name_, GUILayout.MinWidth(MIN_TEXT_FIELD_WIDTH));
+		GUILayout.EndHorizontal();
+		GUILayout.BeginHorizontal();
+		GUILayout.Label("Game password: ");
+		password_ = GUILayout.TextField(password_, GUILayout.MinWidth(MIN_TEXT_FIELD_WIDTH));
 		GUILayout.EndHorizontal();
 		GUILayout.BeginHorizontal();
 		GUILayout.Label("Player name: ");
-		player_name_ = GUILayout.TextField(player_name_);
+		player_name_ = GUILayout.TextField(player_name_, GUILayout.MinWidth(MIN_TEXT_FIELD_WIDTH));
 		GUILayout.EndHorizontal();
 		GUILayout.BeginHorizontal();
 		if(GUILayout.Button("Create")){
@@ -402,13 +419,7 @@ public class NetUIScript : MonoBehaviour {
 			GUILayout.BeginHorizontal();
 			string display_name = server.gameName + " " + server.connectedPlayers + "/" + server.playerLimit;
 			if(GUILayout.Button(display_name)){
-				game_name_ = server.gameName;
-				SetState(State.JOINING);
-				NetworkConnectionError err = Network.Connect(server);
-				if(err != NetworkConnectionError.NoError){
-					display_err_ = ""+err;
-					SetState(State.JOIN_FAIL);
-				}
+				ConnectToServer(server, "");
 			}
 			GUILayout.EndHorizontal();
 		}
@@ -445,6 +456,25 @@ public class NetUIScript : MonoBehaviour {
 		GUILayout.EndHorizontal();
 	}
 
+	void DrawJoinPasswordGUI() {
+		GUILayout.BeginHorizontal();
+		GUILayout.Label(game_name_ + " requires a password:");
+		GUILayout.EndHorizontal();
+		GUILayout.BeginHorizontal();
+		password_ = GUILayout.TextField(password_, GUILayout.MinWidth(MIN_TEXT_FIELD_WIDTH));
+		GUILayout.EndHorizontal();
+		GUILayout.BeginHorizontal();
+		if(GUILayout.Button("Try Again")){
+			ConnectToServer(last_tried_server_, password_);
+		}
+		GUILayout.EndHorizontal();
+		GUILayout.BeginHorizontal();
+		if(GUILayout.Button("Back")){
+			SetState(State.JOIN);
+		}
+		GUILayout.EndHorizontal();
+	}
+	
 	void DrawMasterServerFailGUI() {
 		GUILayout.BeginHorizontal();
 		GUILayout.Label("Failed to connect to master server.");
@@ -470,7 +500,7 @@ public class NetUIScript : MonoBehaviour {
 		GUILayout.EndHorizontal();
 		GUILayout.BeginHorizontal();
 		GUILayout.Label("Player name: ");
-		player_name_ = GUILayout.TextField(player_name_);
+		player_name_ = GUILayout.TextField(player_name_, GUILayout.MinWidth(MIN_TEXT_FIELD_WIDTH));
 		GUILayout.EndHorizontal();
 		GUILayout.BeginHorizontal();
 		if(GUILayout.Button("Continue")){
@@ -486,6 +516,7 @@ public class NetUIScript : MonoBehaviour {
 			err = Network.InitializeServer(1,DEFAULT_PORT,false);
 		} else {
 			Network.InitializeSecurity();
+			Network.incomingPassword = password_;
 			err = Network.InitializeServer(MAX_CONNECTIONS,DEFAULT_PORT,true);
 			if(err == NetworkConnectionError.NoError){
 				MasterServer.RegisterHost(GAME_IDENTIFIER, game_name_, "Comments could go here");

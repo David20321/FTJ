@@ -108,21 +108,21 @@ public class CursorScript : MonoBehaviour {
 	}
 	
 	void Update () {
-		if(Input.GetKeyDown("f")){
-			card_face_up_ = !card_face_up_;
-		}
-		if(Input.GetKeyDown("r")){
-			card_rotated_ = (card_rotated_+1)%4;
-		}
-		if(Input.GetKeyDown("e")){
-			card_rotated_ = (card_rotated_+3)%4;
-		}
-		tapping_ = Input.GetKey ("t");
 		var player_list = PlayerListScript.Instance().GetPlayerInfoList();
 		if(player_list.ContainsKey(id_)){
 			SetColor(player_list[id_].color_);
 		}
 		if(networkView.isMine){
+			if(Input.GetKeyDown("f")){
+				card_face_up_ = !card_face_up_;
+			}
+			if(Input.GetKeyDown("r")){
+				card_rotated_ = (card_rotated_+1)%4;
+			}
+			if(Input.GetKeyDown("e")){
+				card_rotated_ = (card_rotated_+3)%4;
+			}
+			tapping_ = Input.GetKey ("t");
 			var main_camera = GameObject.Find("Main Camera").camera;
 			Vector3 pos = new Vector3();
 			{
@@ -226,6 +226,7 @@ public class CursorScript : MonoBehaviour {
 			int card_rotated = card_rotated_;
 			stream.Serialize(ref card_rotated);
 			card_rotated_ = card_rotated;
+			ConsoleScript.Log ("Receiving tap = "+tapping_);
 		}
 	}
 }
