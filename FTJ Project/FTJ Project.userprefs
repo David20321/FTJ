@@ -1,16 +1,6 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\NetUIScript.cs">
-    <Files>
-      <File FileName="Assets\Standard Assets\Projectors\Sources\Shaders\Projector Multiply DrawOrder.shader" Line="8" Column="41" />
-      <File FileName="Assets\Materials\Alpha-Bumped CatchProject.shader" Line="13" Column="35" />
-      <File FileName="Assets\Scripts\ParentTokenScript.cs" Line="31" Column="5" />
-      <File FileName="Assets\Scripts\NetUIScript.cs" Line="263" Column="3" />
-      <File FileName="Assets\Scripts\CoinScript.cs" Line="22" Column="32" />
-      <File FileName="Assets\Scripts\ObjectManagerScript.cs" Line="331" Column="4" />
-      <File FileName="Assets\Scripts\CursorScript.cs" Line="91" Column="3" />
-    </Files>
-  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.Workbench />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>

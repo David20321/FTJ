@@ -20,9 +20,9 @@ creatures\" (Beggars 11.2)"
 	  "Gold": 0,
 	  "Points": 2,
 	  "Rules": "",
-	  "Flavour": "\"Humanity faces many common
-threats to its existence\"
- (Beggars 11.1)"
+	  "Flavour": "\"Humanity faces many 
+common threats to its
+existence\" (Beggars 11.1)"
 	  "Duplicates": 1
 	  "Image" : 4
 	  "Back" : 4
@@ -497,7 +497,9 @@ the desert\" (Beggars 7.4)"
       "Title": "Scroll of Town Portal",
 	  "Type": "Equipment",
 	  "Rules": "Discard to return to town",
-	  "Flavour": ""
+	  "Flavour": "\"blood infused parchment
+is used for scrolls\" 
+(Beggars 5.2)"
 	  "Duplicates": 1
 	  "Image" : 38
 	  "Back" : 5
@@ -507,7 +509,9 @@ the desert\" (Beggars 7.4)"
 	  "Type": "Equipment",
 	  "Rules": "Discard to move up to six 
 spaces forwards or backwards",
-	  "Flavour": ""
+	  "Flavour": "\"It is able to produce an
+endless variety of effects\" 
+(Relics 2.2)"
 	  "Duplicates": 1
 	  "Image" : 39
 	  "Back" : 5
@@ -516,7 +520,9 @@ spaces forwards or backwards",
       "Title": "Scroll of Smiting",
 	  "Type": "Equipment",
 	  "Rules": "Discard to roll a 6 in combat",
-	  "Flavour": ""
+	  "Flavour": "\"Magic and Creativity are
+bound to the parchment\" 
+(Relics 3.6)"
 	  "Duplicates": 1
 	  "Image" : 37
 	  "Back" : 5
@@ -526,7 +532,9 @@ spaces forwards or backwards",
 	  "Type": "Equipment",
 	  "Rules": "Take one damage to cast a 
 spell without discarding it",
-	  "Flavour": ""
+	  "Flavour": "\"Powerful artifacts are
+created from an unstable
+combination\" (Relics 5.2)"
 	  "Duplicates": 1
 	  "Image" : 36
 	  "Back" : 5
@@ -537,7 +545,9 @@ spell without discarding it",
 	  "Rules": "You may use Nervous Boots 
 to escape a lost battle. Roll 
 to see if they are lost(1,2)",
-	  "Flavour": ""
+	  "Flavour": "\"fine boots that grant
+their wearers heightened
+dexterity\" (Relics 5.2)"
 	  "Duplicates": 1
 	  "Image" : 35
 	  "Back" : 5

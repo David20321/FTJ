@@ -9,7 +9,7 @@ public class NetUIScript : MonoBehaviour {
 	State state_ = State.MAIN_MENU;
 	const string DEFAULT_GAME_NAME = "Unnamed Game";
 	const string DEFAULT_PLAYER_NAME = "Unknown Player";
-	const string GAME_IDENTIFIER = "WolfireFTJGamev23";
+	const string GAME_IDENTIFIER = "WolfireFTJGamev36";
 	const int DEFAULT_PORT = 25000;
 	const int MAX_PLAYERS = 4;
 	const int MAX_CONNECTIONS = MAX_PLAYERS-1;
@@ -322,12 +322,17 @@ public class NetUIScript : MonoBehaviour {
 	
 	void DrawGameGUI() {
 		GUILayout.BeginHorizontal();
+		if(GUILayout.Button("Exit Game")){
+			Application.LoadLevel(Application.loadedLevel);
+		}
+		GUILayout.EndHorizontal();
+		GUILayout.BeginHorizontal();
 		if(GUILayout.Button("Copy Join URL To Clipboard")){
 			RequestPageURLForCopyGameJoin();
 		}
 		GUILayout.EndHorizontal();
 		GUILayout.BeginHorizontal();
-		if(GUILayout.Button("Recover Dice")){
+		if(GUILayout.Button("Restart Game")){
 			ObjectManagerScript.Instance().RecoverDice();
 			SpawnHealthTokens();
 		}
