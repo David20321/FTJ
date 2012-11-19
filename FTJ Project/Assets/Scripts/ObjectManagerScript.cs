@@ -206,6 +206,7 @@ public class ObjectManagerScript : MonoBehaviour {
 				networkView.RPC("DestroyObject",RPCMode.AllBuffered,grabbable.networkView.viewID);
 			}
 			board_object.GetComponent<BoardScript>().SpawnDice();
+			NetUIScript.Instance().SpawnHealthTokens();
 		}
 	}
 	

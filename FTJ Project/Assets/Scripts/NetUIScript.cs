@@ -93,7 +93,7 @@ public class NetUIScript : MonoBehaviour {
 		}
 	}
 	
-	void SpawnHealthTokens() {
+	public void SpawnHealthTokens() {
 		foreach(GameObject play_area in play_areas){
 			Transform token_spawns = play_area.transform.Find("TokenSpawns");
 			foreach(Transform token_spawn in play_area.transform.FindChild("token_spawns")){
@@ -472,7 +472,6 @@ public class NetUIScript : MonoBehaviour {
 		GUILayout.BeginHorizontal();
 		if(GUILayout.Button("Restart Game")){
 			ObjectManagerScript.Instance().RecoverDice();
-			SpawnHealthTokens();
 		}
 		GUILayout.EndHorizontal();
 		GUILayout.BeginHorizontal();
