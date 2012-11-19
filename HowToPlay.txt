@@ -1,0 +1,23 @@
+1. Draw three cards from the Town deck (on the right side of the board), and place them above the deck in the outlined spaces. These cards indicate the items that are for sale in the Town.
+
+2. Each player chooses a colored figure and places it on the town square at the bottom-right corner of the board.
+
+3. Each player rolls a die to see who moves first. In the case of a tie, the tied players roll again.
+
+4. The first player rolls two dice, chooses ONE of them, and then moves clockwise one square for each dot that is facing up on that die.
+
+5. The player then follows the instructions printed on that square. If the square requires drawing a card, the player draws from the deck corresponding to the depth he or she has reached in the dungeon. The wilderness area around the town corresponds to the top deck (with roots drawn on the back), and the deepest dungeon corresponds to the bottom deck (with glowing orange runes).
+
+5. If the player draws a monster card, the monster can be defeated by rolling a die greater than or equal to the die shown on the card. If it is defeated, the player collects the number of silver coins shown on the card, and places the card in the victory pile (shown with a skull on the player's inventory area). Otherwise, the player loses one hit point, and the monster is placed at the bottom of the deck from which it was drawn. If the player dies, all gold in the player's inventory is lost, and the player returns to the town to heal.
+
+6. Repeat for every player, until all monsters are defeated. At that point, the players look through their victory piles to total up their victory points (the values shown in the skulls of their defeated enemies). Whoever has the most is the winner!
+
+Additional rules:
+
+1. When players move past the Town, they may choose to stop at the Town instead.
+
+2. When players move past each other, either of them may choose to initiate combat. In combat, each player rolls one die as if fighting a monster, and can use equipment as usual. Whoever rolls lower takes one damage. In case of a tie, both players take one damage. Repeat until one player is killed! The winner takes the defeated player's coins.
+
+3. Alternately, when players move past each other, they may decide to trade equipment, coins, or defeated enemies.
+
+4. Gold coins are worth 5 silver coins. All references to X units of coins, gold, or silver, refer to silver coins -- the gold coins are there for convenience when players have a lot of coins.
