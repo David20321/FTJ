@@ -19,7 +19,6 @@ public class MainCameraScript : MonoBehaviour {
 		old_fov = camera.fov;
 		zoomed = false;
 		zoom_amount = 0.0f;
-		float aspect = Screen.width/Screen.height;
 		int width = Screen.width;
 		int height = Screen.height;
 		if(Screen.width < Screen.height * 16 / 10){
