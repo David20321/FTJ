@@ -43,6 +43,8 @@ public class NetUIScript : MonoBehaviour {
 		//TryToCreateGame(true);
 		music_ = gameObject.AddComponent<AudioSource>();
 		music_.volume = 0.0f;
+		music_.loop = true;
+		target_song_ = Random.Range(0,4);
 		ConsoleScript.Log(GAME_IDENTIFIER);
 	}
 	
