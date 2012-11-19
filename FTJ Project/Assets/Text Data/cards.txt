@@ -135,8 +135,7 @@ dreamless sleep\"
 	  "Gold": 2
 	  "Points": 2
 	  "Rules": "On loss: take two damage",
-	  "Flavour": "\"Those that are
- successful
+	  "Flavour": "\"Those that are successful
 are the inscrutable elves\"
 (Beggars 12.2)"
 	  "Duplicates": 1
@@ -190,9 +189,10 @@ to remove the bag to eat\"
 	  "Target": 5
 	  "Gold": 5
 	  "Points": 0
-	  "Rules": "You may pay two silver to avoid 
-this battle, and get an extra 
-attack die in your next battle",
+	  "Rules": "You may pay two silver to
+avoid this battle, and get an 
+extra attack die in your next
+battle",
 	  "Flavour": "\"Humanity has so many
 heros\" (Beggars 14.1)"
 	  "Duplicates": 1
@@ -399,7 +399,8 @@ created on a whim\"
 	  "Rules": "You may reroll one attack die;
 discard if that roll is 1, 2 or 3",
 	  "Flavour": "\"Everything got a lot
-more dangerous\" (Beggars 1.2)"
+more dangerous\" 
+(Beggars 1.2)"
 	  "Duplicates": 3
 	  "Image" : 16
 	  "Back" : 5
@@ -477,8 +478,8 @@ made\" (Relics 6.1)"
 	  "Rules": "Use receptive gem to cast a 
 spell without discarding it 
 Roll to see if it breaks(1,2)",
-	  "Flavour": "\"Her blood crystallizes to form
-the gems\" (Relics 3.6)"
+	  "Flavour": "\"Her blood crystallizes to
+form the gems\" (Relics 3.6)"
 	  "Duplicates": 1
 	  "Image" : 34
 	  "Back" : 5
@@ -547,7 +548,7 @@ combination\" (Relics 5.2)"
 	  "Rules": "You may use Nervous Boots 
 to escape a lost battle. Roll 
 to see if they are lost(1,2)",
-	  "Flavour": "\"fine boots that grant
+	  "Flavour": "\"Fine boots that grant
 their wearers heightened
 dexterity\" (Relics 5.2)"
 	  "Duplicates": 1
