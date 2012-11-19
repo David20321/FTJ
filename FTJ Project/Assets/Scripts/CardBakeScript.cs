@@ -31,12 +31,6 @@ public class CardBakeScript : MonoBehaviour {
 			vp_text.text = "0";
 		}
 		
-		if(card_data_.points > 0){
-			title_text.text += " VP:"+card_data_.points;
-		}
-		if(card_data_.price > 0){
-			title_text.text += " P:"+card_data_.price;
-		}
 		var type_text = transform.FindChild("Type").GetComponent<TextMesh>();
 		type_text.text = card_data_.type;
 		var rules_text = transform.FindChild("Rules").GetComponent<TextMesh>();
