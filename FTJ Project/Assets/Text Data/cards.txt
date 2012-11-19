@@ -3,7 +3,7 @@
 	{
       "Title": "Curious Slug",
 	  "Type": "Slug Monster",
-	  "Target": 3,
+	  "Target": 2,
 	  "Gold": 0,
 	  "Points": 1,
 	  "Rules": "On loss: skip next turn",
@@ -16,7 +16,7 @@ creatures\" (Beggars 11.2)"
 	}{  
       "Title": "Eager Guardian",
 	  "Type": "Arachnid Monster",
-	  "Target": 4,
+	  "Target": 2,
 	  "Gold": 0,
 	  "Points": 2,
 	  "Rules": "",
@@ -29,7 +29,7 @@ existence\" (Beggars 11.1)"
 	}{
       "Title": "Anxious Bandit",
 	  "Type": "Human Warrior",
-	  "Target": 5
+	  "Target": 3
 	  "Gold": 3
 	  "Points": 0
 	  "Rules": "You may pay one silver to
@@ -42,10 +42,10 @@ to explain it\" (Rest 3.6)"
 	}{
       "Title": "Hostile Rider",
 	  "Type": "Flying Wyvern",
-	  "Target": 5
+	  "Target": 3
 	  "Gold": 2
 	  "Points": 2
-	  "Rules": "On loss: Instead of dealing
+	  "Rules": "On loss: as well as dealing
 damage, Hostile Rider steals
 a piece of equipment (your 
 choice)",
@@ -58,7 +58,7 @@ defense humans have\"
 	}{
       "Title": "Cold Golem",
 	  "Type": "Iron Monster",
-	  "Target": 4
+	  "Target": 3
 	  "Gold": 2
 	  "Points": 4
 	  "Rules": "On win: roll a die. If below a 4, 
@@ -71,7 +71,7 @@ crystal irises\" (Beggars 5.3)"
 	}{
      "Title": "Incensed Wizard",
 	  "Type": "Human Wizard",
-	  "Target": 4
+	  "Target": 3
 	  "Gold": 1
 	  "Points": 1
 	  "Rules": "On loss: teleport to the Hedge
@@ -103,7 +103,7 @@ control incredible power\"
 	{
       "Title": "Certain Adventurer",
 	  "Type": "Lizard Monster",
-	  "Target": 5
+	  "Target": 4
 	  "Gold": 4
 	  "Points": 0
 	  "Rules": "",
@@ -116,7 +116,7 @@ humans\" (Beggars 12.1)"
 	}{
       "Title": "Satisfied Ghoul",
 	  "Type": "Human Monster",
-	  "Target": 5
+	  "Target": 3
 	  "Gold": 1
 	  "Points": 3
 	  "Rules": "On loss: instead of dealing 
@@ -131,7 +131,7 @@ dreamless sleep\"
 	}{
       "Title": "Concerned Swordsman",
 	  "Type": "Elf Warrior",
-	  "Target": 5
+	  "Target": 4
 	  "Gold": 2
 	  "Points": 2
 	  "Rules": "On loss: take two damage",
@@ -145,7 +145,7 @@ are the inscrutable elves\"
 	}{
       "Title": "Clever Slime",
 	  "Type": "Slime Monster",
-	  "Target": 5
+	  "Target": 4
 	  "Gold": 2
 	  "Points": 4
 	  "Rules": "On loss: discard one of your 
@@ -159,7 +159,7 @@ flesh\" (Beggars 11.5)"
 	}{
       "Title": "Nonchalant Guard",
 	  "Type": "Orc Monster",
-	  "Target": 6
+	  "Target": 5
 	  "Gold": 3
 	  "Points": 1
 	  "Rules": "On win: draw a card from the
@@ -187,7 +187,7 @@ to remove the bag to eat\"
 	}{
       "Title": "Determined Explorer",
 	  "Type": "Human Warrior",
-	  "Target": 6
+	  "Target": 5
 	  "Gold": 5
 	  "Points": 0
 	  "Rules": "You may pay two silver to avoid 
@@ -204,7 +204,7 @@ heros\" (Beggars 14.1)"
 	{
       "Title": "Sympathetic Shadow",
 	  "Type": "Minor God",
-	  "Target": 6
+	  "Target": 5
 	  "Gold": 2
 	  "Points": 4
 	  "Rules": "On loss: move to Darkness",
@@ -230,7 +230,7 @@ that corpse\" (Beggars 5.1)"
 	  "Back" : 1
 	}{
       "Title": "Pleased Troll",
-	  "Target": 6,
+	  "Target": 5,
 	  "Gold": 3,
 	  "Points": 3,
 	  "Type": "Nocturnal Monster",
@@ -245,7 +245,7 @@ on and procreate\"
 	}{
       "Title": "Engrossed Priestess",
 	  "Type": "Human Priestess",
-	  "Target": 5,
+	  "Target": 4,
 	  "Gold": 2,
 	  "Points": 4,
 	  "Rules": "On win: every player takes 
