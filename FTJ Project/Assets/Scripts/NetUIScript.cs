@@ -9,7 +9,7 @@ public class NetUIScript : MonoBehaviour {
 	State state_ = State.MAIN_MENU;
 	const string DEFAULT_GAME_NAME = "Unnamed Game";
 	const string DEFAULT_PLAYER_NAME = "Unknown Player";
-	const string GAME_IDENTIFIER = "WolfireFTJGamev41";
+	const string GAME_IDENTIFIER = "DesperateGodsv41";
 	const int DEFAULT_PORT = 25000;
 	const int MAX_PLAYERS = 4;
 	const int MAX_CONNECTIONS = MAX_PLAYERS-1;
@@ -43,6 +43,7 @@ public class NetUIScript : MonoBehaviour {
 		//TryToCreateGame(true);
 		music_ = gameObject.AddComponent<AudioSource>();
 		music_.volume = 0.0f;
+		ConsoleScript.Log(GAME_IDENTIFIER);
 	}
 	
 	[RPC]
@@ -294,11 +295,11 @@ public class NetUIScript : MonoBehaviour {
 	
 	// Chain of parallel functions for CopyGameJoin
 	void RequestPageURLForCopyGameJoin(){
-		ConsoleScript.Log("Requesting page url");
+		//ConsoleScript.Log("Requesting page url");
 		Application.ExternalEval("GetUnity().SendMessage(\"GlobalScriptObject\", \"ReceivePageURLForCopyGameJoin\", decodeURIComponent(document.location.href));");
 	}
 	void ReceivePageURLForCopyGameJoin(string val){
-		ConsoleScript.Log("Received page url");
+		//ConsoleScript.Log("Received page url");
 		string join_url = val.Split('?')[0] + "?join="+game_name_;
 		CopyTextToClipboard(join_url);
 	}
@@ -468,11 +469,11 @@ public class NetUIScript : MonoBehaviour {
 			Application.LoadLevel(Application.loadedLevel);
 		}
 		GUILayout.EndHorizontal();
-		GUILayout.BeginHorizontal();
+		/*GUILayout.BeginHorizontal();
 		if(GUILayout.Button("Copy Join URL To Clipboard")){
 			RequestPageURLForCopyGameJoin();
 		}
-		GUILayout.EndHorizontal();
+		GUILayout.EndHorizontal();*/
 		GUILayout.BeginHorizontal();
 		if(GUILayout.Button("Restart Game")){
 			ObjectManagerScript.Instance().RecoverDice();
