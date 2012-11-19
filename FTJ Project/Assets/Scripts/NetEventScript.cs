@@ -14,19 +14,19 @@ public class NetEvent {
 	public Type type(){return type_;}
 	virtual public NetworkConnectionError error(){
 		throw new System.InvalidOperationException("error() should only be called on NetErrorEvent");
-		return NetworkConnectionError.NoError;
+		//return NetworkConnectionError.NoError;
 	}
 	virtual public MasterServerEvent master_server_event(){
 		throw new System.InvalidOperationException("master_server_event() should only be called on NetMasterServerEvent");
-		return MasterServerEvent.RegistrationSucceeded;
+		//return MasterServerEvent.RegistrationSucceeded;
 	}
 	virtual public NetworkPlayer network_player(){
 		throw new System.InvalidOperationException("network_player() should only be called on NetPlayerEvent");
-		return new NetworkPlayer();
+		//return new NetworkPlayer();
 	}
 	virtual public NetworkDisconnection network_disconnection(){
 		throw new System.InvalidOperationException("network_disconnection() should only be called on NetDisconnectionEvent");
-		return NetworkDisconnection.Disconnected;
+		//return NetworkDisconnection.Disconnected;
 	}
 	public NetEvent(Type type){
 		type_ = type;

@@ -9,7 +9,7 @@ public class NetUIScript : MonoBehaviour {
 	State state_ = State.MAIN_MENU;
 	const string DEFAULT_GAME_NAME = "Unnamed Game";
 	const string DEFAULT_PLAYER_NAME = "Unknown Player";
-	const string GAME_IDENTIFIER = "WolfireFTJGamev38";
+	const string GAME_IDENTIFIER = "WolfireFTJGamev41";
 	const int DEFAULT_PORT = 25000;
 	const int MAX_PLAYERS = 4;
 	const int MAX_CONNECTIONS = MAX_PLAYERS-1;
@@ -24,7 +24,12 @@ public class NetUIScript : MonoBehaviour {
 	public GameObject token_prefab;
 	public GUISkin help_gui_skin;
 	public AudioClip[] chat_sounds;
+	public AudioClip[] songs;
+	AudioSource music_;
+	int current_song_ = -1;
+	int target_song_ = -1;
 	int first_state_ui_update = 0;
+	const float MAX_SONG_VOLUME = 0.4f;
 	List<GameObject> play_areas = new List<GameObject>();
 	
 	string queued_join_game_name_ = "";
@@ -36,6 +41,56 @@ public class NetUIScript : MonoBehaviour {
 	void Start() {
 		RequestPageURLForAutoJoin();
 		//TryToCreateGame(true);
+		music_ = gameObject.AddComponent<AudioSource>();
+		music_.volume = 0.0f;
+	}
+	
+	[RPC]
+	void TargetSongWasSet(int player, int song){
+		string song_name = "";
+		switch(song){
+			case -1:
+				song_name = "silence"; break;
+			case 0:
+				song_name = "\"Forest\""; break;
+			case 1:
+				song_name = "\"Dungeon\""; break;
+			case 2:
+				song_name = "\"HellGate\""; break;
+			case 3:
+				song_name = "\"The Grim\""; break;
+		}
+		var player_info_list = PlayerListScript.Instance().GetPlayerInfoList();
+		string player_name = "You";
+		if(player_info_list.ContainsKey(player)){
+			player_name = player_info_list[player].name_;	
+		}
+		ConsoleScript.Log(player_name + " changed song to " + song_name);
+		target_song_ = song;
+	}
+	
+	[RPC]
+	void SyncSongWithServer(int player, int current_song, int target_song, float volume, float time){
+		if(player != Net.GetMyID()){
+			return;
+		}
+		current_song_ = current_song;
+		target_song_ = target_song;
+		if(current_song_ != -1){
+			music_.clip = songs[current_song_];
+		}
+		music_.Play();
+		music_.volume = volume;
+		music_.time = time;
+	}
+	
+	
+	void SetTargetSong(int which) {
+		if(Network.connections.Length > 0){
+			networkView.RPC("TargetSongWasSet", RPCMode.All, Net.GetMyID(),which);
+		} else {
+			TargetSongWasSet(Net.GetMyID(),which);
+		}
 	}
 	
 	void SpawnHealthTokens() {
@@ -166,6 +221,23 @@ public class NetUIScript : MonoBehaviour {
 	}
 	
 	void Update() {
+		if(current_song_ != target_song_){
+			if(music_.volume == 0.0f){
+				current_song_ = target_song_;
+				if(current_song_ != -1){
+					music_.clip = songs[current_song_];
+				} else {
+					music_.Stop();
+				}
+			} else {
+				music_.volume = Mathf.Max(0.0f, music_.volume - Time.deltaTime);
+			}
+		} else if(current_song_ != -1){
+			music_.volume = Mathf.Min(MAX_SONG_VOLUME, music_.volume + Time.deltaTime);
+		}
+		if(!music_.isPlaying){
+			music_.Play();
+		}	
 		NetEvent net_event = NetEventScript.Instance().GetEvent();
 		while(net_event != null){
 			switch(net_event.type()){
@@ -186,6 +258,7 @@ public class NetUIScript : MonoBehaviour {
 					break;
 				case NetEvent.Type.PLAYER_CONNECTED:
 					ConsoleScript.Log("Player "+net_event.network_player()+" connected");
+					networkView.RPC("SyncSongWithServer",RPCMode.Others,int.Parse(net_event.network_player().ToString()), current_song_, target_song_, music_.volume, music_.time);
 					break;
 				case NetEvent.Type.PLAYER_DISCONNECTED:
 					NetEventPlayerDisconnected(net_event);
@@ -341,6 +414,23 @@ public class NetUIScript : MonoBehaviour {
 				break;
 		}
 		++first_state_ui_update;
+		
+		if (Event.current.type == EventType.KeyDown && Event.current.keyCode == KeyCode.Alpha1) {
+	      	SetTargetSong(-1);
+	    } 
+	    if (Event.current.type == EventType.KeyDown && Event.current.keyCode == KeyCode.Alpha2) {
+	      	SetTargetSong(0);
+	    } 
+	    if (Event.current.type == EventType.KeyDown && Event.current.keyCode == KeyCode.Alpha3) {
+	      	SetTargetSong(1);
+	    } 
+	    if (Event.current.type == EventType.KeyDown && Event.current.keyCode == KeyCode.Alpha4) {
+	      	SetTargetSong(2);
+	    } 
+	    if (Event.current.type == EventType.KeyDown && Event.current.keyCode == KeyCode.Alpha5) {
+	      	SetTargetSong(3);
+	    } 
+	    
 	}
 	
 	void DrawGameGUI() {
@@ -427,6 +517,9 @@ public class NetUIScript : MonoBehaviour {
 			GUILayout.EndHorizontal();
 			GUILayout.BeginHorizontal();
 			GUILayout.Label("Press 'RETURN' to chat", help_gui_skin.label);
+			GUILayout.EndHorizontal();
+			GUILayout.BeginHorizontal();
+			GUILayout.Label("Press '1-5' to play different songs", help_gui_skin.label);
 			GUILayout.EndHorizontal();
 		}
 		GUILayout.EndArea();
