@@ -447,7 +447,9 @@ god\" (Relics 6.4)"
       "Title": "Reassuring Sphere",
 	  "Type": "Equipment",
 	  "Price" : 3
-	  "Rules": "You may use Reassuring Sphere to prevent another item from breaking. Roll to see if Sphere breaks (1,2)",
+	  "Rules": "Use to prevent another item
+from breaking. Roll to see if
+Sphere breaks instead (1,2)",
 	  "Flavour": "\"More terrifying for humans
 than the prospect of large
 scale war\" (Beggars 13.1)"
