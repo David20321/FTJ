@@ -116,11 +116,15 @@ public class CursorScript : MonoBehaviour {
 			if(Input.GetKeyDown("f")){
 				card_face_up_ = !card_face_up_;
 			}
-			if(Input.GetKeyDown("r")){
+			if(Input.GetKeyDown("e")){
 				card_rotated_ = (card_rotated_+1)%4;
 			}
-			if(Input.GetKeyDown("e")){
+			if(Input.GetKeyDown("q")){
 				card_rotated_ = (card_rotated_+3)%4;
+			}
+			if(Input.GetKeyDown("r")){
+				card_face_up_ = false;
+				card_rotated_ = 0;
 			}
 			tapping_ = Input.GetKey ("t");
 			var main_camera = GameObject.Find("Main Camera").camera;

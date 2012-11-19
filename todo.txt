@@ -43,17 +43,19 @@ Card manipulation:
 +Fix health token reset
 +Password 
 +Exit back to menu from game
++Chat
++Help
 
 Set up master server and facilitator
 
 Interface:
-Chat
 Preserve aspect ratio on desktop version
-Help
 Manual
 
 Graphics:
 UI display (windows and borders?)
 Splash screen
+Card icons
 
+Music play
 

@@ -9,7 +9,7 @@ public class NetUIScript : MonoBehaviour {
 	State state_ = State.MAIN_MENU;
 	const string DEFAULT_GAME_NAME = "Unnamed Game";
 	const string DEFAULT_PLAYER_NAME = "Unknown Player";
-	const string GAME_IDENTIFIER = "WolfireFTJGamev36";
+	const string GAME_IDENTIFIER = "WolfireFTJGamev38";
 	const int DEFAULT_PORT = 25000;
 	const int MAX_PLAYERS = 4;
 	const int MAX_CONNECTIONS = MAX_PLAYERS-1;
@@ -363,7 +363,7 @@ public class NetUIScript : MonoBehaviour {
 		} else {
 			if (Event.current.type == EventType.KeyDown && Event.current.keyCode == KeyCode.Return) {
 		    	chat_shown_ = true;
-				ConsoleScript.Log ("Showing chat");
+				//ConsoleScript.Log ("Showing chat");
 				Event.current.Use();
 			}
 		}
@@ -414,7 +414,10 @@ public class NetUIScript : MonoBehaviour {
 			GUILayout.Label("Press 'WASD' to move while zoomed", help_gui_skin.label);
 			GUILayout.EndHorizontal();
 			GUILayout.BeginHorizontal();
-			GUILayout.Label("Press 'E' or 'R' to rotate cards", help_gui_skin.label);
+			GUILayout.Label("Press 'Q' or 'E' to rotate cards", help_gui_skin.label);
+			GUILayout.EndHorizontal();
+			GUILayout.BeginHorizontal();
+			GUILayout.Label("Press 'R' to rotate a card to be readable", help_gui_skin.label);
 			GUILayout.EndHorizontal();
 			GUILayout.BeginHorizontal();
 			GUILayout.Label("Press 'F' to flip cards", help_gui_skin.label);
@@ -422,6 +425,7 @@ public class NetUIScript : MonoBehaviour {
 			GUILayout.BeginHorizontal();
 			GUILayout.Label("Press 'T' to tap tokens", help_gui_skin.label);
 			GUILayout.EndHorizontal();
+			GUILayout.BeginHorizontal();
 			GUILayout.Label("Press 'RETURN' to chat", help_gui_skin.label);
 			GUILayout.EndHorizontal();
 		}
