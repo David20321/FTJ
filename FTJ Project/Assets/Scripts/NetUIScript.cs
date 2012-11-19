@@ -264,7 +264,16 @@ public class NetUIScript : MonoBehaviour {
 			PlayerListScript.Instance().SetPlayerName(player_id, name);	
 		}
 	}
-    
+	
+	void SendChatMessage(string msg){
+		networkView.RPC ("ReceiveChatMessage",RPCMode.All,Net.GetMyID(), msg);	
+	}
+	
+	[RPC]
+    void ReceiveChatMessage(int id, string msg){
+		ConsoleScript.Log (PlayerListScript.Instance().GetPlayerInfoList()[id].name_+": "+msg);	   
+	}
+	
 	void SetState(State state) {
 		first_state_ui_update = 0;
 		switch(state){
@@ -331,17 +340,17 @@ public class NetUIScript : MonoBehaviour {
 	void DrawGameGUI() {
 		if(chat_shown_){
 			if (Event.current.type == EventType.KeyDown && Event.current.keyCode == KeyCode.Return) {
-		       ConsoleScript.Log (player_name_+": "+chat_);
+		       SendChatMessage(chat_);
 		       chat_ = "";
 		       chat_shown_ = false;
 		       GUI.FocusControl("TheLabel");
-			Event.current.Use();
+			   Event.current.Use();
 		    } 
 		    if (Event.current.type == EventType.KeyDown && Event.current.keyCode == KeyCode.Escape) {
 		       chat_ = "";
 		       chat_shown_ = false;
 		       GUI.FocusControl("TheLabel");
-				Event.current.Use();
+		       Event.current.Use();
 		    } 
 		} else {
 			if (Event.current.type == EventType.KeyDown && Event.current.keyCode == KeyCode.Return) {
@@ -404,6 +413,8 @@ public class NetUIScript : MonoBehaviour {
 			GUILayout.EndHorizontal();
 			GUILayout.BeginHorizontal();
 			GUILayout.Label("Press 'T' to tap tokens", help_gui_skin.label);
+			GUILayout.EndHorizontal();
+			GUILayout.Label("Press 'RETURN' to chat", help_gui_skin.label);
 			GUILayout.EndHorizontal();
 		}
 		GUILayout.EndArea();
