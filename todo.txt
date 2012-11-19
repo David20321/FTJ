@@ -46,11 +46,12 @@ Card manipulation:
 +Chat
 +Help
 +Card icons
++Preserve aspect ratio on desktop version
++Music play
 
 Set up master server and facilitator
 
 Interface:
-Preserve aspect ratio on desktop version
 Manual
 customizable controls
 reduce card "target" values
@@ -59,5 +60,4 @@ Graphics:
 UI display (windows and borders?)
 Splash screen
 
-Music play
 
