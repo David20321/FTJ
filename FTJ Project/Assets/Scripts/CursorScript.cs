@@ -226,7 +226,6 @@ public class CursorScript : MonoBehaviour {
 			int card_rotated = card_rotated_;
 			stream.Serialize(ref card_rotated);
 			card_rotated_ = card_rotated;
-			ConsoleScript.Log ("Receiving tap = "+tapping_);
 		}
 	}
 }

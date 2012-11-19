@@ -295,7 +295,7 @@ public class NetUIScript : MonoBehaviour {
 				break;
 		}
 		state_ = state;
-		ConsoleScript.Log("Set state: "+state);
+		//ConsoleScript.Log("Set state: "+state);
 	}
 	
 	void OnGUI() {
