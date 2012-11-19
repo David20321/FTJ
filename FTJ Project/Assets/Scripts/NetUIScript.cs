@@ -488,7 +488,7 @@ public class NetUIScript : MonoBehaviour {
 		}
 		
 		
-		GUILayout.BeginArea(new Rect(Screen.width - 200, 0, 200, 200));
+		GUILayout.BeginArea(new Rect(Screen.width - 200, 0, 200, 300));
 		if(!help_shown_){
 			GUILayout.BeginHorizontal();
 			GUILayout.Label("Press '?' for help", help_gui_skin.label);
