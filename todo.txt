@@ -48,13 +48,13 @@ Card manipulation:
 +Card icons
 +Preserve aspect ratio on desktop version
 +Music play
+x customizable controls
++reduce card "target" values
 
 Set up master server and facilitator
 
 Interface:
 Manual
-customizable controls
-reduce card "target" values
 
 Graphics:
 UI display (windows and borders?)

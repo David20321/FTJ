@@ -371,7 +371,11 @@ public class NetUIScript : MonoBehaviour {
 			case State.NONE:
 				help_shown_ = false;
 				chat_shown_ = false;
+				GameObject.Find("Title Holder").GetComponent<TitleHolderScript>().Hide();
 				break;
+		}
+		if(state_ == State.NONE && state != State.NONE){
+			GameObject.Find("Title Holder").GetComponent<TitleHolderScript>().Show();
 		}
 		state_ = state;
 		//ConsoleScript.Log("Set state: "+state);
