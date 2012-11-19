@@ -45,17 +45,19 @@ Card manipulation:
 +Exit back to menu from game
 +Chat
 +Help
++Card icons
 
 Set up master server and facilitator
 
 Interface:
 Preserve aspect ratio on desktop version
 Manual
+customizable controls
+reduce card "target" values
 
 Graphics:
 UI display (windows and borders?)
 Splash screen
-Card icons
 
 Music play
 

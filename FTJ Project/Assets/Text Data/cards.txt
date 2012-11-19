@@ -32,7 +32,7 @@ existence\" (Beggars 11.1)"
 	  "Target": 5
 	  "Gold": 3
 	  "Points": 0
-	  "Rules": "You may pay one gold to
+	  "Rules": "You may pay one silver to
 avoid this fight",
 	  "Flavour": "\"It would take too long
 to explain it\" (Rest 3.6)"
@@ -190,7 +190,7 @@ to remove the bag to eat\"
 	  "Target": 6
 	  "Gold": 5
 	  "Points": 0
-	  "Rules": "You may pay two gold to avoid 
+	  "Rules": "You may pay two silver to avoid 
 this battle, and get an extra 
 attack die in your next battle",
 	  "Flavour": "\"Humanity has so many
