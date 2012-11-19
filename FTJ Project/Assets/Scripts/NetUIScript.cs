@@ -23,6 +23,7 @@ public class NetUIScript : MonoBehaviour {
 	public GameObject play_area_prefab;
 	public GameObject token_prefab;
 	public GUISkin help_gui_skin;
+	public AudioClip[] chat_sounds;
 	int first_state_ui_update = 0;
 	List<GameObject> play_areas = new List<GameObject>();
 	
@@ -269,9 +270,14 @@ public class NetUIScript : MonoBehaviour {
 		networkView.RPC ("ReceiveChatMessage",RPCMode.All,Net.GetMyID(), msg);	
 	}
 	
+	void PlayRandomSound(AudioClip[] clips, float volume){
+		audio.PlayOneShot(clips[Random.Range(0,clips.Length)], volume);
+	}		
+	
 	[RPC]
     void ReceiveChatMessage(int id, string msg){
 		ConsoleScript.Log (PlayerListScript.Instance().GetPlayerInfoList()[id].name_+": "+msg);	   
+		PlayRandomSound(chat_sounds, 0.6f);
 	}
 	
 	void SetState(State state) {
@@ -340,7 +346,9 @@ public class NetUIScript : MonoBehaviour {
 	void DrawGameGUI() {
 		if(chat_shown_){
 			if (Event.current.type == EventType.KeyDown && Event.current.keyCode == KeyCode.Return) {
-		       SendChatMessage(chat_);
+		       if(chat_.Length>0){
+			       SendChatMessage(chat_);
+		       }
 		       chat_ = "";
 		       chat_shown_ = false;
 		       GUI.FocusControl("TheLabel");

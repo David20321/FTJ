@@ -1,6 +1,12 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\NetUIScript.cs">
+    <Files>
+      <File FileName="Assets\Scripts\ObjectManagerScript.cs" Line="205" Column="9" />
+      <File FileName="Assets\Scripts\NetUIScript.cs" Line="298" Column="5" />
+      <File FileName="Assets\Scripts\CursorScript.cs" Line="228" Column="33" />
+    </Files>
+  </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
