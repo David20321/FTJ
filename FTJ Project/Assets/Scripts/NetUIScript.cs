@@ -531,6 +531,9 @@ public class NetUIScript : MonoBehaviour {
 			GUILayout.Label("Chat:");
 			GUI.SetNextControlName("ChatField");
 			chat_ = GUILayout.TextField(chat_, GUILayout.MinWidth(350));
+			if(chat_.Length > 90){
+				chat_ = chat_.Substring(0,90);
+			}
 			GUI.FocusControl("ChatField");
 			GUILayout.EndHorizontal();
 			GUILayout.EndArea();
