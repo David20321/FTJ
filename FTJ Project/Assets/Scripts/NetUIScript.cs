@@ -156,7 +156,7 @@ public class NetUIScript : MonoBehaviour {
 				break;
 		}
 		if(state_ == State.NONE || state_ == State.JOIN_SUCCESS || state_ == State.JOINING){
-			SetState(State.MAIN_MENU);
+			Application.LoadLevel(Application.loadedLevel);
 		}
 	}
 	
@@ -323,6 +323,7 @@ public class NetUIScript : MonoBehaviour {
 	void DrawGameGUI() {
 		GUILayout.BeginHorizontal();
 		if(GUILayout.Button("Exit Game")){
+			Network.Disconnect();
 			Application.LoadLevel(Application.loadedLevel);
 		}
 		GUILayout.EndHorizontal();
