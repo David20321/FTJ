@@ -16,6 +16,8 @@ public class NetUIScript : MonoBehaviour {
 	const int MIN_TEXT_FIELD_WIDTH = 200;
 	HostData last_tried_server_ = null;
 	bool help_shown_ = false;
+	bool chat_shown_ = false;
+	string chat_ = "";
 	public GameObject cursor_prefab;
 	public GameObject board_prefab;
 	public GameObject play_area_prefab;
@@ -163,11 +165,6 @@ public class NetUIScript : MonoBehaviour {
 	}
 	
 	void Update() {
-		if(state_ == State.NONE){
-			if(Input.GetKeyDown("/")){
-				help_shown_ = !help_shown_;
-			}
-		}
 		NetEvent net_event = NetEventScript.Instance().GetEvent();
 		while(net_event != null){
 			switch(net_event.type()){
@@ -285,6 +282,7 @@ public class NetUIScript : MonoBehaviour {
 				break;
 			case State.NONE:
 				help_shown_ = false;
+				chat_shown_ = false;
 				break;
 		}
 		state_ = state;
@@ -331,6 +329,28 @@ public class NetUIScript : MonoBehaviour {
 	}
 	
 	void DrawGameGUI() {
+		if(chat_shown_){
+			if (Event.current.type == EventType.KeyDown && Event.current.keyCode == KeyCode.Return) {
+		       ConsoleScript.Log (player_name_+": "+chat_);
+		       chat_ = "";
+		       chat_shown_ = false;
+		       GUI.FocusControl("TheLabel");
+			Event.current.Use();
+		    } 
+		    if (Event.current.type == EventType.KeyDown && Event.current.keyCode == KeyCode.Escape) {
+		       chat_ = "";
+		       chat_shown_ = false;
+		       GUI.FocusControl("TheLabel");
+				Event.current.Use();
+		    } 
+		} else {
+			if (Event.current.type == EventType.KeyDown && Event.current.keyCode == KeyCode.Return) {
+		    	chat_shown_ = true;
+				ConsoleScript.Log ("Showing chat");
+				Event.current.Use();
+			}
+		}
+		
 		GUILayout.BeginHorizontal();
 		if(GUILayout.Button("Exit Game")){
 			Network.Disconnect();
@@ -359,6 +379,8 @@ public class NetUIScript : MonoBehaviour {
 			GUILayout.EndHorizontal();
 			GUI.contentColor = Color.white;
 		}
+		
+		
 		GUILayout.BeginArea(new Rect(Screen.width - 200, 0, 200, 200));
 		if(!help_shown_){
 			GUILayout.BeginHorizontal();
@@ -386,6 +408,21 @@ public class NetUIScript : MonoBehaviour {
 		}
 		GUILayout.EndArea();
 		
+		if(chat_shown_){    
+			GUILayout.BeginArea(new Rect(Screen.width*0.5f - 200, Screen.height-30, 400, 200));
+			GUILayout.BeginHorizontal();
+			GUI.SetNextControlName("TheLabel");
+			GUILayout.Label("Chat:");
+			GUI.SetNextControlName("ChatField");
+			chat_ = GUILayout.TextField(chat_, GUILayout.MinWidth(350));
+			GUI.FocusControl("ChatField");
+			GUILayout.EndHorizontal();
+			GUILayout.EndArea();
+		}
+		if(Event.current.type == EventType.KeyDown && Event.current.keyCode == KeyCode.Slash){
+			help_shown_ = !help_shown_;
+			Event.current.Use();
+		}
 	}
 	
 	void TryToCreateGame(bool local){
