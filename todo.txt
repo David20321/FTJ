@@ -42,13 +42,15 @@ Card manipulation:
 +Add coins
 +Fix health token reset
 +Password 
++Exit back to menu from game
 
 Set up master server and facilitator
 
 Interface:
 Chat
-Exit back to menu from game
 Preserve aspect ratio on desktop version
+Help
+Manual
 
 Graphics:
 UI display (windows and borders?)

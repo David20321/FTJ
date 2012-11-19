@@ -15,10 +15,12 @@ public class NetUIScript : MonoBehaviour {
 	const int MAX_CONNECTIONS = MAX_PLAYERS-1;
 	const int MIN_TEXT_FIELD_WIDTH = 200;
 	HostData last_tried_server_ = null;
+	bool help_shown_ = false;
 	public GameObject cursor_prefab;
 	public GameObject board_prefab;
 	public GameObject play_area_prefab;
 	public GameObject token_prefab;
+	public GUISkin help_gui_skin;
 	int first_state_ui_update = 0;
 	List<GameObject> play_areas = new List<GameObject>();
 	
@@ -161,6 +163,11 @@ public class NetUIScript : MonoBehaviour {
 	}
 	
 	void Update() {
+		if(state_ == State.NONE){
+			if(Input.GetKeyDown("/")){
+				help_shown_ = !help_shown_;
+			}
+		}
 		NetEvent net_event = NetEventScript.Instance().GetEvent();
 		while(net_event != null){
 			switch(net_event.type()){
@@ -276,6 +283,9 @@ public class NetUIScript : MonoBehaviour {
 				player_name_ = DEFAULT_PLAYER_NAME;
 				password_ = "";
 				break;
+			case State.NONE:
+				help_shown_ = false;
+				break;
 		}
 		state_ = state;
 		ConsoleScript.Log("Set state: "+state);
@@ -349,6 +359,33 @@ public class NetUIScript : MonoBehaviour {
 			GUILayout.EndHorizontal();
 			GUI.contentColor = Color.white;
 		}
+		GUILayout.BeginArea(new Rect(Screen.width - 200, 0, 200, 200));
+		if(!help_shown_){
+			GUILayout.BeginHorizontal();
+			GUILayout.Label("Press '?' for help", help_gui_skin.label);
+			GUILayout.EndHorizontal();
+		} else {
+			GUILayout.BeginHorizontal();
+			GUILayout.Label("Press '?' to close help", help_gui_skin.label);
+			GUILayout.EndHorizontal();
+			GUILayout.BeginHorizontal();
+			GUILayout.Label("Press 'Z' to zoom in", help_gui_skin.label);
+			GUILayout.EndHorizontal();
+			GUILayout.BeginHorizontal();
+			GUILayout.Label("Press 'WASD' to move while zoomed", help_gui_skin.label);
+			GUILayout.EndHorizontal();
+			GUILayout.BeginHorizontal();
+			GUILayout.Label("Press 'E' or 'R' to rotate cards", help_gui_skin.label);
+			GUILayout.EndHorizontal();
+			GUILayout.BeginHorizontal();
+			GUILayout.Label("Press 'F' to flip cards", help_gui_skin.label);
+			GUILayout.EndHorizontal();
+			GUILayout.BeginHorizontal();
+			GUILayout.Label("Press 'T' to tap tokens", help_gui_skin.label);
+			GUILayout.EndHorizontal();
+		}
+		GUILayout.EndArea();
+		
 	}
 	
 	void TryToCreateGame(bool local){
