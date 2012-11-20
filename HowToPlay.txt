@@ -23,3 +23,5 @@ Additional rules:
 4. Gold coins are worth 5 silver coins. All references to X units of coins, gold, or silver, refer to silver coins -- the gold coins are there for convenience when players have a lot of coins.
 
 5. In Town, players recover all hit points, and may pay to buy any of the items shown in the store. Alternately, they can pay one coin to put those three cards at the bottom of the deck, and draw three new ones. Players may only carry three equipment items at any given time, but can sell items back to the store for half their purchase value, rounded down.
+
+6. If a monster deck runs out of cards, you must draw from the next monster deck above it. If there is no monster deck above it, draw from the monster deck below it. For example, if Dungeon Level 2 runs out of cards, draw from the Dungeon Level 1 deck. If there are no cards there either, draw from the Wilderness deck. If there are no cards there either, draw from the Dungeon Level 3 deck.
