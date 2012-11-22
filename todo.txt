@@ -50,14 +50,26 @@ Card manipulation:
 +Music play
 x customizable controls
 +reduce card "target" values
++Splash screen
 
 Set up master server and facilitator
 
 Interface:
 Manual
+Pick up multiple coins at once
 
 Graphics:
 UI display (windows and borders?)
-Splash screen
 
+Lower top barrier for easier dice read?
+Some benefit to doubles
+Some way to tell when others are zoomed
 
+Automatically right orientation of blood tokens
+Clarify limbo
+Easier way to put cards on bottom of deck
+Some way to take other player's equipment
+Maybe wilderness tile
+
+Unflinching sword breaks when you die
+Fewer creatures?
