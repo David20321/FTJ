@@ -10,6 +10,7 @@ public class NetUIScript : MonoBehaviour {
 	const string DEFAULT_GAME_NAME = "Unnamed Game";
 	const string DEFAULT_PLAYER_NAME = "Unknown Player";
 	const string GAME_IDENTIFIER = "DesperateGodsv41";
+	const string GAME_DISPLAY_IDENTIFIER = "DesperateGodsv42";
 	const int DEFAULT_PORT = 25000;
 	const int MAX_PLAYERS = 4;
 	const int MAX_CONNECTIONS = MAX_PLAYERS-1;
@@ -31,6 +32,7 @@ public class NetUIScript : MonoBehaviour {
 	int first_state_ui_update = 0;
 	const float MAX_SONG_VOLUME = 0.4f;
 	List<GameObject> play_areas = new List<GameObject>();
+	Vector2 scroll_pos = new Vector2();
 	
 	string queued_join_game_name_ = "";
 	string game_name_ = "???";
@@ -45,7 +47,7 @@ public class NetUIScript : MonoBehaviour {
 		music_.volume = 0.0f;
 		music_.loop = true;
 		target_song_ = Random.Range(0,4);
-		ConsoleScript.Log(GAME_IDENTIFIER);
+		ConsoleScript.Log(GAME_DISPLAY_IDENTIFIER);
 	}
 	
 	[RPC]
@@ -638,6 +640,7 @@ public class NetUIScript : MonoBehaviour {
 		GUILayout.Label("Available servers:");
 		GUILayout.EndHorizontal();
 		HostData[] servers = MasterServer.PollHostList();
+		scroll_pos = GUILayout.BeginScrollView(scroll_pos);
 		foreach(HostData server in servers){
 			GUILayout.BeginHorizontal();
 			string display_name = server.gameName + " " + server.connectedPlayers + "/" + server.playerLimit;
@@ -646,6 +649,7 @@ public class NetUIScript : MonoBehaviour {
 			}
 			GUILayout.EndHorizontal();
 		}
+		GUILayout.EndScrollView();
 		GUILayout.BeginHorizontal();
 		if(GUILayout.Button("Back")){
 			SetState(State.MAIN_MENU);
