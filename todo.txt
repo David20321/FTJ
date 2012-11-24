@@ -77,6 +77,7 @@ Lower top barrier for easier dice read?
 Investigate possible race condition when rendering to texture
 --- refresh render to texture when context recreated
 --- someone reported moving tile render to Start() helps with unity 4 issues
+Add in-game manual and pancompendium?
 
 Rules:
 Some benefit to doubles
@@ -94,3 +95,9 @@ Audio:
 Stone sounds for blood tokens
 Metal sounds for coins
 Crystal sounds for figurines
+
+Art:
+Make backs of cards match board areas
+Make coin icon match 1-coins
+Organize high-res assets for prototype export
+Nicer UI skin
