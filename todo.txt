@@ -52,24 +52,45 @@ x customizable controls
 +reduce card "target" values
 +Splash screen
 
-Set up master server and facilitator
+Networking:
+Set up our own master server and facilitator
+Perform connection test to investigate when port forwarding is needed
+Check server to see if have latest update
 
 Interface:
 Manual
 Pick up multiple coins at once
+Reset game confirmation dialog (can only be used by server)
+Undo/redo? (to fix griefer damage)
+"Change password" option for server
+More coins
+Coin color should match between card and coin lvl 1
+Deck color should match board colors
+Player colors should match figurine/placemat
+Player colors in chat window
+Some way to tell when others are zoomed
+Automatically right orientation of blood tokens
 
 Graphics:
 UI display (windows and borders?)
-
 Lower top barrier for easier dice read?
-Some benefit to doubles
-Some way to tell when others are zoomed
+Investigate possible race condition when rendering to texture
+--- refresh render to texture when context recreated
+--- someone reported moving tile render to Start() helps with unity 4 issues
 
-Automatically right orientation of blood tokens
+Rules:
+Some benefit to doubles
+
 Clarify limbo
 Easier way to put cards on bottom of deck
 Some way to take other player's equipment
-Maybe wilderness tile
-
+--- Maybe wilderness tile
 Unflinching sword breaks when you die
-Fewer creatures?
+Fewer creatures option for shorter games?
+Resurrecting serene way requires sacrificing victory card with non-zero points
+Cemetary: maybe opponent chooses card to fight?
+
+Audio:
+Stone sounds for blood tokens
+Metal sounds for coins
+Crystal sounds for figurines
